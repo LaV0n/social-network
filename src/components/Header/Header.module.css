@@ -1,0 +1,12 @@
+.header {
+    grid-area: h;
+    background-color: rgba(222, 215, 215, 0.1);
+    margin: 10px;
+    border-radius: 20px;
+
+}
+.header img {
+    width: 30px;
+    filter: invert(100%);
+    margin: 5px;
+}
