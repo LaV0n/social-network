@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css';
 import Post from "./Posts/Post";
+import state from "../../../redux/state";
 
 type MyPostsType = {
     posts: Array<postsDataType>
@@ -21,6 +22,8 @@ const MyPosts = (props: MyPostsType) => {
     let changePost =(e:ChangeEvent<HTMLTextAreaElement>)=> { props.changeNewPost(e.currentTarget.value)};
     let addPost = () => {
         props.addPost(props.newPost);
+        state.profilePage.newPost="";
+
     }
 
     return (
