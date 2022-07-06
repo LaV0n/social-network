@@ -1,27 +1,37 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 type DialogsType ={
     dialogs:Array<dialogsDataType>
-    message:Array<messsageDatatype>
+    message:messageDatatype
+    addMessage: () => void
+    updateMessage: (value:string) => void
 }
 export type dialogsDataType = {
     id:number
     name:string
     avatar:any
 }
-export type messsageDatatype ={
-    id:number
-    message:string
+export type messageDatatype ={
+    messageList:messageListType[]
+    newMessage:string
 }
+
+export type messageListType = {
+    id: number
+    message: string
+}
+
 const Dialogs = (props:DialogsType) => {
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
-    let addMessage = () =>{
-        let text = newPostElement.current?.value;
-        alert (text);
+    let onChangeMessageHandler =(e:ChangeEvent<HTMLTextAreaElement>)=>{
+        props.updateMessage(e.currentTarget.value);
+    }
+
+    let addMessageHandler = () =>{
+        props.addMessage();
     }
 
     return (
@@ -30,9 +40,10 @@ const Dialogs = (props:DialogsType) => {
                 {props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} avatar={dialog.avatar}/>)}
             </div>
             <div className={classes.messages}>
-                {props.message.map(message =>   <Message message={message.message}/>)}
-                <textarea ref={newPostElement}></textarea>
-                <button onClick={addMessage}>add message</button>
+                {props.message.messageList.map(message =>   <Message message={message.message}/>)}
+                <textarea value={props.message.newMessage}
+                          onChange={onChangeMessageHandler}></textarea>
+                <button onClick={addMessageHandler}>add message</button>
             </div>
         </div>
     )
