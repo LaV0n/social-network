@@ -1,5 +1,5 @@
 import {renderEntireTree} from "../render";
-import {postsDataType} from "../components/Profile/MyPosts/MyPosts";
+import {postDataType} from "../components/Profile/MyPosts/MyPosts";
 
 let state = {
     messagesPage: {
@@ -27,13 +27,14 @@ let state = {
     }
 }
 
-export let addPost = (newText:string)=>{
-    let post:postsDataType = {
+export let addPost = ()=>{
+    let post:postDataType = {
         id:4,
-        message: newText,
+        message: state.profilePage.newPost,
         likeCount:0
     }
     state.profilePage.postsData.unshift(post);
+    state.profilePage.newPost = "";
     renderEntireTree(state);
 }
 

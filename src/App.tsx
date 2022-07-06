@@ -8,11 +8,11 @@ import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {postsDataType} from "./components/Profile/MyPosts/MyPosts";
+import {postDataType} from "./components/Profile/MyPosts/MyPosts";
 
 type AppType = {
     appState: stateType
-    addPost: (value: string) => void
+    addPost: () => void
     changeNewPost:(value:string)=>void
 }
 export type stateType = {
@@ -25,7 +25,7 @@ type messagesPageType = {
     messagesData: Array<messsageDatatype>
 }
 type profilePageType = {
-    postsData: Array<postsDataType>
+    postsData: postDataType[]
     newPost:string
 }
 
@@ -42,9 +42,8 @@ const App = (props: AppType) => {
                             message={props.appState.messagesPage.messagesData}/>}/>
                     <Route path='/profile' render={() =>
                         <Profile
-                            posts={props.appState.profilePage.postsData}
+                            profileStage={props.appState.profilePage}
                             addPost={props.addPost}
-                            newPost={props.appState.profilePage.newPost}
                             changeNewPost = {props.changeNewPost}
                         />}/>
                     <Route path='/news' component={News}/>

@@ -1,21 +1,19 @@
 import React from "react";
 import classes from './Profile.module.css';
-import MyPosts, {postsDataType} from "./MyPosts/MyPosts";
+import MyPosts, {profileStateType} from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 type ProfileType ={
-    posts:Array<postsDataType>
-    addPost:(value:string)=>void
-    newPost:string
+    profileStage:profileStateType
+    addPost:()=>void
     changeNewPost:(value:string)=>void
 }
 const  Profile = (props:ProfileType) => {
     return (
         <div className={classes.content}>
            <ProfileInfo/>
-           <MyPosts posts={props.posts}
+           <MyPosts profileState={props.profileStage}
                     addPost ={props.addPost}
-                    newPost={props.newPost}
                     changeNewPost={props.changeNewPost}
            />
         </div>
