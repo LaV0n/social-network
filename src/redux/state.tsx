@@ -1,6 +1,10 @@
-import {renderEntireTree} from "../render";
 import {postDataType} from "../components/Profile/MyPosts/MyPosts";
 import {messageListType} from "../components/Dialogs/Dialogs";
+import {stateType} from "../App";
+
+let renderEntireTree =(state:stateType)=>{
+    alert("just plug");
+}
 
 let state = {
     messagesPage: {
@@ -32,7 +36,7 @@ let state = {
     }
 }
 
-export let addPost = () => {
+export const addPost = () => {
     let post: postDataType = {
         id: 4,
         message: state.profilePage.newPost,
@@ -43,12 +47,12 @@ export let addPost = () => {
     renderEntireTree(state);
 }
 
-export let changeNewPost = (newPost: string) => {
+export const changeNewPost = (newPost: string) => {
     state.profilePage.newPost = newPost;
     renderEntireTree(state);
 }
 
-export let addMessage = () => {
+export const addMessage = () => {
     let message: messageListType = {
         id: 4,
         message: state.messagesPage.messagesData.newMessage
@@ -58,9 +62,13 @@ export let addMessage = () => {
     renderEntireTree(state);
 }
 
-export let updateMessage = (newMessage: string) => {
+export const updateMessage = (newMessage: string) => {
     state.messagesPage.messagesData.newMessage = newMessage;
     renderEntireTree(state);
 }
 
 export default state
+
+export const subscribe = (observer:(state:stateType)=>void)=>{
+    renderEntireTree =observer;
+}
