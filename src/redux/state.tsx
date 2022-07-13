@@ -12,10 +12,10 @@ type StoreType = {
 }
 
 export type ActionsType =
-    AddPostActionType |
-    ChangeNewPostActionType |
-    AddMessageActionType |
-    UpdateMessageActionType
+    ReturnType<typeof addPostActionCreate> |
+    ReturnType<typeof changeNewPostActionCreate> |
+    ReturnType<typeof addMessageActionCreate> |
+    ReturnType<typeof updateMessageActionCreate>
 
 type AddPostActionType = {
     type: 'ADD-POST'
@@ -65,40 +65,13 @@ let store: StoreType = {
     _callSubscriber(state: stateType) {
         alert("just plug");
     },
+
     getState() {
         return this._state;
     },
     subscribe(observer: (state: stateType) => void) {
         this._callSubscriber = observer;
     },
-
-    /*  addPost()  {
-          let post: postDataType = {
-              id: 4,
-              message: this._state.profilePage.newPost,
-              likeCount: 0
-          }
-          this._state.profilePage.postsData.unshift(post);
-          this._state.profilePage.newPost = "";
-          this._callSubscriber(this._state);
-      },
-      changeNewPost(newPost: string)  {
-          this._state.profilePage.newPost = newPost;
-          this._callSubscriber(this._state);
-      },
-      addMessage () {
-          let message: messageListType = {
-              id: 4,
-              message: this._state.messagesPage.messagesData.newMessage
-          }
-          this._state.messagesPage.messagesData.messageList.push(message);
-          this._state.messagesPage.messagesData.newMessage = "";
-          this._callSubscriber(this._state);
-      },
-      updateMessage (newMessage: string)  {
-          this._state.messagesPage.messagesData.newMessage = newMessage;
-          this._callSubscriber(this._state);
-      },*/
 
     dispatch(action: ActionsType) {
         if (action.type === 'ADD-POST') {
@@ -127,5 +100,29 @@ let store: StoreType = {
         }
     }
 }
+
+export const changeNewPostActionCreate = (newPost: string): ChangeNewPostActionType => {
+    return {
+        type: "CHANGE-NEW-POST",
+        newPost: newPost
+    } as const
+}
+export const addPostActionCreate = (): AddPostActionType => {
+    return {
+        type: "ADD-POST"
+    } as const
+}
+export const addMessageActionCreate = (): AddMessageActionType => {
+    return {
+        type: "ADD-MESSAGE"
+    } as const
+}
+export const updateMessageActionCreate = (text: string): UpdateMessageActionType => {
+    return {
+        type: "UPDATE-MESSAGE",
+        newMessage: text
+    } as const
+}
+
 
 export default store;
