@@ -1,6 +1,6 @@
-import {postDataType} from "../components/Profile/MyPosts/MyPosts";
-import {messageListType} from "../components/Dialogs/Dialogs";
 import {stateType} from "../App";
+import ProfileReducer, {addPostActionCreate, changeNewPostActionCreate} from "./ProfileReducer";
+import DialogsReducer, {addMessageActionCreate, updateMessageActionCreate} from "./DialogsReducer";
 
 
 type StoreType = {
@@ -16,21 +16,6 @@ export type ActionsType =
     ReturnType<typeof changeNewPostActionCreate> |
     ReturnType<typeof addMessageActionCreate> |
     ReturnType<typeof updateMessageActionCreate>
-
-type AddPostActionType = {
-    type: 'ADD-POST'
-}
-type ChangeNewPostActionType = {
-    type: 'CHANGE-NEW-POST'
-    newPost: string
-}
-type AddMessageActionType = {
-    type: 'ADD-MESSAGE'
-}
-type UpdateMessageActionType = {
-    type: 'UPDATE-MESSAGE'
-    newMessage: string
-}
 
 let store: StoreType = {
     _state: {
@@ -74,55 +59,12 @@ let store: StoreType = {
     },
 
     dispatch(action: ActionsType) {
-        if (action.type === 'ADD-POST') {
-            let post: postDataType = {
-                id: 4,
-                message: this._state.profilePage.newPost,
-                likeCount: 0
-            }
-            this._state.profilePage.postsData.unshift(post);
-            this._state.profilePage.newPost = "";
-            this._callSubscriber(this._state);
-        } else if (action.type === 'CHANGE-NEW-POST') {
-            this._state.profilePage.newPost = action.newPost;
-            this._callSubscriber(this._state);
-        } else if (action.type === 'ADD-MESSAGE') {
-            let message: messageListType = {
-                id: 4,
-                message: this._state.messagesPage.messagesData.newMessage
-            }
-            this._state.messagesPage.messagesData.messageList.push(message);
-            this._state.messagesPage.messagesData.newMessage = "";
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-MESSAGE') {
-            this._state.messagesPage.messagesData.newMessage = action.newMessage;
-            this._callSubscriber(this._state);
-        }
+
+        this._state.profilePage= ProfileReducer(this._state.profilePage,action);
+        this._state.messagesPage.messagesData= DialogsReducer( this._state.messagesPage.messagesData,action);
+        this._callSubscriber(this._state);
+
     }
 }
-
-export const changeNewPostActionCreate = (newPost: string): ChangeNewPostActionType => {
-    return {
-        type: "CHANGE-NEW-POST",
-        newPost: newPost
-    } as const
-}
-export const addPostActionCreate = (): AddPostActionType => {
-    return {
-        type: "ADD-POST"
-    } as const
-}
-export const addMessageActionCreate = (): AddMessageActionType => {
-    return {
-        type: "ADD-MESSAGE"
-    } as const
-}
-export const updateMessageActionCreate = (text: string): UpdateMessageActionType => {
-    return {
-        type: "UPDATE-MESSAGE",
-        newMessage: text
-    } as const
-}
-
 
 export default store;
