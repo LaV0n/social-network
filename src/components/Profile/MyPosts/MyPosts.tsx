@@ -35,7 +35,11 @@ const MyPosts = (props: MyPostsType) => {
             <div>
                 <h3> New Post</h3>
                 <div>
-                    <textarea value={props.profileState.newPost} onChange={changePost}></textarea>
+                    <textarea
+                        value={props.profileState.newPost}
+                        onChange={changePost}
+                        placeholder="Enter your message"
+                    ></textarea>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>

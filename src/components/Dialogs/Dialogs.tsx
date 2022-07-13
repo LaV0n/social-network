@@ -42,7 +42,9 @@ const Dialogs = (props:DialogsType) => {
             <div className={classes.messages}>
                 {props.message.messageList.map(message =>   <Message message={message.message}/>)}
                 <textarea value={props.message.newMessage}
-                          onChange={onChangeMessageHandler}></textarea>
+                          onChange={onChangeMessageHandler}
+                          placeholder="Enter your message"
+                ></textarea>
                 <button onClick={addMessageHandler}>add message</button>
             </div>
         </div>
