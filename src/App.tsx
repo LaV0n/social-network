@@ -9,13 +9,11 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {postDataType} from "./components/Profile/MyPosts/MyPosts";
+import {ActionsType} from "./redux/state";
 
 type AppType = {
     appState: stateType
-    addPost: () => void
-    changeNewPost: (value: string) => void
-    addMessage: () => void
-    updateMessage: (value:string) => void
+    dispatch:(action:ActionsType)=>void
 }
 export type stateType = {
     messagesPage: messagesPageType
@@ -41,14 +39,12 @@ const App = (props: AppType) => {
                         <Dialogs
                             dialogs={props.appState.messagesPage.dialogsData}
                             message={props.appState.messagesPage.messagesData}
-                            addMessage={props.addMessage}
-                            updateMessage={props.updateMessage}
+                           dispatch={props.dispatch}
                         />}/>
                     <Route path='/profile' render={() =>
                         <Profile
                             profileStage={props.appState.profilePage}
-                            addPost={props.addPost}
-                            changeNewPost={props.changeNewPost}
+                            dispatch ={props.dispatch}
                         />}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>

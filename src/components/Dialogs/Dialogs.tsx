@@ -2,12 +2,12 @@ import React, {ChangeEvent} from "react";
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {ActionsType} from "../../redux/state";
 
 type DialogsType ={
     dialogs:Array<dialogsDataType>
     message:messageDatatype
-    addMessage: () => void
-    updateMessage: (value:string) => void
+    dispatch:(action:ActionsType)=>void
 }
 export type dialogsDataType = {
     id:number
@@ -27,11 +27,11 @@ export type messageListType = {
 const Dialogs = (props:DialogsType) => {
 
     let onChangeMessageHandler =(e:ChangeEvent<HTMLTextAreaElement>)=>{
-        props.updateMessage(e.currentTarget.value);
+        props.dispatch({type: 'UPDATE-MESSAGE', newMessage: e.currentTarget.value});
     }
 
     let addMessageHandler = () =>{
-        props.addMessage();
+        props.dispatch({type: 'ADD-MESSAGE'} );
     }
 
     return (

@@ -2,8 +2,38 @@ import {postDataType} from "../components/Profile/MyPosts/MyPosts";
 import {messageListType} from "../components/Dialogs/Dialogs";
 import {stateType} from "../App";
 
-let store = {
-    _state : {
+
+type StoreType = {
+    _state: stateType
+    _callSubscriber: (state: stateType) => void
+    getState: () => stateType
+    subscribe: (observer: (state: stateType) => void) => void
+    dispatch: (action: any) => void
+}
+
+export type ActionsType =
+    AddPostActionType |
+    ChangeNewPostActionType |
+    AddMessageActionType |
+    UpdateMessageActionType
+
+type AddPostActionType = {
+    type: 'ADD-POST'
+}
+type ChangeNewPostActionType = {
+    type: 'CHANGE-NEW-POST'
+    newPost: string
+}
+type AddMessageActionType = {
+    type: 'ADD-MESSAGE'
+}
+type UpdateMessageActionType = {
+    type: 'UPDATE-MESSAGE'
+    newMessage: string
+}
+
+let store: StoreType = {
+    _state: {
         messagesPage: {
             dialogsData: [
                 {id: 1, name: 'Triss', avatar: require("../components/img/triss.jpg")},
@@ -32,41 +62,69 @@ let store = {
             ]
         }
     },
-    getState () {
-      return this._state;
-    },
-    addPost()  {
-        let post: postDataType = {
-            id: 4,
-            message: this._state.profilePage.newPost,
-            likeCount: 0
-        }
-        this._state.profilePage.postsData.unshift(post);
-        this._state.profilePage.newPost = "";
-        this._callSubscriber(this._state);
-    },
-    changeNewPost(newPost: string)  {
-        this._state.profilePage.newPost = newPost;
-        this._callSubscriber(this._state);
-    },
-    addMessage () {
-        let message: messageListType = {
-            id: 4,
-            message: this._state.messagesPage.messagesData.newMessage
-        }
-        this._state.messagesPage.messagesData.messageList.push(message);
-        this._state.messagesPage.messagesData.newMessage = "";
-        this._callSubscriber(this._state);
-    },
-    updateMessage (newMessage: string)  {
-        this._state.messagesPage.messagesData.newMessage = newMessage;
-        this._callSubscriber(this._state);
-    },
-    subscribe (observer:(state:stateType)=>void) {
-        this._callSubscriber =observer;
-    },
-    _callSubscriber(state:stateType) {
+    _callSubscriber(state: stateType) {
         alert("just plug");
+    },
+    getState() {
+        return this._state;
+    },
+    subscribe(observer: (state: stateType) => void) {
+        this._callSubscriber = observer;
+    },
+
+    /*  addPost()  {
+          let post: postDataType = {
+              id: 4,
+              message: this._state.profilePage.newPost,
+              likeCount: 0
+          }
+          this._state.profilePage.postsData.unshift(post);
+          this._state.profilePage.newPost = "";
+          this._callSubscriber(this._state);
+      },
+      changeNewPost(newPost: string)  {
+          this._state.profilePage.newPost = newPost;
+          this._callSubscriber(this._state);
+      },
+      addMessage () {
+          let message: messageListType = {
+              id: 4,
+              message: this._state.messagesPage.messagesData.newMessage
+          }
+          this._state.messagesPage.messagesData.messageList.push(message);
+          this._state.messagesPage.messagesData.newMessage = "";
+          this._callSubscriber(this._state);
+      },
+      updateMessage (newMessage: string)  {
+          this._state.messagesPage.messagesData.newMessage = newMessage;
+          this._callSubscriber(this._state);
+      },*/
+
+    dispatch(action: ActionsType) {
+        if (action.type === 'ADD-POST') {
+            let post: postDataType = {
+                id: 4,
+                message: this._state.profilePage.newPost,
+                likeCount: 0
+            }
+            this._state.profilePage.postsData.unshift(post);
+            this._state.profilePage.newPost = "";
+            this._callSubscriber(this._state);
+        } else if (action.type === 'CHANGE-NEW-POST') {
+            this._state.profilePage.newPost = action.newPost;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'ADD-MESSAGE') {
+            let message: messageListType = {
+                id: 4,
+                message: this._state.messagesPage.messagesData.newMessage
+            }
+            this._state.messagesPage.messagesData.messageList.push(message);
+            this._state.messagesPage.messagesData.newMessage = "";
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-MESSAGE') {
+            this._state.messagesPage.messagesData.newMessage = action.newMessage;
+            this._callSubscriber(this._state);
+        }
     }
 }
 

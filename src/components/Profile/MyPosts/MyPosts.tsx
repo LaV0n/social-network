@@ -1,11 +1,11 @@
 import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css';
 import Post from "./Posts/Post";
+import {ActionsType} from "../../../redux/state";
 
 type MyPostsType = {
     profileState: profileStateType
-    addPost: () => void
-    changeNewPost:(value:string)=>void
+    dispatch: (action:ActionsType) => void
 }
 export type profileStateType = {
     newPost: string
@@ -22,10 +22,10 @@ const MyPosts = (props: MyPostsType) => {
     let postsElements =
         props.profileState.postsData.map(message => <Post message={message.message} likeCount={message.likeCount}/>);
 
-    let changePost =(e:ChangeEvent<HTMLTextAreaElement>)=> { props.changeNewPost(e.currentTarget.value)};
+    let changePost =(e:ChangeEvent<HTMLTextAreaElement>)=> { props.dispatch({type:'CHANGE-NEW-POST', newPost:e.currentTarget.value })};
 
     let addPost = () => {
-        props.addPost();
+        props.dispatch({type:'ADD-POST'});
     }
 
     return (

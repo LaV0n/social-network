@@ -8,10 +8,7 @@ import ReactDOM from "react-dom";
 let renderEntireTree = (state:stateType) => {
     ReactDOM.render(
         <App appState={store.getState()}
-             addPost={store.addPost.bind(store)}
-             changeNewPost={store.changeNewPost.bind(store)}
-             addMessage ={store.addMessage.bind(store)}
-             updateMessage ={store.updateMessage.bind(store)}
+             dispatch={store.dispatch.bind(store)}
         />,
         document.getElementById('root')
     );
