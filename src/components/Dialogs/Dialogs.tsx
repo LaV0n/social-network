@@ -2,13 +2,13 @@ import React, {ChangeEvent} from "react";
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import { addMessageActionCreate, updateMessageActionCreate} from "../../redux/DialogsReducer";
-import {ActionsType} from "../../redux/state";
 
 type DialogsType ={
-    dialogs:Array<dialogsDataType>
-    message:messageDatatype
-    dispatch:(action:ActionsType)=>void
+    onChangeMessageHandler:(value:string)=>void
+    addMessageHandler:()=>void
+    dialogs:dialogsDataType[]
+    messagesList:messageListType[]
+    newMessage:string
 }
 export type dialogsDataType = {
     id:number
@@ -28,11 +28,11 @@ export type messageListType = {
 const Dialogs = (props:DialogsType) => {
 
     let onChangeMessageHandler =(e:ChangeEvent<HTMLTextAreaElement>)=>{
-        props.dispatch(updateMessageActionCreate(e.currentTarget.value));
+        props.onChangeMessageHandler(e.currentTarget.value);
     }
 
     let addMessageHandler = () =>{
-        props.dispatch(addMessageActionCreate() );
+        props.addMessageHandler()
     }
 
     return (
@@ -41,8 +41,8 @@ const Dialogs = (props:DialogsType) => {
                 {props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} avatar={dialog.avatar}/>)}
             </div>
             <div className={classes.messages}>
-                {props.message.messageList.map(message =>   <Message message={message.message}/>)}
-                <textarea value={props.message.newMessage}
+                {props.messagesList.map(message =>   <Message message={message.message}/>)}
+                <textarea value={props.newMessage}
                           onChange={onChangeMessageHandler}
                           placeholder="Enter your message"
                 ></textarea>

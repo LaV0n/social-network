@@ -1,34 +1,26 @@
 import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css';
+import {postDataType} from "./MyPostsContainer";
 import Post from "./Posts/Post";
-import { addPostActionCreate, changeNewPostActionCreate} from "../../../redux/ProfileReducer";
-import {ActionsType} from "../../../redux/state";
 
 type MyPostsType = {
-    profileState: profileStateType
-    dispatch: (action:ActionsType) => void
-}
-export type profileStateType = {
     newPost: string
-    postsData: postDataType[]
-}
-export type postDataType = {
-    id: number
-    message: string
-    likeCount: number
+    changePost: (value:string) => void
+    addPost:()=>void
+    posts:postDataType[]
 }
 
 const MyPosts = (props: MyPostsType) => {
 
     let postsElements =
-        props.profileState.postsData.map(message => <Post message={message.message} likeCount={message.likeCount}/>);
+        props.posts.map(message => <Post message={message.message} likeCount={message.likeCount}/>);
 
     let changePost =(e:ChangeEvent<HTMLTextAreaElement>)=> {
-        props.dispatch(changeNewPostActionCreate(e.currentTarget.value))
+        props.changePost(e.currentTarget.value)
     };
 
     let addPost = () => {
-        props.dispatch(addPostActionCreate());
+        props.addPost();
     }
 
     return (
@@ -37,7 +29,7 @@ const MyPosts = (props: MyPostsType) => {
                 <h3> New Post</h3>
                 <div>
                     <textarea
-                        value={props.profileState.newPost}
+                        value={props.newPost}
                         onChange={changePost}
                         placeholder="Enter your message"
                     ></textarea>

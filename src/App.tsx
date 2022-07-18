@@ -3,23 +3,24 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import Dialogs, {dialogsDataType, messageDatatype} from "./components/Dialogs/Dialogs";
+import {dialogsDataType, messageDatatype} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {postDataType} from "./components/Profile/MyPosts/MyPosts";
-import {ActionsType} from "./redux/state";
+import {postDataType} from "./components/Profile/MyPosts/MyPostsContainer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {storeType} from "./redux/redux-store";
+
 
 type AppType = {
-    appState: stateType
-    dispatch:(action:ActionsType)=>void
+   store:storeType
 }
 export type stateType = {
     messagesPage: messagesPageType
     profilePage: profilePageType
 }
-type messagesPageType = {
+export type messagesPageType = {
     dialogsData: Array<dialogsDataType>
     messagesData: messageDatatype
 }
@@ -36,15 +37,12 @@ const App = (props: AppType) => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path='/dialogs' render={() =>
-                        <Dialogs
-                            dialogs={props.appState.messagesPage.dialogsData}
-                            message={props.appState.messagesPage.messagesData}
-                           dispatch={props.dispatch}
+                        <DialogsContainer
+                            store={props.store}
                         />}/>
                     <Route path='/profile' render={() =>
                         <Profile
-                            profileStage={props.appState.profilePage}
-                            dispatch ={props.dispatch}
+                            store={props.store}
                         />}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>

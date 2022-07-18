@@ -1,5 +1,5 @@
-import {postDataType, profileStateType} from "../components/Profile/MyPosts/MyPosts";
-import {ActionsType} from "./state";
+import {postDataType, profileStateType} from "../components/Profile/MyPosts/MyPostsContainer";
+import {ActionsType} from "./store";
 type ChangeNewPostActionType = {
     type: 'CHANGE-NEW-POST'
     newPost: string
@@ -8,8 +8,17 @@ type AddPostActionType = {
     type: 'ADD-POST'
 }
 
+let initialState={
+    newPost: "",
+    postsData: [
+        {id: 1, message: 'Hi', likeCount: 5},
+        {id: 2, message: 'I am alive', likeCount: 5},
+        {id: 3, message: 'Who is here?', likeCount: 5}
+    ]
+}
 
-const ProfileReducer =(state:profileStateType,action:ActionsType)=>{
+
+const ProfileReducer =(state:profileStateType=initialState,action:ActionsType)=>{
     switch (action.type) {
         case 'ADD-POST':
             let post: postDataType = {

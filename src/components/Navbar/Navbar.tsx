@@ -1,7 +1,6 @@
 import React from "react";
 import logo from '../img/logo.jpg';
 import classes from './Navbar.module.css';
-import Profile from "../Profile/Profile";
 import {NavLink} from "react-router-dom";
 
 const  Navbar = () => {

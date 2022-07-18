@@ -1,5 +1,6 @@
-import {ActionsType} from "./state";
-import { messageDatatype, messageListType} from "../components/Dialogs/Dialogs";
+import {ActionsType} from "./store";
+import { messageListType} from "../components/Dialogs/Dialogs";
+import {messagesPageType} from "../App";
 
 type AddMessageActionType = {
     type: 'ADD-MESSAGE'
@@ -9,18 +10,38 @@ type UpdateMessageActionType = {
     newMessage: string
 }
 
-const DialogsReducer = (state:messageDatatype,action:ActionsType)=>{
+let initialState = {
+    dialogsData: [
+        {id: 1, name: 'Triss', avatar: require("../components/img/triss.jpg")},
+        {id: 2, name: 'Gaunter', avatar: require("../components/img/gaunter.jpeg")},
+        {id: 3, name: 'Letho', avatar: require("../components/img/letho.jpg")},
+        {id: 4, name: 'Yennefer', avatar: require("../components/img/yennefer.jpg")},
+        {id: 5, name: 'Thaler', avatar: require("../components/img/thaler.jpg")},
+        {id: 6, name: 'Jaskier', avatar: require("../components/img/jaskier.jpg")}
+    ],
+
+    messagesData: {
+        newMessage: "",
+        messageList: [
+            {id: 1, message: 'Hi'},
+            {id: 2, message: 'sleeppy'},
+            {id: 3, message: 'How r u?'},
+        ]
+    }
+}
+
+const DialogsReducer = (state:messagesPageType=initialState,action:ActionsType)=>{
     switch (action.type){
         case 'ADD-MESSAGE':
             let message: messageListType = {
                 id: 4,
-                message: state.newMessage
+                message: state.messagesData.newMessage
             }
-           state.messageList.push(message);
-            state.newMessage = "";
+           state.messagesData.messageList.push(message);
+            state.messagesData.newMessage = "";
             return state;
         case 'UPDATE-MESSAGE':
-         state.newMessage = action.newMessage;
+         state.messagesData.newMessage = action.newMessage;
          return state;
         default:
             return state;

@@ -61,10 +61,10 @@ let store: StoreType = {
     dispatch(action: ActionsType) {
 
         this._state.profilePage= ProfileReducer(this._state.profilePage,action);
-        this._state.messagesPage.messagesData= DialogsReducer( this._state.messagesPage.messagesData,action);
+        this._state.messagesPage= DialogsReducer( this._state.messagesPage,action);
         this._callSubscriber(this._state);
 
     }
 }
 
-export default store;
+
