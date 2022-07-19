@@ -10,12 +10,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {postDataType} from "./components/Profile/MyPosts/MyPostsContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import {storeType} from "./redux/redux-store";
 
-
-type AppType = {
-   store:storeType
-}
 export type stateType = {
     messagesPage: messagesPageType
     profilePage: profilePageType
@@ -29,7 +24,7 @@ type profilePageType = {
     newPost: string
 }
 
-const App = (props: AppType) => {
+const App = () => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -37,13 +32,11 @@ const App = (props: AppType) => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path='/dialogs' render={() =>
-                        <DialogsContainer
-                            store={props.store}
-                        />}/>
+                        <DialogsContainer/>}
+                    />
                     <Route path='/profile' render={() =>
-                        <Profile
-                            store={props.store}
-                        />}/>
+                        <Profile/>
+                    }/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
