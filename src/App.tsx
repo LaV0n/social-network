@@ -10,10 +10,13 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {postDataType} from "./components/Profile/MyPosts/MyPostsContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {UsersContainer} from "./components/Users/UsersContainer";
+import {UsersPageType} from "./redux/UsersReducer";
 
 export type stateType = {
     messagesPage: messagesPageType
     profilePage: profilePageType
+    usersPage: UsersPageType
 }
 export type messagesPageType = {
     dialogsData: Array<dialogsDataType>
@@ -36,6 +39,9 @@ const App = () => {
                     />
                     <Route path='/profile' render={() =>
                         <Profile/>
+                    }/>
+                    <Route path='/users' render={() =>
+                        <UsersContainer/>
                     }/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>

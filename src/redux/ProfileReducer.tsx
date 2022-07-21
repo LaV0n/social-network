@@ -1,5 +1,5 @@
 import {postDataType, profileStateType} from "../components/Profile/MyPosts/MyPostsContainer";
-import {ActionsType} from "./store";
+import { ActionsType } from "./redux-store";
 type ChangeNewPostActionType = {
     type: 'CHANGE-NEW-POST'
     newPost: string

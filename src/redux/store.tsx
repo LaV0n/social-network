@@ -11,13 +11,9 @@ type StoreType = {
     dispatch: (action: any) => void
 }
 
-export type ActionsType =
-    ReturnType<typeof addPostActionCreate> |
-    ReturnType<typeof changeNewPostActionCreate> |
-    ReturnType<typeof addMessageActionCreate> |
-    ReturnType<typeof updateMessageActionCreate>
 
-let store: StoreType = {
+
+let store: any = {
     _state: {
         messagesPage: {
             dialogsData: [
@@ -58,7 +54,7 @@ let store: StoreType = {
         this._callSubscriber = observer;
     },
 
-    dispatch(action: ActionsType) {
+    dispatch(action: any) {
 
         this._state.profilePage= ProfileReducer(this._state.profilePage,action);
         this._state.messagesPage= DialogsReducer( this._state.messagesPage,action);

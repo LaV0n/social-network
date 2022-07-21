@@ -1,6 +1,6 @@
-import {ActionsType} from "./store";
 import {messageListType} from "../components/Dialogs/Dialogs";
 import {messagesPageType} from "../App";
+import { ActionsType } from "./redux-store";
 
 type AddMessageActionType = {
     type: 'ADD-MESSAGE'
