@@ -1,7 +1,10 @@
 import React from "react";
-import { addPostActionCreate, changeNewPostActionCreate} from "../../../redux/ProfileReducer";
+import {addPostActionCreate, changeNewPostActionCreate} from "../../../redux/ProfileReducer";
 import MyPosts from "./MyPosts";
-import StoreContext from "../../../StoreContext";
+import {connect} from "react-redux";
+import {stateType} from "../../../App";
+import {Dispatch} from "redux";
+
 
 export type profileStateType = {
     newPost: string
@@ -13,25 +16,20 @@ export type postDataType = {
     likeCount: number
 }
 
-const MyPostsContainer = () => {
-
-    return <StoreContext.Consumer>
-        {store =>{
-            let changePost =(text:string)=> {
-                store.dispatch(changeNewPostActionCreate(text))
-            };
-
-            let addPost = () => {
-                store.dispatch(addPostActionCreate());
-            }
-            return <MyPosts posts={store.getState().profilePage.postsData}
-                            newPost ={store.getState().profilePage.newPost}
-                            changePost={changePost}
-                            addPost={addPost}
-
-            />
-        }
-        }
-    </StoreContext.Consumer>
+let mapStateToProps = (state: stateType) => {
+    return {
+        posts: state.profilePage.postsData,
+        newPost: state.profilePage.newPost
+    }
 }
+let mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        changePost: (text:string)=> {dispatch(changeNewPostActionCreate(text))},
+        addPost: () => {dispatch(addPostActionCreate())}
+    }
+}
+
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+
 export default MyPostsContainer;

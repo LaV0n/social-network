@@ -18,7 +18,7 @@ let initialState={
 }
 
 
-const ProfileReducer =(state:profileStateType=initialState,action:ActionsType)=>{
+const ProfileReducer =(state:profileStateType=initialState,action:ActionsType):profileStateType=>{
     switch (action.type) {
         case 'ADD-POST':
             let post: postDataType = {

@@ -30,7 +30,7 @@ let initialState = {
     }
 }
 
-const DialogsReducer = (state:messagesPageType=initialState,action:ActionsType)=>{
+const DialogsReducer = (state:messagesPageType=initialState,action:ActionsType):messagesPageType=>{
     switch (action.type){
         case 'ADD-MESSAGE':
             let message: messageListType = {
