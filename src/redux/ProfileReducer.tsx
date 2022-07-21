@@ -26,12 +26,9 @@ const ProfileReducer =(state:profileStateType=initialState,action:ActionsType):p
                 message:state.newPost,
                 likeCount: 0
             }
-            state.postsData.unshift(post);
-            state.newPost = "";
-            return state;
+            return {...state,postsData:[post,...state.postsData],newPost:""};
         case 'CHANGE-NEW-POST':
-            state.newPost = action.newPost;
-            return state;
+            return {...state,newPost:action.newPost};
         default:
             return state;
     }
