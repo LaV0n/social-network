@@ -1,5 +1,5 @@
 import {ActionsType} from "./store";
-import { messageListType} from "../components/Dialogs/Dialogs";
+import {messageListType} from "../components/Dialogs/Dialogs";
 import {messagesPageType} from "../App";
 
 type AddMessageActionType = {
@@ -30,19 +30,23 @@ let initialState = {
     }
 }
 
-const DialogsReducer = (state:messagesPageType=initialState,action:ActionsType):messagesPageType=>{
-    switch (action.type){
+const DialogsReducer = (state: messagesPageType = initialState, action: ActionsType): messagesPageType => {
+    switch (action.type) {
         case 'ADD-MESSAGE':
             let message: messageListType = {
                 id: 4,
                 message: state.messagesData.newMessage
             }
-           state.messagesData.messageList.push(message);
-            state.messagesData.newMessage = "";
-            return state;
+            return {
+                ...state,
+                messagesData: {
+                    ...state.messagesData,
+                    messageList: [...state.messagesData.messageList, message],
+                    newMessage: ""
+                }
+            };
         case 'UPDATE-MESSAGE':
-         state.messagesData.newMessage = action.newMessage;
-         return state;
+            return {...state, messagesData: {...state.messagesData, newMessage: action.newMessage}};
         default:
             return state;
     }
