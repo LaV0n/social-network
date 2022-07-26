@@ -1,15 +1,16 @@
 import React from "react";
 import {UsersType} from "../../redux/UsersReducer";
 import styles from './Users.module.css'
-import  axios from "axios";
+import axios from "axios";
 import userPhoto from '../../assets/img/userPhoto.png';
 
-type UserType = {
+ type UserType = {
     users: UsersType[]
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: UsersType[]) => void
 }
+
 /*
 {
     id: 1,
@@ -22,33 +23,33 @@ type UserType = {
 */
 
 
+class Users extends React.Component<UserType> {
+    constructor(props:UserType) {
+        super(props);
+        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+            .then(response => {
+            this.props.setUsers(response.data.items)
+        });
+    }
 
-const Users = (props: UserType) => {
- let getUser =() =>{
-     if (props.users.length === 0) {
-         axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-             props.setUsers(response.data.items)
-         })
-     }
- }
-
+render() {
     return (
         <div>
-            <button onClick={getUser}>get users</button>
             {
-                props.users.map(u =>
+                this.props.users.map(u =>
                     <div key={u.id} className={styles.user}>
                         <div className={styles.face}>
                             <div>
-                                <img className={styles.avatar} src={ u.photos.small !==null ? u.photos.small : userPhoto} alt="0"/>
+                                <img className={styles.avatar}
+                                     src={u.photos.small !== null ? u.photos.small : userPhoto} alt="0"/>
                             </div>
                             <div>
                                 {u.followed
                                     ? <button className={styles.button} onClick={() => {
-                                        props.unfollow(u.id)
+                                        this.props.unfollow(u.id)
                                     }}>unfollow</button>
                                     : <button className={styles.button} onClick={() => {
-                                        props.follow(u.id)
+                                        this.props.follow(u.id)
                                     }}>follow</button>}
                             </div>
                         </div>
@@ -66,8 +67,9 @@ const Users = (props: UserType) => {
                 )
             }
         </div>
-
     )
+}
+
 }
 
 export default Users
