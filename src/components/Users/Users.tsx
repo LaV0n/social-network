@@ -67,7 +67,6 @@ class Users extends React.Component<UserType> {
             </div>
         )
     }
-
 }
 
 export default Users

@@ -1,7 +1,4 @@
 import {stateType} from "../App";
-import ProfileReducer, {addPostActionCreate, changeNewPostActionCreate} from "./ProfileReducer";
-import DialogsReducer, {addMessageActionCreate, updateMessageActionCreate} from "./DialogsReducer";
-
 
 type StoreType = {
     _state: stateType
@@ -56,8 +53,8 @@ let store: any = {
 
     dispatch(action: any) {
 
-        this._state.profilePage= ProfileReducer(this._state.profilePage,action);
-        this._state.messagesPage= DialogsReducer( this._state.messagesPage,action);
+      //  this._state.profilePage= ProfileReducer(this._state.profilePage,action);
+      //  this._state.messagesPage= DialogsReducer( this._state.messagesPage,action);
         this._callSubscriber(this._state);
 
     }
