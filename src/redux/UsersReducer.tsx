@@ -37,7 +37,7 @@ const UsersReducer = (state:UsersPageType = initialState, action: ActionsType):U
         case 'UNFOLLOW':
             return {...state,users:state.users.map(u=>u.id===action.userId?{...u,followed:false}:u)}
         case 'SET_USERS':
-            return {...state,users:[...state.users, ...action.users]}
+            return {...state,users:[...state.users, ...action.users]} // duplicate users from server
         default:
             return state;
     }
