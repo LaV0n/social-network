@@ -9,7 +9,6 @@ type StoreType = {
 }
 
 
-
 let store: any = {
     _state: {
         messagesPage: {
