@@ -1,5 +1,5 @@
 import React from "react";
-import wall from '../../img/kaen.jpg'
+import wall from '../../../assets/img/kaen.jpg'
 import classes from './ProfileInfo.module.css';
 
 

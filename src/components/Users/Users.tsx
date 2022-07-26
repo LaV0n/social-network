@@ -1,6 +1,8 @@
 import React from "react";
 import {UsersType} from "../../redux/UsersReducer";
 import styles from './Users.module.css'
+import  axios from "axios";
+import userPhoto from '../../assets/img/userPhoto.png';
 
 type UserType = {
     users: UsersType[]
@@ -8,62 +10,25 @@ type UserType = {
     unfollow: (userId: number) => void
     setUsers: (users: UsersType[]) => void
 }
+/*
+{
+    id: 1,
+        name: 'Triss',
+    avatar: require("../../assets/img/triss.jpg"),
+    status: 'free',
+    location: {city: 'Novigrad', country: 'Novigrad'},
+    followed: true
+}
+*/
+
+
 
 const Users = (props: UserType) => {
 
     if (props.users.length === 0) {
-        props.setUsers(
-            [
-                {
-                    id: 1,
-                    name: 'Triss',
-                    avatar: require("./../img/triss.jpg"),
-                    status: 'free',
-                    location: {city: 'Novigrad', country: 'Novigrad'},
-                    followed: true
-                },
-                {
-                    id: 2,
-                    name: 'Gaunter',
-                    avatar: require("./../img/gaunter.jpeg"),
-                    status: 'free',
-                    location: {city: 'any', country: 'all word'},
-                    followed: false
-                },
-                {
-                    id: 3,
-                    name: 'Letho',
-                    avatar: require("./../img/letho.jpg"),
-                    status: 'free',
-                    location: {city: 'Aedirn', country: 'Gulet'},
-                    followed: true
-                },
-                {
-                    id: 4,
-                    name: 'Yennefer',
-                    avatar: require("./../img/yennefer.jpg"),
-                    status: 'free',
-                    location: {city: 'Aedirn', country: 'Vengerberg'},
-                    followed: true
-                },
-                {
-                    id: 5,
-                    name: 'Thaler',
-                    avatar: require("./../img/thaler.jpg"),
-                    status: 'free',
-                    location: {city: 'Wyzima', country: 'Temeres'},
-                    followed: false
-                },
-                {
-                    id: 6,
-                    name: 'Jaskier',
-                    avatar: require("./../img/jaskier.jpg"),
-                    status: 'free',
-                    location: {city: 'capital city', country: 'Tusent'},
-                    followed: true
-                }
-            ]
-        )
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            props.setUsers(response.data.items)
+        })
     }
 
     return (
@@ -73,7 +38,7 @@ const Users = (props: UserType) => {
                     <div key={u.id} className={styles.user}>
                         <div className={styles.face}>
                             <div>
-                                <img className={styles.avatar} src={u.avatar} alt="0"/>
+                                <img className={styles.avatar} src={ u.photos.small !==null ? u.photos.small : userPhoto} alt="0"/>
                             </div>
                             <div>
                                 {u.followed
@@ -91,8 +56,8 @@ const Users = (props: UserType) => {
                                 <div className={styles.line}><span>Status: </span>{u.status}</div>
                             </div>
                             <div>
-                                <div className={styles.line}><span>Country: </span>{u.location.country}</div>
-                                <div className={styles.line}><span>City: </span>{u.location.city}</div>
+                                <div className={styles.line}><span>Country: </span>{"u.location.country"}</div>
+                                <div className={styles.line}><span>City: </span>{"u.location.city"}</div>
                             </div>
                         </div>
                     </div>

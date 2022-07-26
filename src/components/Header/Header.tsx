@@ -1,5 +1,5 @@
 import React from "react";
-import SearchLogo from '../img/Search_Icon.svg.png'
+import SearchLogo from '../../assets/img/Search_Icon.svg.png'
 import classes from './Header.module.css';
 const  Header = () => {
     return (

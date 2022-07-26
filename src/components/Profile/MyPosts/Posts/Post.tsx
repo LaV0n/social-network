@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './Post.module.css';
-import post_ph from '../../../img/geralt_post.jpg';
+import post_ph from '../../../../assets/img/geralt_post.jpg';
 
 type PostType ={
     message:string
@@ -11,7 +11,7 @@ const Post = (props:PostType) => {
 
     return (
         <div className={classes.item}>
-            <img src={post_ph}/>
+            <img src={post_ph} alt="0"/>
             {props.message}
             <div>
                 <span> likes {props.likeCount}</span>
