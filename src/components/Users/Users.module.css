@@ -26,7 +26,7 @@
     padding-right: 20px;
     padding-top: 30px;
     font-size: 1.2rem;
-    font-family: Verdana,sans-serif;
+    font-family: Verdana, sans-serif;
 }
 
 .button {
@@ -34,9 +34,20 @@
     border-radius: 5px;
     border: none;
 }
+
 .line {
-color: white;
+    color: white;
 }
+
 .line span {
     color: rgba(214, 223, 237, 0.67);
+}
+
+.pageCount {
+    color: white;
+}
+.pageCountSelected {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
 }
