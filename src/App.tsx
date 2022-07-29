@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
 import {dialogsDataType, messageDatatype} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
@@ -12,6 +11,7 @@ import {postDataType} from "./components/Profile/MyPosts/MyPostsContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import {UsersPageType} from "./redux/UsersReducer";
+import {ProfileContainer} from "./components/Profile/ProfileContainer";
 
 export type stateType = {
     messagesPage: messagesPageType
@@ -22,9 +22,28 @@ export type messagesPageType = {
     dialogsData: Array<dialogsDataType>
     messagesData: messageDatatype
 }
-type profilePageType = {
+export type profilePageType = {
     postsData: postDataType[]
     newPost: string
+    profile:profileUserType                                   //plug
+}
+export type profileUserType  = {
+    photos: { small: string, large: string}
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName:string
+    userId: number
+    aboutMe: string
+    contacts: {
+        facebook: string,
+        website: string,
+        vk: string,
+        twitter: string,
+        instagram: string,
+        youtube:string,
+        github: string,
+        mainLink: string
+    }
 }
 
 const App = () => {
@@ -38,7 +57,7 @@ const App = () => {
                         <DialogsContainer/>}
                     />
                     <Route path='/profile' render={() =>
-                        <Profile/>
+                        <ProfileContainer/>
                     }/>
                     <Route path='/users' render={() =>
                         <UsersContainer/>

@@ -1,5 +1,5 @@
 import {combineReducers, createStore} from "redux";
-import ProfileReducer, {addPostActionCreate, changeNewPostActionCreate} from "./ProfileReducer";
+import ProfileReducer, {addPostActionCreate, changeNewPostActionCreate, SetUserProfileType} from "./ProfileReducer";
 import DialogsReducer, {addMessageActionCreate, updateMessageActionCreate} from "./DialogsReducer";
 import UsersReducer, {
     FollowACType,
@@ -20,7 +20,8 @@ export type ActionsType =
     SetUsersACType |
     SetCurrentPageACType |
     SetTotalUserCountACType |
-    SetToggleIsFetchingACType
+    SetToggleIsFetchingACType|
+    SetUserProfileType
 
 
 let reducers = combineReducers({
