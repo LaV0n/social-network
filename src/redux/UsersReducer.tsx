@@ -39,7 +39,7 @@ export type UsersType = {
 
 let initialState = {
     users:[],
-    pageSize: 5,
+    pageSize: 6,
     totalUserCount:0,
     currentPage:1
 }
