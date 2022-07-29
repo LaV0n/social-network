@@ -2,12 +2,12 @@ import {combineReducers, createStore} from "redux";
 import ProfileReducer, {addPostActionCreate, changeNewPostActionCreate} from "./ProfileReducer";
 import DialogsReducer, {addMessageActionCreate, updateMessageActionCreate} from "./DialogsReducer";
 import UsersReducer, {
-    FollowAC,
-    SetCurrentPageAC,
-    SetToggleIsFetchingAC,
-    SetTotalUserCountAC,
-    SetUsersAC,
-    UnfollowAC
+    FollowACType,
+    SetCurrentPageACType,
+    SetToggleIsFetchingACType,
+    SetTotalUserCountACType,
+    SetUsersACType,
+    UnfollowACType
 } from "./UsersReducer";
 
 export type ActionsType =
@@ -15,12 +15,12 @@ export type ActionsType =
     ReturnType<typeof changeNewPostActionCreate> |
     ReturnType<typeof addMessageActionCreate> |
     ReturnType<typeof updateMessageActionCreate> |
-    ReturnType<typeof FollowAC> |
-    ReturnType<typeof UnfollowAC> |
-    ReturnType<typeof SetUsersAC> |
-    ReturnType<typeof SetCurrentPageAC> |
-    ReturnType<typeof SetTotalUserCountAC>|
-    ReturnType<typeof SetToggleIsFetchingAC>
+    FollowACType |
+    UnfollowACType |
+    SetUsersACType |
+    SetCurrentPageACType |
+    SetTotalUserCountACType |
+    SetToggleIsFetchingACType
 
 
 let reducers = combineReducers({

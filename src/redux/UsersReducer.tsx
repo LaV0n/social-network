@@ -1,27 +1,27 @@
 import {ActionsType} from "./redux-store";
 
 
-type FollowACType ={
+export type FollowACType ={
     type:'FOLLOW'
     userId:number
 }
-type UnfollowACType ={
+export type UnfollowACType ={
     type:'UNFOLLOW'
     userId:number
 }
-type SetUsersACType ={
+export type SetUsersACType ={
     type:'SET_USERS'
     users:UsersType[]
 }
-type SetCurrentPageACType ={
+export type SetCurrentPageACType ={
     type:'SET_CURRENT_PAGE'
     currentPage:number
 }
-type SetTotalUserCountACType ={
+export type SetTotalUserCountACType ={
     type:'SET_TOTAL_USERS_COUNT'
     totalCount:number
 }
-type SetToggleIsFetchingACType ={
+export type SetToggleIsFetchingACType ={
     type:'TOGGLE_IS_FETCHING'
     isFetching:boolean
 }
@@ -69,37 +69,37 @@ const UsersReducer = (state:UsersPageType = initialState, action: ActionsType):U
             return state;
     }
 }
-export const FollowAC = (userId:number): FollowACType => {
+export const follow = (userId:number): FollowACType => {
     return {
         type: "FOLLOW",
         userId:userId
     } as const
 }
-export const UnfollowAC = (userId:number): UnfollowACType => {
+export const unfollow = (userId:number): UnfollowACType => {
     return {
         type: "UNFOLLOW",
         userId:userId
     } as const
 }
-export const SetUsersAC =(users:UsersType[]): SetUsersACType => {
+export const setUsers =(users:UsersType[]): SetUsersACType => {
     return {
         type:'SET_USERS',
         users:users
     } as const
 }
-export const SetCurrentPageAC =(currentPage:number): SetCurrentPageACType => {
+export const setCurrentPage =(currentPage:number): SetCurrentPageACType => {
     return {
         type:'SET_CURRENT_PAGE',
         currentPage:currentPage
     } as const
 }
-export const SetTotalUserCountAC =(totalCount:number): SetTotalUserCountACType => {
+export const setTotalUserCount =(totalCount:number): SetTotalUserCountACType => {
     return {
         type:'SET_TOTAL_USERS_COUNT',
         totalCount:totalCount
     } as const
 }
-export const SetToggleIsFetchingAC =(isFetching:boolean): SetToggleIsFetchingACType => {
+export const setToggleIsFetching =(isFetching:boolean): SetToggleIsFetchingACType => {
     return {
         type:'TOGGLE_IS_FETCHING',
         isFetching:isFetching
