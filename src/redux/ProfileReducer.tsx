@@ -21,8 +21,8 @@ let initialState= {
         {id: 2, message: 'I am alive', likeCount: 5},
         {id: 3, message: 'Who is here?', likeCount: 5}
     ],
-    profile:{
-        photos: { small: '', large: ''},
+    profile: null/*:{
+     /!*   photos: { small: '', large: ''},
         lookingForAJob: true,
         lookingForAJobDescription: '',
         fullName:'',
@@ -37,8 +37,8 @@ let initialState= {
             youtube:'',
             github: '',
             mainLink: ''
-        }
-}}
+        }*!/
+}*/}
 
 
 const ProfileReducer =(state:profilePageType=initialState,action:ActionsType):profilePageType=>{

@@ -5,7 +5,7 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import { profileUserType} from "../../App";
 
 type ProfileType ={
-    profile:profileUserType
+    profile:profileUserType | null
 }
 
 const  Profile = (props:ProfileType) => {

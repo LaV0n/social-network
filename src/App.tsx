@@ -11,7 +11,7 @@ import {postDataType} from "./components/Profile/MyPosts/MyPostsContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import {UsersPageType} from "./redux/UsersReducer";
-import {ProfileContainer} from "./components/Profile/ProfileContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 export type stateType = {
     messagesPage: messagesPageType
@@ -25,7 +25,7 @@ export type messagesPageType = {
 export type profilePageType = {
     postsData: postDataType[]
     newPost: string
-    profile:profileUserType                                   //plug
+    profile:profileUserType | null
 }
 export type profileUserType  = {
     photos: { small: string, large: string}
@@ -56,7 +56,7 @@ const App = () => {
                     <Route path='/dialogs' render={() =>
                         <DialogsContainer/>}
                     />
-                    <Route path='/profile' render={() =>
+                    <Route path='/profile/:userId' render={() =>
                         <ProfileContainer/>
                     }/>
                     <Route path='/users' render={() =>
