@@ -3,10 +3,21 @@
     background-color: rgba(222, 215, 215, 0.1);
     margin: 10px;
     border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
 
 }
 .header img {
     width: 30px;
     filter: invert(100%);
     margin: 5px;
+}
+.loginBlock {
+    margin-right: 50px;
+    margin-top: 5px;
+    color: white;
+}
+.loginBlock a{
+    color: white;
+    text-decoration: none;
 }

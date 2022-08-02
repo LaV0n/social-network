@@ -9,6 +9,7 @@ import UsersReducer, {
     SetUsersACType,
     UnfollowACType
 } from "./UsersReducer";
+import AuthReducer, {SetAuthUserDataACType} from "./AuthReducer";
 
 export type ActionsType =
     ReturnType<typeof addPostActionCreate> |
@@ -21,13 +22,15 @@ export type ActionsType =
     SetCurrentPageACType |
     SetTotalUserCountACType |
     SetToggleIsFetchingACType|
-    SetUserProfileType
+    SetUserProfileType|
+    SetAuthUserDataACType
 
 
 let reducers = combineReducers({
     messagesPage: DialogsReducer,
     profilePage: ProfileReducer,
-    usersPage: UsersReducer
+    usersPage: UsersReducer,
+    auth:AuthReducer
 })
 let store = createStore(reducers);
 

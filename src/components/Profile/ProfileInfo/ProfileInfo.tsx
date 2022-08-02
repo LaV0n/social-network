@@ -51,35 +51,35 @@ const ProfileInfo = (props: ProfileInfoType) => {
             <div className={classes.contactsBlock}>
                 <div className={classes.iconBlock}>
                     <img  src={facebookIcon} alt="0" className={classes.icon}/>
-                    {props.profile.contacts.facebook}
+                    <span className={classes.text}>{props.profile.contacts.facebook}</span>
                 </div>
                 <div className={classes.iconBlock}>
                     <img  src={webIcon} alt="0" className={classes.icon}/>
-                    {props.profile.contacts.website}
+                    <span className={classes.text}>{props.profile.contacts.website}</span>
                 </div>
                 <div className={classes.iconBlock}>
                     <img  src={vkIcon} alt="0" className={classes.icon}/>
-                    {props.profile.contacts.vk}
+                    <span className={classes.text}>{props.profile.contacts.vk}</span>
                 </div>
                 <div className={classes.iconBlock}>
                     <img  src={twitterIcon} alt="0" className={classes.icon}/>
-                    {props.profile.contacts.twitter}
+                    <span className={classes.text}>{props.profile.contacts.twitter}</span>
                 </div>
                 <div className={classes.iconBlock}>
                     <img  src={instagramIcon} alt="0" className={classes.icon}/>
-                    {props.profile.contacts.instagram}
+                    <span className={classes.text}>{props.profile.contacts.instagram}</span>
                 </div>
                 <div className={classes.iconBlock}>
                     <img  src={youtubeIcon} alt="0" className={classes.icon}/>
-                    {props.profile.contacts.youtube}
+                    <span className={classes.text}>{props.profile.contacts.youtube}</span>
                 </div>
                 <div className={classes.iconBlock}>
                     <img  src={gitIcon} alt="0" className={classes.icon}/>
-                    {props.profile.contacts.github}
+                    <span className={classes.text}>{props.profile.contacts.github}</span>
                 </div>
                 <div className={classes.iconBlock}>
                     <img  src={mailIcon} alt="0" className={classes.icon}/>
-                    {props.profile.contacts.mainLink}
+                    <span className={classes.text}>{props.profile.contacts.mainLink}</span>
                 </div>
             </div>
         </div>

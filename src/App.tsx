@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import {dialogsDataType, messageDatatype} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
@@ -12,11 +11,14 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import {UsersPageType} from "./redux/UsersReducer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import {AuthType} from "./redux/AuthReducer";
 
 export type stateType = {
     messagesPage: messagesPageType
     profilePage: profilePageType
     usersPage: UsersPageType
+    auth:AuthType
 }
 export type messagesPageType = {
     dialogsData: Array<dialogsDataType>
@@ -50,7 +52,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
-                <Header/>
+                <HeaderContainer/>
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path='/dialogs' render={() =>
