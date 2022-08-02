@@ -3,6 +3,7 @@ import styles from "./Users.module.css";
 import userPhoto from "../../assets/img/userPhoto.png";
 import {UsersType} from "../../redux/UsersReducer";
 import {NavLink} from "react-router-dom";
+import {UsersAPI} from "../../api/api";
 
 
 export type UserType = {
@@ -53,10 +54,20 @@ export const Users =(props:UserType) =>{
                             <div>
                                 {u.followed
                                     ? <button className={styles.button} onClick={() => {
-                                        props.unfollow(u.id)
+                                            UsersAPI.UnfollowUser(u.id)
+                                            .then(responsive =>{
+                                                if(responsive.data.resultCode===0){
+                                                    props.unfollow(u.id)
+                                                }
+                                            })
                                     }}>unfollow</button>
                                     : <button className={styles.button} onClick={() => {
-                                        props.follow(u.id)
+                                            UsersAPI.FollowUser(u.id)
+                                            .then(responsive =>{
+                                                if(responsive.data.resultCode===0){
+                                                    props.follow(u.id)
+                                                }
+                                            })
                                     }}>follow</button>}
                             </div>
                         </div>
