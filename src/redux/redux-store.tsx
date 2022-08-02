@@ -6,7 +6,7 @@ import UsersReducer, {
     SetCurrentPageACType,
     SetToggleIsFetchingACType,
     SetTotalUserCountACType,
-    SetUsersACType,
+    SetUsersACType, ToggleFollowingProcessType,
     UnfollowACType
 } from "./UsersReducer";
 import AuthReducer, {SetAuthUserDataACType} from "./AuthReducer";
@@ -23,7 +23,8 @@ export type ActionsType =
     SetTotalUserCountACType |
     SetToggleIsFetchingACType|
     SetUserProfileType|
-    SetAuthUserDataACType
+    SetAuthUserDataACType |
+    ToggleFollowingProcessType
 
 
 let reducers = combineReducers({
