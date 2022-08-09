@@ -13,6 +13,7 @@ import {UsersPageType} from "./redux/UsersReducer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {AuthType} from "./redux/AuthReducer";
+import {Login} from "./components/Login/Login";
 
 export type stateType = {
     messagesPage: messagesPageType
@@ -64,6 +65,9 @@ const App = () => {
                     }/>
                     <Route path='/users' render={() =>
                         <UsersContainer/>
+                    }/>
+                    <Route path='/login' render={()=>
+                    <Login/>
                     }/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>

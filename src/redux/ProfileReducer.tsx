@@ -79,10 +79,10 @@ export const setUserProfile = (profile: profileUserType): SetUserProfileType => 
         profile: profile
     } as const
 }
-export const showUserProfile = (userId: string) => {
+export const getUserProfile = (userId: string) => {
     return (dispatch: (a: ActionsType) => void) => {
         if (!userId) {
-            userId = "1"
+            userId = "2"
         }
         UsersAPI.GetProfile(userId)
             .then(response => {
