@@ -1,4 +1,6 @@
 import {ActionsType} from "./redux-store";
+import {UsersAPI} from "../api/api";
+
 
 
 export type FollowACType = {
@@ -83,13 +85,15 @@ const UsersReducer = (state: UsersPageType = initialState, action: ActionsType):
             return state;
     }
 }
-export const follow = (userId: number): FollowACType => {
+
+
+export const followSuccess = (userId: number): FollowACType => {
     return {
         type: "FOLLOW",
         userId: userId
     } as const
 }
-export const unfollow = (userId: number): UnfollowACType => {
+export const unfollowSuccess = (userId: number): UnfollowACType => {
     return {
         type: "UNFOLLOW",
         userId: userId
@@ -125,6 +129,40 @@ export const toggleFollowingProcess = (isFetching:boolean, userId: number): Togg
         followingInProgress: isFetching,
         userId: userId
     } as const
+}
+export const getUsers = (currentPage:number,pageSize:number) => {
+    return (dispatch:(a:ActionsType)=>void) => {
+        dispatch(setToggleIsFetching(true));
+        UsersAPI.GetUsers(currentPage, pageSize).then(data => {
+            dispatch(setToggleIsFetching(false))
+            dispatch( setUsers(data.items))
+            dispatch( setTotalUserCount(data.totalCount))
+        });
+    }
+}
+export const follow = (userId:number) => {
+    return (dispatch:(a:ActionsType)=>void) => {
+        dispatch(toggleFollowingProcess(true,userId))
+        UsersAPI.UnfollowUser(userId)
+            .then(responsive =>{
+                if(responsive.data.resultCode===0){
+                    dispatch(unfollowSuccess(userId))
+                }
+                dispatch(toggleFollowingProcess(false,userId))
+            })
+    }
+}
+export const unfollow = (userId:number) => {
+    return (dispatch:(a:ActionsType)=>void) => {
+        dispatch(toggleFollowingProcess(true,userId))
+        UsersAPI.FollowUser(userId)
+            .then(responsive =>{
+                if(responsive.data.resultCode===0){
+                    dispatch(followSuccess(userId))
+                }
+                dispatch(toggleFollowingProcess(false,userId))
+            })
+    }
 }
 
 export default UsersReducer;

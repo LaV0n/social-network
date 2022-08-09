@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import ProfileReducer, {addPostActionCreate, changeNewPostActionCreate, SetUserProfileType} from "./ProfileReducer";
 import DialogsReducer, {addMessageActionCreate, updateMessageActionCreate} from "./DialogsReducer";
 import UsersReducer, {
@@ -10,6 +10,7 @@ import UsersReducer, {
     UnfollowACType
 } from "./UsersReducer";
 import AuthReducer, {SetAuthUserDataACType} from "./AuthReducer";
+import thunkMiddleware from "redux-thunk"
 
 export type ActionsType =
     ReturnType<typeof addPostActionCreate> |
@@ -33,7 +34,7 @@ let reducers = combineReducers({
     usersPage: UsersReducer,
     auth:AuthReducer
 })
-let store = createStore(reducers);
+let store = createStore(reducers,applyMiddleware(thunkMiddleware));
 
 export type storeType = typeof store;
 
