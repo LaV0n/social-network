@@ -36,6 +36,7 @@ let reducers = combineReducers({
 })
 let store = createStore(reducers,applyMiddleware(thunkMiddleware));
 
-export type storeType = typeof store;
+type ReducersType= typeof reducers
+export type storeType = ReturnType<ReducersType>;
 
 export default store;

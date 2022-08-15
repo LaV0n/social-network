@@ -22,12 +22,12 @@ let initialState = {
         {id: 2, message: 'I am alive', likeCount: 5},
         {id: 3, message: 'Who is here?', likeCount: 5}
     ],
-    profile: null/*:{
-     /!*   photos: { small: '', large: ''},
+    profile:null/* {
+        photos: {small: '', large: ''},
         lookingForAJob: true,
         lookingForAJobDescription: '',
-        fullName:'',
-        userId: 1,
+        fullName: '',
+        userId: 25455,
         aboutMe: '',
         contacts: {
             facebook: '',
@@ -35,12 +35,13 @@ let initialState = {
             vk: '',
             twitter: '',
             instagram: '',
-            youtube:'',
+            youtube: '',
             github: '',
             mainLink: ''
-        }*!/
-}*/
+        }
+    }*/
 }
+
 
 
 const ProfileReducer = (state: profilePageType = initialState, action: ActionsType): profilePageType => {
@@ -82,7 +83,7 @@ export const setUserProfile = (profile: profileUserType): SetUserProfileType => 
 export const getUserProfile = (userId: string) => {
     return (dispatch: (a: ActionsType) => void) => {
         if (!userId) {
-            userId = "2"
+            userId = "25455"
         }
         UsersAPI.GetProfile(userId)
             .then(response => {
