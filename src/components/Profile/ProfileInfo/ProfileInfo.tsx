@@ -18,6 +18,8 @@ import {ProfileStatus} from "../ProfileStatus";
 
 type ProfileInfoType = {
     profile: profileUserType | null
+    status:string
+    updateStatus:(status: string)=>void
 }
 
 const ProfileInfo = (props: ProfileInfoType) => {
@@ -36,9 +38,9 @@ const ProfileInfo = (props: ProfileInfoType) => {
                     <div>
                         <span className={classes.title}>name </span> {props.profile.fullName}
                     </div>
+                    <ProfileStatus status={props.status} updateStatus = {props.updateStatus}/>
                     <div>
-                        <ProfileStatus aboutMe={props.profile.aboutMe}/>
-                       {/* <span className={classes.title}>about me </span>  {props.profile.aboutMe}*/}
+                       <span className={classes.title}>about me </span>  {props.profile.aboutMe}
                     </div>
                     <div>
                         <span className={classes.title}>looking for a job </span>

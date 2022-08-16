@@ -29,6 +29,7 @@ export type profilePageType = {
     postsData: postDataType[]
     newPost: string
     profile:profileUserType | null
+    status:string
 }
 export type profileUserType  = {
     photos: { small: string, large: string}

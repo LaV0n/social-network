@@ -8,7 +8,7 @@ const  Navbar = () => {
         <nav className={classes.nav}>
             <img src = {logo} alt="0"/>
             <div className= {classes.item}>
-                <NavLink to="/profile/2" activeClassName={classes.active}>Profile</NavLink>
+                <NavLink to="/profile/25013" activeClassName={classes.active}>Profile</NavLink>
             </div>
             <div className= {classes.item}>
                 <NavLink to="/dialogs" activeClassName={classes.active}>Messages</NavLink>

@@ -1,5 +1,10 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import ProfileReducer, {addPostActionCreate, changeNewPostActionCreate, SetUserProfileType} from "./ProfileReducer";
+import ProfileReducer, {
+    addPostActionCreate,
+    changeNewPostActionCreate,
+    SetStatusACType,
+    SetUserProfileType
+} from "./ProfileReducer";
 import DialogsReducer, {addMessageActionCreate, updateMessageActionCreate} from "./DialogsReducer";
 import UsersReducer, {
     FollowACType,
@@ -25,7 +30,8 @@ export type ActionsType =
     SetToggleIsFetchingACType|
     SetUserProfileType|
     SetAuthUserDataACType |
-    ToggleFollowingProcessType
+    ToggleFollowingProcessType |
+    SetStatusACType
 
 
 let reducers = combineReducers({

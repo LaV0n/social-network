@@ -17,10 +17,24 @@ export const UsersAPI = {
     FollowUser(id: number) {
         return instance.post(`follow/${id}`)
     },
-    GetProfile(userId:string) {
-        return instance.get(`/profile/${userId}`)
+    GetProfile(userId:number) {
+        console.warn("use ProfileAPI")
+        return ProfileAPI.GetProfile(userId)
     }
 }
+
+export const ProfileAPI ={
+    GetProfile(userId:number) {
+        return instance.get(`/profile/${userId}`)
+    },
+    GetStatus(userId:number){
+        return instance.get(`/profile/status/${userId}`)
+    },
+    UpdateStatus(status:string){
+        return instance.put(`/profile/status/`,{status:status})
+    }
+}
+
 export const AuthAPI = {
     me(){
         return instance.get(`auth/me`)
