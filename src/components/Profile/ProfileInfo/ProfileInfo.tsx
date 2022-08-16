@@ -14,6 +14,7 @@ import vkIcon from "../../../assets/icons/poop.png"
 import gitIcon from "../../../assets/icons/github.png"
 import mailIcon from "../../../assets/icons/email.png"
 import {ProfileStatus} from "../ProfileStatus";
+import defaultUser from "../../../assets/img/userPhoto.png"
 
 
 type ProfileInfoType = {
@@ -33,7 +34,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
                 <img src={wall} alt="0" className={classes.mainImg}/>
             </div>
             <div className={classes.description_block}>
-                <img src={props.profile.photos.large} alt='0' className={classes.avatar}/>
+                <img src={props.profile.photos.large ? props.profile.photos.large :defaultUser } alt='0' className={classes.avatar}/>
                 <div className={classes.nameBlock}>
                     <div>
                         <span className={classes.title}>name </span> {props.profile.fullName}
