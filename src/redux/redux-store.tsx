@@ -16,6 +16,7 @@ import UsersReducer, {
 } from "./UsersReducer";
 import AuthReducer, {SetAuthUserDataACType} from "./AuthReducer";
 import thunkMiddleware from "redux-thunk"
+import { reducer as formReducer } from 'redux-form'
 
 export type ActionsType =
     ReturnType<typeof addPostActionCreate> |
@@ -38,7 +39,8 @@ let reducers = combineReducers({
     messagesPage: DialogsReducer,
     profilePage: ProfileReducer,
     usersPage: UsersReducer,
-    auth:AuthReducer
+    auth:AuthReducer,
+    form:formReducer
 })
 let store = createStore(reducers,applyMiddleware(thunkMiddleware));
 
@@ -46,3 +48,5 @@ type ReducersType= typeof reducers
 export type storeType = ReturnType<ReducersType>;
 
 export default store;
+// @ts-ignore
+window.store = store;
