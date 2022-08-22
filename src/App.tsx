@@ -13,7 +13,7 @@ import {UsersPageType} from "./redux/UsersReducer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {AuthType} from "./redux/AuthReducer";
-import {Login} from "./components/Login/Login";
+import Login from "./components/Login/Login";
 
 export type stateType = {
     messagesPage: messagesPageType

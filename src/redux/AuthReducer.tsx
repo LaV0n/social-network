@@ -1,14 +1,10 @@
-import {ActionsType} from "./redux-store";
+import {ActionsType, AppDispatch} from "./redux-store";
 import {AuthAPI} from "../api/api";
 
 
 export type SetAuthUserDataACType = {
     type: 'SET_USER_DATA'
-    data: {
-        id: number | null
-        email: string | null
-        login: string | null
-    }
+    payload: AuthType
 }
 
 export type AuthType = {
@@ -22,30 +18,52 @@ let initialState = {
     id: null,
     email: null,
     login: null,
-    isAuth: true
+    isAuth: false
 }
 
 const AuthReducer = (state: AuthType = initialState, action: ActionsType): AuthType => {
     switch (action.type) {
         case 'SET_USER_DATA':
-            return {...state, ...action.data,isAuth:true}
+            return {...state, ...action.payload,}
         default:
             return state;
     }
 }
-export const setAuthUserData = (id: number, email: string, login: string): SetAuthUserDataACType => {
+export const setAuthUserData = (id: number | null, email: string | null, login: string | null,isAuth:boolean): SetAuthUserDataACType => {
     return {
         type: "SET_USER_DATA",
-        data: {id, email, login}
+        payload: {id, email, login, isAuth}
     } as const
 }
 export const getAuthUserData = () =>{
-    return (dispatch:(a:ActionsType)=>void) =>{
+    return (dispatch:AppDispatch) =>{
         AuthAPI.me()
             .then(response => {
                 if (response.data.resultCode === 0) {
                     let {id, email,login} = response.data.data;
-                    dispatch(setAuthUserData(id,email,login))
+                    dispatch(setAuthUserData(id,email,login,true))
+                }
+            })
+    }
+}
+
+export const login = (email:string, password:string,rememberMe:boolean) =>{
+    return (dispatch:AppDispatch) =>{
+        AuthAPI.login(email,password,rememberMe)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(getAuthUserData())
+                }
+            })
+    }
+}
+
+export const logout = () =>{
+    return (dispatch:AppDispatch) =>{
+        AuthAPI.logout()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setAuthUserData(null,null,null,false))
                 }
             })
     }

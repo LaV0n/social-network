@@ -2,7 +2,7 @@ import React from "react";
 import classes from './MyPosts.module.css';
 import {postDataType} from "./MyPostsContainer";
 import Post from "./Posts/Post";
-import { PostInputReduxForm} from "./PostInput/PostInput";
+import {FormDataType, PostInputReduxForm} from "./PostInput/PostInput";
 
 type MyPostsType = {
     addPost:(value:string)=>void
@@ -15,7 +15,7 @@ const MyPosts = (props: MyPostsType) => {
         props.posts.map(message => <Post message={message.message} likeCount={message.likeCount}/>);
 
 
-    let addPost = (value:any) => {
+    let addPost = (value:FormDataType) => {
         props.addPost(value.postInput);
     }
 

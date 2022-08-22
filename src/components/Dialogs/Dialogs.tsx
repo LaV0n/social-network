@@ -3,7 +3,8 @@ import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {Redirect} from "react-router-dom";
-import { InputMessageReduxForm} from "./InputMessage/InputMessage";
+import {FormDataMessageType, InputMessageReduxForm} from "./InputMessage/InputMessage";
+
 
 type DialogsType ={
     addMessageHandler:(value:string)=>void
@@ -28,7 +29,7 @@ export type messageListType = {
 
 const Dialogs = (props:DialogsType) => {
 
-    let addMessage=(value:any) => {   /////anytype
+    let addMessage=(value:FormDataMessageType) => {
         props.addMessageHandler(value.inputMessage)
     }
 

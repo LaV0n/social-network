@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
 import ProfileReducer, {
     addPostActionCreate,
     SetStatusACType,
@@ -13,8 +13,8 @@ import UsersReducer, {
     SetUsersACType, ToggleFollowingProcessType,
     UnfollowACType
 } from "./UsersReducer";
-import AuthReducer, {SetAuthUserDataACType} from "./AuthReducer";
-import thunkMiddleware from "redux-thunk"
+import AuthReducer, { SetAuthUserDataACType} from "./AuthReducer";
+import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk"
 import { reducer as formReducer } from 'redux-form'
 
 export type ActionsType =
@@ -43,6 +43,10 @@ let store = createStore(reducers,applyMiddleware(thunkMiddleware));
 
 type ReducersType= typeof reducers
 export type storeType = ReturnType<ReducersType>;
+
+export type AppDispatch = ThunkDispatch<RootState, unknown, ActionsType>
+export type AppThunk<ReturnType =void> =ThunkAction<ReturnType, RootState, unknown, ActionsType>
+export type RootState = ReturnType<typeof store.getState>
 
 export default store;
 // @ts-ignore
