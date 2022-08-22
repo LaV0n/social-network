@@ -4,11 +4,9 @@ import { ActionsType } from "./redux-store";
 
 type AddMessageActionType = {
     type: 'ADD-MESSAGE'
+    value:string
 }
-type UpdateMessageActionType = {
-    type: 'UPDATE-MESSAGE'
-    newMessage: string
-}
+
 
 let initialState = {
     dialogsData: [
@@ -21,7 +19,6 @@ let initialState = {
     ],
 
     messagesData: {
-        newMessage: "",
         messageList: [
             {id: 1, message: 'Hi'},
             {id: 2, message: 'sleeppy'},
@@ -35,31 +32,23 @@ const DialogsReducer = (state: messagesPageType = initialState, action: ActionsT
         case 'ADD-MESSAGE':
             let message: messageListType = {
                 id: 4,
-                message: state.messagesData.newMessage
+                message: action.value
             }
             return {
                 ...state,
                 messagesData: {
                     ...state.messagesData,
                     messageList: [...state.messagesData.messageList, message],
-                    newMessage: ""
                 }
             };
-        case 'UPDATE-MESSAGE':
-            return {...state, messagesData: {...state.messagesData, newMessage: action.newMessage}};
         default:
             return state;
     }
 }
-export const addMessageActionCreate = (): AddMessageActionType => {
+export const addMessageActionCreate = (value:string): AddMessageActionType => {
     return {
-        type: "ADD-MESSAGE"
-    } as const
-}
-export const updateMessageActionCreate = (text: string): UpdateMessageActionType => {
-    return {
-        type: "UPDATE-MESSAGE",
-        newMessage: text
+        type: "ADD-MESSAGE",
+        value:value
     } as const
 }
 

@@ -1,11 +1,10 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import ProfileReducer, {
     addPostActionCreate,
-    changeNewPostActionCreate,
     SetStatusACType,
     SetUserProfileType
 } from "./ProfileReducer";
-import DialogsReducer, {addMessageActionCreate, updateMessageActionCreate} from "./DialogsReducer";
+import DialogsReducer, {addMessageActionCreate} from "./DialogsReducer";
 import UsersReducer, {
     FollowACType,
     SetCurrentPageACType,
@@ -20,9 +19,7 @@ import { reducer as formReducer } from 'redux-form'
 
 export type ActionsType =
     ReturnType<typeof addPostActionCreate> |
-    ReturnType<typeof changeNewPostActionCreate> |
     ReturnType<typeof addMessageActionCreate> |
-    ReturnType<typeof updateMessageActionCreate> |
     FollowACType |
     UnfollowACType |
     SetUsersACType |

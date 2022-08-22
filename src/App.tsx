@@ -27,7 +27,6 @@ export type messagesPageType = {
 }
 export type profilePageType = {
     postsData: postDataType[]
-    newPost: string
     profile:profileUserType | null
     status:string
 }

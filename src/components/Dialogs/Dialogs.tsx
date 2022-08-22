@@ -1,12 +1,12 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {Redirect} from "react-router-dom";
+import { InputMessageReduxForm} from "./InputMessage/InputMessage";
 
 type DialogsType ={
-    onChangeMessageHandler:(value:string)=>void
-    addMessageHandler:()=>void
+    addMessageHandler:(value:string)=>void
     dialogs:dialogsDataType[]
     messagesList:messageListType[]
     newMessage:string
@@ -19,7 +19,6 @@ export type dialogsDataType = {
 }
 export type messageDatatype ={
     messageList:messageListType[]
-    newMessage:string
 }
 
 export type messageListType = {
@@ -29,13 +28,10 @@ export type messageListType = {
 
 const Dialogs = (props:DialogsType) => {
 
-    let onChangeMessageHandler =(e:ChangeEvent<HTMLTextAreaElement>)=>{
-        props.onChangeMessageHandler(e.currentTarget.value);
+    let addMessage=(value:any) => {   /////anytype
+        props.addMessageHandler(value.inputMessage)
     }
 
-    let addMessageHandler = () =>{
-        props.addMessageHandler()
-    }
 
 if (!props.isAuth) return <Redirect to='/login'/>
 
@@ -46,11 +42,7 @@ if (!props.isAuth) return <Redirect to='/login'/>
             </div>
             <div className={classes.messages}>
                 {props.messagesList.map(message =>   <Message message={message.message}/>)}
-                <textarea value={props.newMessage}
-                          onChange={onChangeMessageHandler}
-                          placeholder="Enter your message"
-                ></textarea>
-                <button onClick={addMessageHandler}>add message</button>
+                <InputMessageReduxForm onSubmit={addMessage}/>
             </div>
         </div>
     )
