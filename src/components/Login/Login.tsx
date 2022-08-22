@@ -6,18 +6,21 @@ import {connect} from "react-redux";
 import {login} from "../../redux/AuthReducer";
 import {Redirect} from "react-router-dom";
 import {storeType} from "../../redux/redux-store";
+import styles from "./Login.module.css"
 
 
 type FormDataType = {
     login: string
     password: string
     rememberMe: boolean
+    error: string | null
 }
 
 const maxlength30 = maxlengthCreator(30)
 
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+    console.log(props.error)
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -55,7 +58,8 @@ const LoginReduxForm = reduxForm<FormDataType>({
 type LoginPropsType = {
     login: (email: string, password: string, rememberMe: boolean) => void
     isAuth: boolean
-}
+    error:null | string
+   }
 
 const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
@@ -70,13 +74,15 @@ const Login = (props: LoginPropsType) => {
         <div>
             <h1>LOGIN</h1>
             <LoginReduxForm onSubmit={onSubmit}/>
+            {props.error && <div className={styles.errorMessage}>{props.error}</div> }
         </div>
 
     )
 }
 
 const mapStateToProps = (state: storeType) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    error: state.auth.error
 })
 
 export default connect(mapStateToProps, {login})(Login)

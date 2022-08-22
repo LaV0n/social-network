@@ -13,7 +13,7 @@ import UsersReducer, {
     SetUsersACType, ToggleFollowingProcessType,
     UnfollowACType
 } from "./UsersReducer";
-import AuthReducer, { SetAuthUserDataACType} from "./AuthReducer";
+import AuthReducer, {SetAuthUserDataACType, SetErrorACType} from "./AuthReducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk"
 import { reducer as formReducer } from 'redux-form'
 
@@ -29,7 +29,8 @@ export type ActionsType =
     SetUserProfileType|
     SetAuthUserDataACType |
     ToggleFollowingProcessType |
-    SetStatusACType
+    SetStatusACType |
+    SetErrorACType
 
 
 let reducers = combineReducers({

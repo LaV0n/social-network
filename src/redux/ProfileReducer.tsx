@@ -77,9 +77,7 @@ export const setUserProfile = (profile: profileUserType): SetUserProfileType => 
 }
 export const getUserProfile = (userId: number) => {
     return (dispatch: (a: ActionsType) => void) => {
-        if (!userId) {
-            userId = 25013
-        }
+
         UsersAPI.GetProfile(userId)
             .then(response => {
                 dispatch(setUserProfile(response.data))

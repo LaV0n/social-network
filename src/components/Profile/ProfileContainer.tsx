@@ -19,12 +19,14 @@ type ProfileContainerType = RouteComponentProps<PathParamsType> & {
     getStatus: (id: string) => void
     status:string
     updateStatus:(status: string)=>void
+    userId:string
 }
 
 
 class ProfileContainer extends React.Component<ProfileContainerType> {
     componentDidMount() {
         let userId =this.props.match.params.userId
+        if(!userId){userId=this.props.userId}
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
     }
@@ -43,7 +45,8 @@ class ProfileContainer extends React.Component<ProfileContainerType> {
 let mapsStateToProps = (state: storeType) => (
     {
         profile: state.profilePage.profile,
-        status:state.profilePage.status
+        status:state.profilePage.status,
+        userId:state.auth.id
     }
 )
 
