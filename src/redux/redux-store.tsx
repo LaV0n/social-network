@@ -16,6 +16,7 @@ import UsersReducer, {
 import AuthReducer, {SetAuthUserDataACType, SetErrorACType} from "./AuthReducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk"
 import { reducer as formReducer } from 'redux-form'
+import {AppReducer, setInitializedAC} from "./AppReducer";
 
 export type ActionsType =
     ReturnType<typeof addPostActionCreate> |
@@ -30,7 +31,8 @@ export type ActionsType =
     SetAuthUserDataACType |
     ToggleFollowingProcessType |
     SetStatusACType |
-    SetErrorACType
+    SetErrorACType |
+    ReturnType<typeof setInitializedAC>
 
 
 let reducers = combineReducers({
@@ -38,7 +40,8 @@ let reducers = combineReducers({
     profilePage: ProfileReducer,
     usersPage: UsersReducer,
     auth:AuthReducer,
-    form:formReducer
+    form:formReducer,
+    app:AppReducer
 })
 let store = createStore(reducers,applyMiddleware(thunkMiddleware));
 

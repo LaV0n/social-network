@@ -59,9 +59,9 @@ export const setError = ( error:string | null): SetErrorACType => {
 }
 
 
-export const getAuthUserData = () => {
-    return (dispatch: AppDispatch) => {
-        AuthAPI.me()
+export const getAuthUserData = () =>
+    (dispatch: AppDispatch) => {
+       return  AuthAPI.me()
             .then(response => {
                 if (response.data.resultCode === 0) {
                     let {id, email, login} = response.data.data;
@@ -69,7 +69,7 @@ export const getAuthUserData = () => {
                 }
             })
     }
-}
+
 
 export const login = (email: string, password: string, rememberMe: boolean) => {
     return (dispatch: AppDispatch) => {

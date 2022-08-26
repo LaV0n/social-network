@@ -11,7 +11,6 @@ import {
 import {Users} from "./Users";
 import {Preloader} from "../common/preloader/Preloader";
 import { compose } from "redux";
-import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
 
@@ -80,8 +79,7 @@ const mapStateToProps = (state: stateType) => {
 
 
 export default compose<React.ComponentType>(
-    WithAuthRedirect,
-    connect(mapStateToProps, {
+     connect(mapStateToProps, {
         setCurrentPage,
         toggleFollowingProcess,
         getUsers,
