@@ -1,4 +1,4 @@
-import {ActionsType} from "./redux-store";
+import {ActionsType, AppDispatch} from "./redux-store";
 import {UsersAPI} from "../api/api";
 
 
@@ -141,7 +141,7 @@ export const getUsers = (currentPage:number,pageSize:number) => {
     }
 }
 export const follow = (userId:number) => {
-    return (dispatch:(a:ActionsType)=>void) => {
+    return (dispatch:AppDispatch) => {
         dispatch(toggleFollowingProcess(true,userId))
         UsersAPI.UnfollowUser(userId)
             .then(responsive =>{

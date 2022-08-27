@@ -1,8 +1,13 @@
 import {stateType} from "../App";
+import {createSelector} from "reselect";
 
-export const getUser =(state:stateType) =>{
+const getUsersSelector =(state:stateType) =>{
     return state.usersPage.users
 }
+export const getUser = createSelector(getUsersSelector,(users)=>{
+    return users
+})
+
 export const getUserPageSize =(state:stateType) =>{
     return state.usersPage.pageSize
 }
