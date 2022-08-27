@@ -11,6 +11,14 @@ import {
 import {Users} from "./Users";
 import {Preloader} from "../common/preloader/Preloader";
 import { compose } from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getTotalUserCount,
+    getUser,
+    getUserPageSize
+} from "../../redux/user-selectors";
 
 
 
@@ -66,7 +74,7 @@ class UsersAPIComponent extends React.Component<UserAPIComponentType> {
     }
 }
 
-const mapStateToProps = (state: stateType) => {
+/*const mapStateToProps = (state: stateType) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -74,6 +82,17 @@ const mapStateToProps = (state: stateType) => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingInProgress:state.usersPage.followingInProgress
+    }
+}*/
+
+const mapStateToProps = (state: stateType) => {
+    return {
+        users: getUser(state),
+        pageSize: getUserPageSize(state),
+        totalUserCount: getTotalUserCount(state),
+        currentPage:getCurrentPage(state),
+        isFetching:getIsFetching(state),
+        followingInProgress:getFollowingInProgress(state)
     }
 }
 
