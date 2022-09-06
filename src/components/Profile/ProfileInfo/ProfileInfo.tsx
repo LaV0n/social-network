@@ -13,8 +13,8 @@ import youtubeIcon from "../../../assets/icons/youtube.png"
 import vkIcon from "../../../assets/icons/poop.png"
 import gitIcon from "../../../assets/icons/github.png"
 import mailIcon from "../../../assets/icons/email.png"
-import {ProfileStatus} from "../ProfileStatus";
 import defaultUser from "../../../assets/img/userPhoto.png"
+import {ProfileStatusWithHooks} from "../ProfileStatusWithHooks";
 
 
 type ProfileInfoType = {
@@ -39,7 +39,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
                     <div>
                         <span className={classes.title}>name </span> {props.profile.fullName}
                     </div>
-                    <ProfileStatus status={props.status} updateStatus = {props.updateStatus}/>
+                    <ProfileStatusWithHooks status={props.status} updateStatus = {props.updateStatus}/>
                     <div>
                        <span className={classes.title}>about me </span>  {props.profile.aboutMe}
                     </div>
