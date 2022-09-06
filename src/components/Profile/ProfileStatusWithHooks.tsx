@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 
 
 type ProfileStatusWithHooksType = {
@@ -9,6 +9,11 @@ type ProfileStatusWithHooksType = {
 export function ProfileStatusWithHooks(props: ProfileStatusWithHooksType) {
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(props.status)
+
+    useEffect(()=>{
+        setStatus(props.status)
+    },[props.status])
+
     const activateEditMode = () => {
         setEditMode(true)
     }
@@ -29,7 +34,7 @@ export function ProfileStatusWithHooks(props: ProfileStatusWithHooksType) {
                 }}
                 > status </span>
             {!editMode
-                ? props.status || "no status"
+                ? status || "no status"
                 : <input value={status}
                          autoFocus={true}
                          onChange={onStatusChange}
