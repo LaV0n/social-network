@@ -2,6 +2,7 @@ import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Textarea} from "../../../common/FormsControls/FormsControls";
 import {maxlengthCreator, requiredField} from "../../../../utils/validators/validators";
+import { Button } from "@mui/material";
 
 export type FormDataType ={
     postInput:string
@@ -20,7 +21,11 @@ const PostInputForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 />
             </div>
             <div>
-                <button>post</button>
+                <Button variant="outlined"
+                        onClick={props.handleSubmit}
+                        color="inherit"
+                        style={{color:'white'}}
+                    >post</Button>
             </div>
         </form>
     )

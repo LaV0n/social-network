@@ -1,19 +1,17 @@
 .app-wrapper {
-  display: grid;
-  width: 1250px;
+  display: flex;
+  max-width: 1250px;
   margin: 20px auto;
   border-radius: 30px;
   background: rgba(23, 39, 70, 0.9) no-repeat;
   background-size: cover;
   background-position-y: bottom;
-
-  grid-template-areas:
-"n h"
-"n c";
-grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
 }
+.app-wrapper-content {
+width: 83%;
+}
+.app-content{
 
+}
 
 

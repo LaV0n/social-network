@@ -2,6 +2,7 @@ import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxlengthCreator, requiredField} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControls/FormsControls";
+import {Button} from "@mui/material";
 
 export type FormDataMessageType ={
     inputMessage:string
@@ -20,7 +21,10 @@ const InputMessageForm: React.FC<InjectedFormProps<FormDataMessageType>> = (prop
                 />
             </div>
             <div>
-                <button>add message</button>
+                <Button variant="outlined"
+                        color="inherit"
+                        onClick={props.handleSubmit}
+                >add message</Button>
             </div>
         </form>
     )
