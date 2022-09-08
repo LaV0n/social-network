@@ -9,8 +9,7 @@ type MyPostsType = {
     posts:postDataType[]
 }
 
-const MyPosts = (props: MyPostsType) => {
-
+const MyPosts = React.memo((props: MyPostsType) => {
     let postsElements =
         props.posts.map(message => <Post message={message.message} likeCount={message.likeCount}/>);
 
@@ -30,5 +29,5 @@ const MyPosts = (props: MyPostsType) => {
             </div>
         </div>
     )
-}
+})
 export default MyPosts;

@@ -10,7 +10,8 @@ export type FormDataType ={
 
 const maxLength10=  maxlengthCreator(10)
 
-const PostInputForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+const PostInputForm: React.FC<InjectedFormProps<FormDataType>> =React.memo((props) => {
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -29,7 +30,7 @@ const PostInputForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             </div>
         </form>
     )
-}
+})
 
 export const PostInputReduxForm =reduxForm<FormDataType>({
     // a unique name for the form

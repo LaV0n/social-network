@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
-import ProfileReducer, {
-    addPostActionCreate,
+import {ProfileReducer,
+    addPostActionCreate, deletePostAC,
     SetStatusACType,
     SetUserProfileType
 } from "./ProfileReducer";
@@ -32,7 +32,8 @@ export type ActionsType =
     ToggleFollowingProcessType |
     SetStatusACType |
     SetErrorACType |
-    ReturnType<typeof setInitializedAC>
+    ReturnType<typeof setInitializedAC> |
+    ReturnType<typeof deletePostAC>
 
 
 let reducers = combineReducers({

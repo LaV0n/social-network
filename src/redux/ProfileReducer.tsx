@@ -44,7 +44,7 @@ let initialState = {
 }
 
 
-const ProfileReducer = (state: profilePageType = initialState, action: ActionsType): profilePageType => {
+export const ProfileReducer = (state: profilePageType = initialState, action: ActionsType): profilePageType => {
     switch (action.type) {
         case 'ADD-POST':
             let post: postDataType = {
@@ -57,11 +57,13 @@ const ProfileReducer = (state: profilePageType = initialState, action: ActionsTy
             return {...state, profile: action.profile};
         case 'SET_STATUS':
             return {...state,status:action.status}
+        case 'DELETE-POST':
+            return {...state,postsData:{...state}.postsData.filter(p=> p.id!==action.postId)}
         default:
             return state;
     }
 }
-export default ProfileReducer;
+
 
 export const addPostActionCreate = (value:string): AddPostActionType => {
     return {
@@ -69,6 +71,13 @@ export const addPostActionCreate = (value:string): AddPostActionType => {
         value
     } as const
 }
+export const deletePostAC = (postId:number)=> {
+    return {
+        type: "DELETE-POST",
+        postId
+    } as const
+}
+
 export const setUserProfile = (profile: profileUserType): SetUserProfileType => {
     return {
         type: 'SET_USER_PROFILE',
