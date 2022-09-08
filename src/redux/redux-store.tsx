@@ -1,8 +1,8 @@
 import {applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
-import {ProfileReducer,
+import {
+    ProfileReducer,
     addPostActionCreate, deletePostAC,
-    SetStatusACType,
-    SetUserProfileType
+    setUserProfile, setStatus
 } from "./ProfileReducer";
 import DialogsReducer, {addMessageActionCreate} from "./DialogsReducer";
 import UsersReducer, {
@@ -27,10 +27,10 @@ export type ActionsType =
     SetCurrentPageACType |
     SetTotalUserCountACType |
     SetToggleIsFetchingACType|
-    SetUserProfileType|
+    ReturnType<typeof setUserProfile>|
     ReturnType<typeof setAuthUserData> |
     ToggleFollowingProcessType |
-    SetStatusACType |
+    ReturnType<typeof setStatus> |
     ReturnType<typeof setError> |
     ReturnType<typeof setInitializedAC> |
     ReturnType<typeof deletePostAC>
