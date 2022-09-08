@@ -1,10 +1,9 @@
-import React, {ChangeEvent,  useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/img/userPhoto.png";
 import {UsersType} from "../../redux/UsersReducer";
 import {NavLink} from "react-router-dom";
 import {Pagination, Typography} from "@mui/material";
-
 
 
 export type UserType = {
@@ -21,50 +20,34 @@ export type UserType = {
 export const Users = (props: UserType) => {
 
     let pageCount = Math.ceil(props.totalUserCount / props.pageSize);
-  /*  let pages = [];
-    let finalPage = 10;
-    let startPage = 1
-    for (let i = startPage; i <= pageCount; i++) {
-        pages.push(i)
-    }*/
 
-    const [editMode,setEditMode]=useState(false)
-    const [page,setPage]=useState(props.currentPage)
+    const [editMode, setEditMode] = useState(false)
+    const [page, setPage] = useState(props.currentPage)
 
-    const editPage =()=>{
+    const editPage = () => {
         setEditMode(false)
         props.changeCurrentPage(page)
     }
-    const setPageHandler =(e:ChangeEvent<HTMLInputElement>)=>{
+    const setPageHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setPage(Number(e.currentTarget.value))
     }
-    const handleChange = (event:any, value:number) => {
+    const handleChange = (event: any, value: number) => {
         props.changeCurrentPage(value)
     };
     return (
         <div>
             <div className={styles.pagesBlock}>
-                {/* {
-                    pages.map(p => {
-                        return (
-                            <span onClick={() => props.changeCurrentPage(p)}
-                                  className={props.currentPage === p ? styles.pageCountSelected : styles.pageCount}>{p}</span>
-                        )
-                    })
-                }*/}
-
                 <Pagination
                     count={pageCount}
-                            onChange={handleChange}
-                            page={props.currentPage}
-                            variant={"text"}
+                    onChange={handleChange}
+                    page={props.currentPage}
+                    variant={"text"}
                 />
                 {editMode
-                    ?<input value={page} type={"number"} onBlur={editPage} onChange={setPageHandler}/>
-                    : <Typography onDoubleClick={()=>setEditMode(true)}
+                    ? <input value={page} type={"number"} onBlur={editPage} onChange={setPageHandler}/>
+                    : <Typography onDoubleClick={() => setEditMode(true)}
                     >Page: {props.currentPage}</Typography>
                 }
-
 
 
             </div>

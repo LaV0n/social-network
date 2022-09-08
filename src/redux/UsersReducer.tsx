@@ -2,7 +2,6 @@ import {ActionsType, AppDispatch} from "./redux-store";
 import {UsersAPI} from "../api/api";
 
 
-
 export type FollowACType = {
     type: 'FOLLOW'
     userId: number

@@ -19,10 +19,10 @@ type FormDataType = {
 const maxlength30 = maxlengthCreator(30)
 
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
-    console.log(props.error)
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit,error}) => {
+    console.log(error)
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field name="login"
                        placeholder={"Login"}

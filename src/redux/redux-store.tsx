@@ -13,7 +13,7 @@ import UsersReducer, {
     SetUsersACType, ToggleFollowingProcessType,
     UnfollowACType
 } from "./UsersReducer";
-import AuthReducer, {SetAuthUserDataACType, SetErrorACType} from "./AuthReducer";
+import AuthReducer, {setAuthUserData, setError} from "./AuthReducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk"
 import { reducer as formReducer } from 'redux-form'
 import {AppReducer, setInitializedAC} from "./AppReducer";
@@ -28,10 +28,10 @@ export type ActionsType =
     SetTotalUserCountACType |
     SetToggleIsFetchingACType|
     SetUserProfileType|
-    SetAuthUserDataACType |
+    ReturnType<typeof setAuthUserData> |
     ToggleFollowingProcessType |
     SetStatusACType |
-    SetErrorACType |
+    ReturnType<typeof setError> |
     ReturnType<typeof setInitializedAC> |
     ReturnType<typeof deletePostAC>
 
