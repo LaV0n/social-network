@@ -1,7 +1,6 @@
 .content {
-    grid-area: c;
-    background-color: rgba(176, 174, 174, 0.2);
-    border-radius: 20px;
-    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 

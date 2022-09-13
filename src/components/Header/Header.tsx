@@ -1,8 +1,8 @@
 import React from "react";
-import SearchLogo from '../../assets/img/Search_Icon.svg.png'
 import classes from './Header.module.css';
 import {NavLink} from "react-router-dom";
-import {Button} from "@mui/material";
+import loginImg from './../../assets/icons/login.png';
+import logoutImg from './../../assets/icons/logout.png'
 
 type HeaderType = {
     login: string | null
@@ -13,14 +13,14 @@ type HeaderType = {
 const Header = (props: HeaderType) => {
     return (
         <header className={classes.header}>
-            <img src={SearchLogo} alt="0"/>
+
             <div className={classes.loginBlock}>
                 {props.isAuth
-                    ? <div> {props.login} - <Button onClick={props.logout}
-                                                    variant="outlined"
-                                                     color="inherit"
-                    >log out</Button></div>
-                    : <NavLink to={'/login'}>Login</NavLink>}
+                    ? <div className={classes.accessBlock}> {props.login}
+                        <img src={logoutImg} onClick={props.logout} alt={'0'}/>
+                    </div>
+                    : <NavLink to={'/login'}><img src={loginImg} alt={'0'}/></NavLink>
+                }
             </div>
         </header>
     )

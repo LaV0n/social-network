@@ -3,6 +3,7 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Textarea} from "../../../common/FormsControls/FormsControls";
 import {maxlengthCreator, requiredField} from "../../../../utils/validators/validators";
 import { Button } from "@mui/material";
+import classes from './PostInput.module.css'
 
 export type FormDataType ={
     postInput:string
@@ -13,7 +14,7 @@ const maxLength10=  maxlengthCreator(10)
 const PostInputForm: React.FC<InjectedFormProps<FormDataType>> =React.memo((props) => {
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={props.handleSubmit} className={classes.inputBlock}>
             <div>
                 <Field name="postInput"
                        placeholder={"Enter your message"}

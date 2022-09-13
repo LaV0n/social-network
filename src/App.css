@@ -1,17 +1,26 @@
 .app-wrapper {
-  display: flex;
-  max-width: 1250px;
-  margin: 20px auto;
-  border-radius: 30px;
-  background: rgba(23, 39, 70, 0.9) no-repeat;
-  background-size: cover;
-  background-position-y: bottom;
+    display: flex;
+    max-width: 1250px;
+    max-height: 95vh;
+    margin: 20px auto;
+    border-radius: 30px;
+    background: rgba(23, 39, 70, 0.9) no-repeat;
+    background-position-y: bottom;
 }
-.app-wrapper-content {
-width: 83%;
-}
-.app-content{
 
+.app-wrapper-content {
+    position: relative;
+    width: 83%;
+}
+
+.app-content {
+    max-height: 90%;
+    width: 97%;
+    overflow: auto;
+    background-color: rgba(176, 174, 174, 0.2);
+    border-radius: 20px;
+    margin: 10px;
+    padding: 5px;;
 }
 
 

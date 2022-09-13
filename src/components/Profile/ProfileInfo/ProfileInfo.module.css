@@ -3,39 +3,58 @@
     position: relative;
     top: -150px;
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-items: flex-end;
 }
 
 .main {
     border-radius: 20px;
+    height: 410px;
 }
 
 .mainImg {
-    padding: 20px;
+    padding: 10px;
+    height: 200px;
+    width: 98%;
     border-radius: 40px;
 }
 
 .avatar {
     border-radius: 100px;
+    width: 200px;
+    height: 200px;
     border: 3px solid white;
     box-shadow: 0 0 48px -9px rgba(255, 255, 255, 1);
 }
 
 .nameBlock {
     color: white;
-    font-size: 1.2rem;
+    max-width: 40%;
+    font-size: 1.3rem;
+}
+
+.aboutJobBlock {
+    color: white;
+    max-width: 40%;
+    font-size: 1.1rem;
 }
 
 .title {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: rgba(214, 223, 237, 0.67);
 }
+
 .jobImg {
     width: 50px;
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 25px;
+    position: relative;
+    right: 50px;
+    border: 1px solid black;
+    z-index: 2;
 }
+
 .contactsBlock {
     padding-left: 20px;
     color: white;
@@ -46,22 +65,28 @@
     gap: 20px;
     flex-wrap: wrap;
 }
+
 h2 {
-    text-align: center;
+    left: 10%;
+    width: 80%;
     color: white;
     position: relative;
     top: -130px;
 }
+
 .iconBlock {
-    width: 250px;
+    width: 200px;
     display: flex;
-    justify-content:flex-start;
+    justify-content: flex-start;
     gap: 5px;
 }
+
 .icon {
-    width: 30px;
+    width: 20px;
     filter: invert(100%);
 }
+
 .text {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+
 }

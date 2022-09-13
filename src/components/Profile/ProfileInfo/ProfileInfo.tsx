@@ -19,8 +19,8 @@ import {ProfileStatusWithHooks} from "../ProfileStatusWithHooks";
 
 type ProfileInfoType = {
     profile: profileUserType | null
-    status:string
-    updateStatus:(status: string)=>void
+    status: string
+    updateStatus: (status: string) => void
 }
 
 const ProfileInfo = (props: ProfileInfoType) => {
@@ -34,56 +34,61 @@ const ProfileInfo = (props: ProfileInfoType) => {
                 <img src={wall} alt="0" className={classes.mainImg}/>
             </div>
             <div className={classes.description_block}>
-                <img src={props.profile.photos.large ? props.profile.photos.large :defaultUser } alt='0' className={classes.avatar}/>
+                <div>
+                    <img src={props.profile.photos.large ? props.profile.photos.large : defaultUser} alt='0'
+                         className={classes.avatar}/>
+                    <img src={props.profile.lookingForAJob ? needJobImg : dontNeedJobImg} alt="0"
+                         className={classes.jobImg}/>
+                </div>
                 <div className={classes.nameBlock}>
                     <div>
                         <span className={classes.title}>name </span> {props.profile.fullName}
                     </div>
-                    <ProfileStatusWithHooks status={props.status} updateStatus = {props.updateStatus}/>
+                    <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                </div>
+                <div className={classes.aboutJobBlock}>
                     <div>
-                       <span className={classes.title}>about me </span>  {props.profile.aboutMe}
+                        <span className={classes.title}>about me </span> {props.profile.aboutMe}
                     </div>
                     <div>
-                        <span className={classes.title}>looking for a job </span>
-                        <img src={props.profile.lookingForAJob? needJobImg:dontNeedJobImg} alt="0" className={classes.jobImg}/>
-                        <div>
-                            <span className={classes.title}>what job I need </span>    {props.profile.lookingForAJobDescription}
-                        </div>
+                        <span
+                            className={classes.title}>what job I need </span> {props.profile.lookingForAJobDescription}
                     </div>
+
                 </div>
             </div>
-            <h2>Contacts</h2>
+            <h2 style={{marginTop: '-10px'}}>Contacts</h2>
             <div className={classes.contactsBlock}>
                 <div className={classes.iconBlock}>
-                    <img  src={facebookIcon} alt="0" className={classes.icon}/>
-                    <span className={classes.text}>{props.profile.contacts.facebook}</span>
+                    <img src={facebookIcon} alt="0" className={classes.icon}/>
+                    <span className={classes.text}>{props.profile.contacts.facebook} </span>
                 </div>
                 <div className={classes.iconBlock}>
-                    <img  src={webIcon} alt="0" className={classes.icon}/>
+                    <img src={webIcon} alt="0" className={classes.icon}/>
                     <span className={classes.text}>{props.profile.contacts.website}</span>
                 </div>
                 <div className={classes.iconBlock}>
-                    <img  src={vkIcon} alt="0" className={classes.icon}/>
+                    <img src={vkIcon} alt="0" className={classes.icon}/>
                     <span className={classes.text}>{props.profile.contacts.vk}</span>
                 </div>
                 <div className={classes.iconBlock}>
-                    <img  src={twitterIcon} alt="0" className={classes.icon}/>
+                    <img src={twitterIcon} alt="0" className={classes.icon}/>
                     <span className={classes.text}>{props.profile.contacts.twitter}</span>
                 </div>
                 <div className={classes.iconBlock}>
-                    <img  src={instagramIcon} alt="0" className={classes.icon}/>
+                    <img src={instagramIcon} alt="0" className={classes.icon}/>
                     <span className={classes.text}>{props.profile.contacts.instagram}</span>
                 </div>
                 <div className={classes.iconBlock}>
-                    <img  src={youtubeIcon} alt="0" className={classes.icon}/>
+                    <img src={youtubeIcon} alt="0" className={classes.icon}/>
                     <span className={classes.text}>{props.profile.contacts.youtube}</span>
                 </div>
                 <div className={classes.iconBlock}>
-                    <img  src={gitIcon} alt="0" className={classes.icon}/>
+                    <img src={gitIcon} alt="0" className={classes.icon}/>
                     <span className={classes.text}>{props.profile.contacts.github}</span>
                 </div>
                 <div className={classes.iconBlock}>
-                    <img  src={mailIcon} alt="0" className={classes.icon}/>
+                    <img src={mailIcon} alt="0" className={classes.icon}/>
                     <span className={classes.text}>{props.profile.contacts.mainLink}</span>
                 </div>
             </div>
