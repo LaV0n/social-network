@@ -81,7 +81,7 @@ const Login = (props: LoginPropsType) => {
         <div className={styles.block}>
             <h1 style={{color:'rgba(214, 223, 237, 0.67)'}}>LOGIN</h1>
             <LoginReduxForm onSubmit={onSubmit}/>
-            {props.error && <div >{props.error}</div> }
+            {props.error && <div className={styles.errorMessage}>{props.error}</div> }
         </div>
 
     )
