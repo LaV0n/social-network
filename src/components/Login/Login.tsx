@@ -7,6 +7,7 @@ import {login} from "../../redux/AuthReducer";
 import {Redirect} from "react-router-dom";
 import {storeType} from "../../redux/redux-store";
 import styles from "./Login.module.css"
+import { Button } from "@mui/material";
 
 
 type FormDataType = {
@@ -22,7 +23,7 @@ const maxlength30 = maxlengthCreator(30)
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit,error}) => {
     console.log(error)
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.loginForm}>
             <div>
                 <Field name="login"
                        placeholder={"Login"}
@@ -38,14 +39,20 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit,erro
                        validate={[requiredField, maxlength30]}
                 />
             </div>
-            <div>
+            <div className={styles.checkboxBlock}>
                 <Field name="rememberMe"
                        type={"checkbox"}
                        component={Input}
-                /> remember me
+                />
+                <span className={styles.checkbox}>remember me</span>
             </div>
             <div>
-                <button>Login</button>
+                <Button variant={'contained'}
+                        color="inherit"
+                        size={'small'}
+                        className={styles.loginButton}
+                        onClick={handleSubmit}
+                >Login</Button>
             </div>
         </form>
     )
@@ -71,10 +78,10 @@ const Login = (props: LoginPropsType) => {
     }
 
     return (
-        <div>
-            <h1>LOGIN</h1>
+        <div className={styles.block}>
+            <h1 style={{color:'rgba(214, 223, 237, 0.67)'}}>LOGIN</h1>
             <LoginReduxForm onSubmit={onSubmit}/>
-            {props.error && <div className={styles.errorMessage}>{props.error}</div> }
+            {props.error && <div >{props.error}</div> }
         </div>
 
     )
