@@ -7,11 +7,12 @@ import {FormDataType, PostInputReduxForm} from "./PostInput/PostInput";
 type MyPostsType = {
     addPost:(value:string)=>void
     posts:postDataType[]
+    smallAvatar:string | undefined
 }
 
 const MyPosts = React.memo((props: MyPostsType) => {
     let postsElements =
-        props.posts.map(message => <Post message={message.message} likeCount={message.likeCount}/>);
+        props.posts.map(message => <Post message={message.message} likeCount={message.likeCount} smallAvatar={props.smallAvatar}/>);
 
 
     let addPost = (value:FormDataType) => {

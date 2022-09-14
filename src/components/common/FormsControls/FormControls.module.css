@@ -7,3 +7,9 @@
 .formControl.error span {
     color: #ff4141;
 }
+.textarea {
+    background-color: #293148;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+}

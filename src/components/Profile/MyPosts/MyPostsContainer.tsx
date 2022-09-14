@@ -18,6 +18,7 @@ export type postDataType = {
 let mapStateToProps = (state: stateType) => {
     return {
         posts: state.profilePage.postsData,
+        smallAvatar:state.profilePage.profile?.photos.small
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch) => {
@@ -25,7 +26,6 @@ let mapDispatchToProps = (dispatch: Dispatch) => {
         addPost: (value:string) => {dispatch(addPostActionCreate(value))}
     }
 }
-
 
 const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 
