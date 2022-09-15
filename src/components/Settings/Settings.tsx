@@ -1,11 +1,10 @@
 import React from "react";
-import classes from "./Settings.module.css";
+import styles from "./Settings.module.css";
 
-const Settings =  () => {
+export const Settings =  () => {
     return(
-        <div >
-            settings
+        <div className={styles.content}>
+            no setting yet
         </div>
     )
 }
-export default Settings

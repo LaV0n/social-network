@@ -1,8 +1,8 @@
 .item {
-    color: #d6dfed;
+    color: var(--textMainColor);
     display: flex;
     gap: 20px;
-margin-top: 10px;
+    margin-top: 10px;
     align-items: flex-end;
 }
 
@@ -10,15 +10,16 @@ margin-top: 10px;
     width: 50px;
     border-radius: 30px;
 }
-.likes {
 
-    color: rgba(214, 223, 237, 0.62);
+.likes {
+    color:var(--textSecondColor);
     font-size: 0.8rem;
 }
+
 .postBlock {
-    border: 1px solid rgba(255, 255, 255, 0.17);
+    border: 1px solid var(--secondColor);
     border-radius: 10px;
     padding: 5px;
- min-height: 40px;
+    min-height: 40px;
     min-width: 250px;
 }

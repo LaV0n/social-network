@@ -1,11 +1,10 @@
 import React from "react";
-import classes from "./News.module.css";
+import styles from "./News.module.css";
 
-const News =  () => {
+export const News =  () => {
     return(
-        <div >
-            news
+        <div className={styles.content}>
+            no news yet
         </div>
     )
 }
-export default News

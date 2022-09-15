@@ -24,25 +24,25 @@
     border-radius: 100px;
     width: 200px;
     height: 200px;
-    border: 3px solid white;
+    border: 3px solid var(--textMainColor);
     box-shadow: 0 0 48px -9px rgba(255, 255, 255, 1);
 }
 
 .nameBlock {
-    color: white;
+    color: var(--textMainColor);
     max-width: 40%;
     font-size: 1.3rem;
 }
 
 .aboutJobBlock {
-    color: white;
+    color: var(--textMainColor);
     max-width: 40%;
     font-size: 1.1rem;
 }
 
 .title {
     font-size: 0.9rem;
-    color: rgba(214, 223, 237, 0.67);
+    color: var(--textSecondColor);
 }
 
 .jobImg {
@@ -57,7 +57,7 @@
 
 .contactsBlock {
     padding-left: 20px;
-    color: white;
+    color:  var(--textMainColor);
     font-size: 1.3rem;
     display: flex;
     position: relative;
@@ -69,7 +69,7 @@
 h2 {
     left: 10%;
     width: 80%;
-    color: white;
+    color:  var(--textMainColor);
     position: relative;
     top: -130px;
 }
