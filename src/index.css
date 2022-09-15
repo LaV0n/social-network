@@ -13,3 +13,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+:root {
+  --mainColor: rgba(23, 39, 70, 0.9);
+  --secondColor: rgba(176, 174, 174, 0.2);
+  --textMainColor: rgb(255, 255, 255);
+  --textSecondColor: rgba(214, 223, 237, 0.67);
+  --textErrorColor: #ff4141;
+}

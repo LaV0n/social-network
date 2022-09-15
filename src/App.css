@@ -4,7 +4,7 @@
     max-height: 95vh;
     margin: 20px auto;
     border-radius: 30px;
-    background: rgba(23, 39, 70, 0.9) no-repeat;
+    background: var(--mainColor) no-repeat;
     background-position-y: bottom;
 }
 
@@ -17,7 +17,7 @@
     max-height: 90%;
     width: 97%;
     overflow: auto;
-    background-color: rgba(176, 174, 174, 0.2);
+    background-color: var(--secondColor);
     border-radius: 20px;
     margin: 10px;
     padding: 5px;;

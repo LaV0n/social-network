@@ -10,7 +10,8 @@ let mapStateToProps = (state:stateType) => {
     return{
         dialogs: state.messagesPage.dialogsData,
         messagesList: state.messagesPage.messagesData.messageList,
-        isAuth:state.auth.isAuth
+        isAuth:state.auth.isAuth,
+        profileAvatar:state.profilePage.profile?.photos.small
     }
 }
 

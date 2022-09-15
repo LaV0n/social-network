@@ -2,14 +2,14 @@
 
 }
 .formControl.error textarea {
-    border: 5px solid red;
+    border: 2px solid  var(--textErrorColor);
 }
 .formControl.error span {
-    color: #ff4141;
+    color: var(--textErrorColor);
 }
 .textarea {
-    background-color: #293148;
-    color: white;
+    background-color: var(--mainColor);
+    color: var(--textMainColor);
     border-radius: 10px;
     padding: 5px;
 }

@@ -12,6 +12,7 @@ type DialogsType ={
     messagesList:messageListType[]
     newMessage:string
     isAuth:boolean
+    profileAvatar:string
 }
 export type dialogsDataType = {
     id:number
@@ -25,6 +26,7 @@ export type messageDatatype ={
 export type messageListType = {
     id: number
     message: string
+    avatar:string
 }
 
 const Dialogs = (props:DialogsType) => {
@@ -39,10 +41,16 @@ if (!props.isAuth) return <Redirect to='/login'/>
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogs_items}>
-                {props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} avatar={dialog.avatar}/>)}
+                {props.dialogs.map(dialog => <DialogItem name={dialog.name}
+                                                         id={dialog.id}
+                                                         avatar={dialog.avatar}/>)}
             </div>
             <div className={classes.messages}>
-                {props.messagesList.map(message =>   <Message message={message.message}/>)}
+                {props.messagesList.map(message =>   <Message key={message.id}
+                                                              message={message.message}
+                                                              profileAvatar={props.profileAvatar}
+                                                              friendAvatar={message.avatar}
+                />)}
                 <InputMessageReduxForm onSubmit={addMessage}/>
             </div>
         </div>

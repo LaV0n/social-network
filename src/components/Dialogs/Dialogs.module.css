@@ -1,7 +1,6 @@
 .dialogs {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-
+    display: flex;
+    justify-content: space-between;
 }
 
 .dialogs_items {
@@ -11,24 +10,46 @@
 .item {
     padding: 5px;
 }
-.item a{
-    color: rgba(214, 223, 237, 0.67);
+
+.item a {
+    color: var(--textSecondColor);
     text-decoration: none;
     bottom: 20px;
     left: 10px;
     position: relative;
 
 }
- .item a:active{
-    color: #ffffff;
+
+.item a:active {
+    color: var(--textMainColor);
     font-size: 1.2rem;
 }
+
 .messages {
     padding: 15px;
-    color: white;
+    color: var(--textMainColor);
+    border: 1px solid var(--secondColor);
+    margin: 5px;
+    width: 75%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .item img {
     width: 50px;
     border-radius: 25px;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    gap: 20px;
+}
+
+.avatar {
+    width: 40px;
+    border-radius: 20px;
 }

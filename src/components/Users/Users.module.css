@@ -20,8 +20,8 @@ margin-top: 10px;
     justify-content: space-between;
     width: 700px;
     border-radius: 30px;
-    background-color: rgba(214, 223, 237, 0.2);
-    border: 1px solid white;
+    background-color: var(--secondColor);
+    border: 1px solid var(--textMainColor);
     padding:30px 20px ;
     font-size: 1.2rem;
     font-family: Verdana, sans-serif;
@@ -34,19 +34,19 @@ margin-top: 10px;
 }
 
 .line {
-    color: white;
+    color: var(--textMainColor);
 }
 
 .line span {
-    color: rgba(214, 223, 237, 0.67);
+    color: var(--textSecondColor);
 }
 
 .pageCount {
-    color: white;
+    color: var(--textMainColor);
 }
 
 .pageCountSelected {
-    color: white;
+    color: var(--textMainColor);
     font-size: 1.1rem;
     font-weight: bold;
 }

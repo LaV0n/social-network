@@ -20,9 +20,9 @@ let initialState = {
 
     messagesData: {
         messageList: [
-            {id: 1, message: 'Hi'},
-            {id: 2, message: 'sleeppy'},
-            {id: 3, message: 'How r u?'},
+            {id: 1, message: 'Hi',avatar: require("../assets/img/triss.jpg")},
+            {id: 2, message: 'sleeper',avatar: require("../assets/img/triss.jpg")},
+            {id: 3, message: 'How r u?',avatar: require("../assets/img/triss.jpg")},
         ]
     }
 }
@@ -32,7 +32,8 @@ const DialogsReducer = (state: messagesPageType = initialState, action: ActionsT
         case 'ADD-MESSAGE':
             let message: messageListType = {
                 id: 4,
-                message: action.value
+                message: action.value,
+                avatar:''
             }
             return {
                 ...state,
