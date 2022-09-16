@@ -22,10 +22,25 @@ type ProfileInfoType = {
     status: string
     updateStatus: (status: string) => void
 }
+type LinkIconType = {
+    link: string
+    icon: string
+}
 
 const ProfileInfo = (props: ProfileInfoType) => {
     if (!props.profile) {
         return <Preloader/>
+    }
+
+    const LinkIcon = (props: LinkIconType) => {
+        return (
+            <div className={classes.iconBlock}>
+                {props.link
+                    ? <a href={props.link}> <img src={props.icon} alt="0" className={classes.icon}/></a>
+                    :  <img src={props.icon} alt="0" className={classes.iconNull}/>
+                }
+            </div>
+        )
     }
 
     return (
@@ -57,40 +72,18 @@ const ProfileInfo = (props: ProfileInfoType) => {
 
                 </div>
             </div>
-            <h2 style={{marginTop: '-10px'}}>Contacts</h2>
-            <div className={classes.contactsBlock}>
-                <div className={classes.iconBlock}>
-                    <img src={facebookIcon} alt="0" className={classes.icon}/>
-                    <span className={classes.text}>{props.profile.contacts.facebook} </span>
-                </div>
-                <div className={classes.iconBlock}>
-                    <img src={webIcon} alt="0" className={classes.icon}/>
-                    <span className={classes.text}>{props.profile.contacts.website}</span>
-                </div>
-                <div className={classes.iconBlock}>
-                    <img src={vkIcon} alt="0" className={classes.icon}/>
-                    <span className={classes.text}>{props.profile.contacts.vk}</span>
-                </div>
-                <div className={classes.iconBlock}>
-                    <img src={twitterIcon} alt="0" className={classes.icon}/>
-                    <span className={classes.text}>{props.profile.contacts.twitter}</span>
-                </div>
-                <div className={classes.iconBlock}>
-                    <img src={instagramIcon} alt="0" className={classes.icon}/>
-                    <span className={classes.text}>{props.profile.contacts.instagram}</span>
-                </div>
-                <div className={classes.iconBlock}>
-                    <img src={youtubeIcon} alt="0" className={classes.icon}/>
-                    <span className={classes.text}>{props.profile.contacts.youtube}</span>
-                </div>
-                <div className={classes.iconBlock}>
-                    <img src={gitIcon} alt="0" className={classes.icon}/>
-                    <span className={classes.text}>{props.profile.contacts.github}</span>
-                </div>
-                <div className={classes.iconBlock}>
-                    <img src={mailIcon} alt="0" className={classes.icon}/>
-                    <span className={classes.text}>{props.profile.contacts.mainLink}</span>
-                </div>
+            <div className={classes.contactContainer}>
+                <h2>Contacts</h2>
+                <span className={classes.contactsBlock}>
+              <LinkIcon link={props.profile.contacts.facebook} icon={facebookIcon}/>
+              <LinkIcon link={props.profile.contacts.website} icon={webIcon}/>
+              <LinkIcon link={props.profile.contacts.vk} icon={vkIcon}/>
+              <LinkIcon link={props.profile.contacts.twitter} icon={twitterIcon}/>
+              <LinkIcon link={props.profile.contacts.instagram} icon={instagramIcon}/>
+              <LinkIcon link={props.profile.contacts.youtube} icon={youtubeIcon}/>
+              <LinkIcon link={props.profile.contacts.github} icon={gitIcon}/>
+              <LinkIcon link={props.profile.contacts.mainLink} icon={mailIcon}/>
+            </span>
             </div>
         </div>
     )

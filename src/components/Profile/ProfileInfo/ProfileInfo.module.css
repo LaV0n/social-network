@@ -67,26 +67,22 @@
 }
 
 h2 {
-    left: 10%;
-    width: 80%;
+    left: 5%;
+    width: 20%;
     color:  var(--textMainColor);
     position: relative;
     top: -130px;
-}
-
-.iconBlock {
-    width: 200px;
-    display: flex;
-    justify-content: flex-start;
-    gap: 5px;
 }
 
 .icon {
     width: 20px;
     filter: invert(100%);
 }
-
-.text {
-    font-size: 0.8rem;
-
+.iconNull{
+    width: 20px;
+    filter: invert(50%);
+}
+.contactContainer {
+    display: flex;
+    align-items: center;
 }
