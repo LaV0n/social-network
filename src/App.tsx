@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import {dialogsDataType, messageDatatype} from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, withRouter} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
@@ -58,13 +58,11 @@ type AppType={
     initialized:boolean
 }
 
-
 class App extends React.Component<AppType> {
 
     componentDidMount() {
         this.props.initializedAppTC()
     };
-
 
     render() {
         if(!this.props.initialized){
@@ -74,6 +72,7 @@ class App extends React.Component<AppType> {
             <BrowserRouter>
                 <div className="app-wrapper">
                     <Navbar/>
+                    <Redirect to={'/profile/userId'}/>
                     <div className={"app-wrapper-content"}>
                         <HeaderContainer/>
                         <div className="app-content">
@@ -103,7 +102,6 @@ class App extends React.Component<AppType> {
 const mapStateToProps = (state:storeType)=>({
     initialized:state.app.initialized
 })
-
 
 export default compose<React.ComponentType> (
     withRouter,
