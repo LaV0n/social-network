@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
+import {applyMiddleware, combineReducers,  legacy_createStore as createStore} from "redux";
 import {
     ProfileReducer,
     addPostActionCreate, deletePostAC,
@@ -17,6 +17,7 @@ import AuthReducer, {setAuthUserData, setError} from "./AuthReducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk"
 import {reducer as formReducer} from 'redux-form'
 import {AppReducer, setInitializedAC} from "./AppReducer";
+import { composeWithDevTools } from "@redux-devtools/extension";
 
 export type ActionsType =
     ReturnType<typeof addPostActionCreate> |
@@ -44,7 +45,10 @@ let reducers = combineReducers({
     form: formReducer,
     app: AppReducer
 })
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+//let store = createStore(reducers, applyMiddleware(thunkMiddleware));//@ts-ignore
+
+let store= createStore(reducers, composeWithDevTools(
+    applyMiddleware(thunkMiddleware)));
 
 type ReducersType = typeof reducers
 export type storeType = ReturnType<ReducersType>;
