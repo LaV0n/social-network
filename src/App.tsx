@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import {dialogsDataType, messageDatatype} from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Redirect, Route, withRouter} from "react-router-dom";
+import { Redirect, Route, withRouter} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {postDataType} from "./components/Profile/MyPosts/MyPostsContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
 import {UsersPageType} from "./redux/UsersReducer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
@@ -19,6 +18,8 @@ import { compose } from 'redux';
 import {initializedAppTC} from "./redux/AppReducer";
 import {storeType} from "./redux/redux-store";
 import {Preloader} from "./components/common/preloader/Preloader";
+
+const UsersContainer=React.lazy(()=>import('./components/Users/UsersContainer'))
 
 export type stateType = {
     messagesPage: messagesPageType
@@ -69,7 +70,6 @@ class App extends React.Component<AppType> {
             return <Preloader/>
         }
         return (
-            <BrowserRouter>
                 <div className="app-wrapper">
                     <Navbar/>
                     <Redirect to={'/profile/userId'}/>
@@ -83,7 +83,9 @@ class App extends React.Component<AppType> {
                                 <ProfileContainer/>
                             }/>
                             <Route path='/users' render={() =>
-                                <UsersContainer/>
+                                <Suspense fallback={<Preloader/>}>
+                                    <UsersContainer/>
+                            </Suspense>
                             }/>
                             <Route path='/login' render={() =>
                                 <Login/>
@@ -94,7 +96,6 @@ class App extends React.Component<AppType> {
                         </div>
                     </div>
                 </div>
-            </BrowserRouter>
         );
     }
 }
