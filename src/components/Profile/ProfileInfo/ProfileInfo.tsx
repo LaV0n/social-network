@@ -49,7 +49,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
                 <img src={wall} alt="0" className={classes.mainImg}/>
             </div>
             <div className={classes.description_block}>
-                <div>
+                <div className={classes.avatarBlock}>
                     <img src={props.profile.photos.large ? props.profile.photos.large : defaultUser} alt='0'
                          className={classes.avatar}/>
                     <img src={props.profile.lookingForAJob ? needJobImg : dontNeedJobImg} alt="0"

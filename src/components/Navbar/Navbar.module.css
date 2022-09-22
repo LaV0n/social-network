@@ -21,3 +21,13 @@
     margin-left: 1%;
     margin-bottom: 20px;
 }
+
+@media screen and (max-width: 1250px) {
+    .nav img {
+        width: 100px;
+    }
+    .nav {
+        padding: 10px;
+        width: 100px;
+    }
+}

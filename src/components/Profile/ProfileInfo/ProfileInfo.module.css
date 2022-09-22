@@ -1,7 +1,7 @@
 .description_block {
     padding: 10px;
     position: relative;
-    top: -150px;
+    margin-top: 70px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -10,7 +10,8 @@
 
 .main {
     border-radius: 20px;
-    height: 410px;
+    height: 100%;
+    position: relative;
 }
 
 .mainImg {
@@ -18,14 +19,32 @@
     height: 200px;
     width: 98%;
     border-radius: 40px;
+    position: absolute;
+}
+
+.avatarBlock {
+    width: 200px;
+    height: 200px;
+    position: relative;
 }
 
 .avatar {
     border-radius: 100px;
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
     border: 3px solid var(--textMainColor);
     box-shadow: 0 0 48px -9px rgba(255, 255, 255, 1);
+}
+
+.jobImg {
+    width: 50px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 25px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: 1px solid black;
+    z-index: 2;
 }
 
 .nameBlock {
@@ -45,23 +64,13 @@
     color: var(--textSecondColor);
 }
 
-.jobImg {
-    width: 50px;
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 25px;
-    position: relative;
-    right: 50px;
-    border: 1px solid black;
-    z-index: 2;
-}
-
 .contactsBlock {
     padding-left: 20px;
-    color:  var(--textMainColor);
+    margin-top: 10px;
+    color: var(--textMainColor);
     font-size: 1.3rem;
     display: flex;
     position: relative;
-    top: -130px;
     gap: 20px;
     flex-wrap: wrap;
 }
@@ -69,20 +78,58 @@
 h2 {
     left: 5%;
     width: 20%;
-    color:  var(--textMainColor);
+    color: var(--textMainColor);
     position: relative;
-    top: -130px;
 }
 
 .icon {
     width: 20px;
     filter: invert(100%);
 }
-.iconNull{
+
+.iconNull {
     width: 20px;
     filter: invert(50%);
 }
+
 .contactContainer {
     display: flex;
     align-items: center;
+}
+
+@media screen and (max-width: 1250px) {
+    .mainImg {
+        height: 15vw;
+    }
+
+    .avatarBlock {
+        width: 15vw;
+        height: 15vw;
+    }
+
+    .description_block {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 0;
+        padding: 20px 20px;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+
+        height: 100%;
+    }
+
+    .nameBlock {
+        max-width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .aboutJobBlock {
+        max-width: 100%;
+    }
+
+
 }

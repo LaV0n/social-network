@@ -1,5 +1,5 @@
 .formControl {
-
+width: 100%;
 }
 .formControl.error textarea {
     border: 2px solid  var(--textErrorColor);
@@ -12,4 +12,5 @@
     color: var(--textMainColor);
     border-radius: 10px;
     padding: 5px;
+    width: 100%;
 }

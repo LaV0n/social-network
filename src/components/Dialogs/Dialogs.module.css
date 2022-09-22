@@ -53,3 +53,16 @@
     width: 40px;
     border-radius: 20px;
 }
+@media screen and (max-width: 1250px) {
+    .message {
+        display: block;
+    }
+    .friendImg{
+        display: none;
+    }
+    .dialogs_items {
+       margin-top: 20px;
+        text-align: center;
+        width: 20%;
+    }
+}

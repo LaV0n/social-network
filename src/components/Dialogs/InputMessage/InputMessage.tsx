@@ -18,11 +18,11 @@ const InputMessageForm: React.FC<InjectedFormProps<FormDataMessageType>> = (prop
                    placeholder={"Enter your message"}
                    component={Textarea}
                    validate={[requiredField, maxLength100]}
-                   style={{width: '550px'}}
             />
             <Button variant="outlined"
                     color="inherit"
                     onClick={props.handleSubmit}
+                    style={{marginLeft:'20px'}}
             >add message</Button>
         </form>
     )

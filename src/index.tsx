@@ -6,13 +6,14 @@ import ReactDOM from "react-dom";
 import {Provider} from "react-redux"
 import {BrowserRouter, HashRouter} from "react-router-dom";
 
-    ReactDOM.render(
+ReactDOM.render(
+    <Provider store={store}>
         <HashRouter>
-            <Provider store={store}>
-                <App/>
-            </Provider>
+            <App/>
         </HashRouter>
-       ,document.getElementById('root')
-    );
+    </Provider>
+
+    , document.getElementById('root')
+);
 
 
