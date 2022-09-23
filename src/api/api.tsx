@@ -18,7 +18,6 @@ export const UsersAPI = {
         return instance.post(`follow/${id}`)
     },
     GetProfile(userId:number) {
-        console.warn("use ProfileAPI")
         return ProfileAPI.GetProfile(userId)
     }
 }
@@ -32,6 +31,13 @@ export const ProfileAPI ={
     },
     UpdateStatus(status:string){
         return instance.put(`/profile/status/`,{status:status})
+    },
+    SetPhoto(file:any){
+        const formData=new FormData();
+        formData.append('image',file)
+        return instance.put('/profile/photo',formData,{
+            headers:{'Content-Type': 'multipart/form-data'}
+        })
     }
 }
 

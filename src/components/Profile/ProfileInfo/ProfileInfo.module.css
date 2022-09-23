@@ -96,6 +96,19 @@ h2 {
     display: flex;
     align-items: center;
 }
+.addPhoto {
+    position: absolute;
+    bottom: -15px;
+    left: -10px;
+
+}
+.addPhotoIcon{
+    width: 30px;
+    filter: invert(85%);
+}
+.addPhotoIcon:hover{
+    filter: invert(1);
+}
 
 @media screen and (max-width: 1250px) {
     .mainImg {

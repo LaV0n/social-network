@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import wall from '../../../assets/img/kaen.jpg'
 import classes from './ProfileInfo.module.css';
 import {profileUserType} from "../../../App";
@@ -15,12 +15,16 @@ import gitIcon from "../../../assets/icons/github.png"
 import mailIcon from "../../../assets/icons/email.png"
 import defaultUser from "../../../assets/img/userPhoto.png"
 import {ProfileStatusWithHooks} from "../ProfileStatusWithHooks";
+import {IconButton} from "@mui/material";
+import addPhotoIcon from "../../../assets/icons/add-photo.png"
 
 
 type ProfileInfoType = {
     profile: profileUserType | null
     status: string
     updateStatus: (status: string) => void
+    isOwner:boolean
+    setPhoto:(e:ChangeEvent<HTMLInputElement>)=>void
 }
 type LinkIconType = {
     link: string
@@ -42,6 +46,12 @@ const ProfileInfo = (props: ProfileInfoType) => {
             </div>
         )
     }
+    const setPhotoHandler= (e:ChangeEvent<HTMLInputElement>)=>{//@ts-ignore
+        if(e.target.files[0]){//@ts-ignore
+            props.setPhoto(e.target.files[0])
+        }
+
+    }
 
     return (
         <div className={classes.main}>
@@ -54,6 +64,14 @@ const ProfileInfo = (props: ProfileInfoType) => {
                          className={classes.avatar}/>
                     <img src={props.profile.lookingForAJob ? needJobImg : dontNeedJobImg} alt="0"
                          className={classes.jobImg}/>
+                    {props.isOwner &&
+                       <div className={classes.addPhoto}>
+                           <IconButton color={'primary'} aria-label="upload picture" component="label">
+                               <input type={'file'} hidden onChange={setPhotoHandler}/>
+                               <img src={addPhotoIcon} alt={'0'} className={classes.addPhotoIcon}/>
+                           </IconButton>
+                       </div>
+                    }
                 </div>
                 <div className={classes.nameBlock}>
                     <div>

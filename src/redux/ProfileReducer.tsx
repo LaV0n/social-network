@@ -7,6 +7,7 @@ const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 const DELETE_POST = 'DELETE-POST'
+const SET_NEW_PHOTO = 'SET_NEW_PHOTO'
 
 let initialState = {
     postsData: [
@@ -51,6 +52,8 @@ export const ProfileReducer = (state: profilePageType = initialState, action: Ac
             return {...state, status: action.status}
         case DELETE_POST:
             return {...state, postsData: {...state}.postsData.filter(p => p.id !== action.postId)}
+        case SET_NEW_PHOTO:                                                                         //@ts-ignore
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state;
     }
@@ -82,6 +85,13 @@ export const setStatus = (status: string) => (
     } as const
 )
 
+export const setNewPhoto = (photos: { large: string,small: string}) => (
+    {
+        type: SET_NEW_PHOTO,
+        photos
+    } as const
+)
+
 export const getUserProfile = (userId: number) =>
     async (dispatch: (a: ActionsType) => void) => {
         const response = await UsersAPI.GetProfile(userId)
@@ -100,5 +110,18 @@ export const updateStatus = (status: string) =>
         if (response.data.resultCode === 0) {
             dispatch(setStatus(status))
         }
+    }
+
+export const setPhoto = (file: any) =>
+    async (dispatch: (a: ActionsType) => void) => {
+        try {
+            const response = await ProfileAPI.SetPhoto(file)
+            if (response.data.resultCode === 0) {
+                dispatch(setNewPhoto(response.data.data.photos))
+            }
+        } catch (err:any) {
+            alert('error')
+        }
+
     }
 

@@ -37,12 +37,12 @@ export type profilePageType = {
     status:string
 }
 export type profileUserType  = {
-    photos: { small: string, large: string}
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName:string
-    userId: number
-    aboutMe: string
+    photos: { large: string,small: string}
+    lookingForAJob?: boolean
+    lookingForAJobDescription?: string
+    fullName?:string
+    userId?: number
+    aboutMe?: string
     contacts: {
         facebook: string,
         website: string,
