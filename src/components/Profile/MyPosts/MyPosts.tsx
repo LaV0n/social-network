@@ -12,7 +12,7 @@ type MyPostsType = {
 
 const MyPosts = React.memo((props: MyPostsType) => {
     let postsElements =
-        props.posts.map(message => <Post message={message.message} likeCount={message.likeCount} smallAvatar={props.smallAvatar}/>);
+        props.posts.map(message => <Post key={message.id} message={message.message} likeCount={message.likeCount} smallAvatar={props.smallAvatar}/>);
 
 
     let addPost = (value:FormDataType) => {

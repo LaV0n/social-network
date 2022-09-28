@@ -98,6 +98,8 @@ h2 {
 }
 .addPhoto {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     bottom: -15px;
     left: -10px;
 

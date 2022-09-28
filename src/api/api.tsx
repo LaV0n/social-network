@@ -38,6 +38,9 @@ export const ProfileAPI ={
         return instance.put('/profile/photo',formData,{
             headers:{'Content-Type': 'multipart/form-data'}
         })
+    },
+    UpdateProfileData(data:any){
+        return instance.put('/profile',data)
     }
 }
 

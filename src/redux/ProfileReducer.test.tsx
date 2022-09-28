@@ -8,7 +8,8 @@ let state = {
         {id: 3, message: 'Who is here?', likeCount: 5}
     ],
     profile: null,
-    status: ""
+    status: "",
+    editMode:false
 }
 
 test('add post test ->length expect 4',()=>{

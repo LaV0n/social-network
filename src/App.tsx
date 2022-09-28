@@ -35,6 +35,7 @@ export type profilePageType = {
     postsData: postDataType[]
     profile:profileUserType | null
     status:string
+    editMode:boolean
 }
 export type profileUserType  = {
     photos: { large: string,small: string}

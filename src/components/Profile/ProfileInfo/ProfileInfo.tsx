@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, {ChangeEvent} from "react";
 import wall from '../../../assets/img/kaen.jpg'
 import classes from './ProfileInfo.module.css';
 import {profileUserType} from "../../../App";
@@ -17,14 +17,18 @@ import defaultUser from "../../../assets/img/userPhoto.png"
 import {ProfileStatusWithHooks} from "../ProfileStatusWithHooks";
 import {IconButton} from "@mui/material";
 import addPhotoIcon from "../../../assets/icons/add-photo.png"
+import {ProfileInfoForm} from "../ProfileInfoForm/ProfileInfoForm";
+import {useAppDispatch, useAppSelector} from "../../../hoc/hook";
+import {setEditMode} from "../../../redux/ProfileReducer";
+import gearIcon from "../../../assets/icons/gear_icon.png"
 
 
 type ProfileInfoType = {
     profile: profileUserType | null
     status: string
     updateStatus: (status: string) => void
-    isOwner:boolean
-    setPhoto:(e:ChangeEvent<HTMLInputElement>)=>void
+    isOwner: boolean
+    setPhoto: (e: ChangeEvent<HTMLInputElement>) => void
 }
 type LinkIconType = {
     link: string
@@ -32,6 +36,9 @@ type LinkIconType = {
 }
 
 const ProfileInfo = (props: ProfileInfoType) => {
+    const editModeStatus = useAppSelector(state => state.profilePage.editMode)
+    const dispatch = useAppDispatch()
+
     if (!props.profile) {
         return <Preloader/>
     }
@@ -41,16 +48,18 @@ const ProfileInfo = (props: ProfileInfoType) => {
             <div className={classes.iconBlock}>
                 {props.link
                     ? <a href={props.link}> <img src={props.icon} alt="0" className={classes.icon}/></a>
-                    :  <img src={props.icon} alt="0" className={classes.iconNull}/>
+                    : <img src={props.icon} alt="0" className={classes.iconNull}/>
                 }
             </div>
         )
     }
-    const setPhotoHandler= (e:ChangeEvent<HTMLInputElement>)=>{//@ts-ignore
-        if(e.target.files[0]){//@ts-ignore
+    const setPhotoHandler = (e: ChangeEvent<HTMLInputElement>) => {//@ts-ignore
+        if (e.target.files[0]) {//@ts-ignore
             props.setPhoto(e.target.files[0])
         }
-
+    }
+    const editModeHandler = () => {
+        dispatch(setEditMode(!editModeStatus))
     }
 
     return (
@@ -65,12 +74,15 @@ const ProfileInfo = (props: ProfileInfoType) => {
                     <img src={props.profile.lookingForAJob ? needJobImg : dontNeedJobImg} alt="0"
                          className={classes.jobImg}/>
                     {props.isOwner &&
-                       <div className={classes.addPhoto}>
-                           <IconButton color={'primary'} aria-label="upload picture" component="label">
-                               <input type={'file'} hidden onChange={setPhotoHandler}/>
-                               <img src={addPhotoIcon} alt={'0'} className={classes.addPhotoIcon}/>
-                           </IconButton>
-                       </div>
+                        <div className={classes.addPhoto}>
+                            <IconButton color={'primary'} aria-label="upload picture" component="label">
+                                <input type={'file'} hidden onChange={setPhotoHandler}/>
+                                <img src={addPhotoIcon} alt={'0'} className={classes.addPhotoIcon}/>
+                            </IconButton>
+                            <IconButton color={'primary'} aria-label="upload picture" component="label">
+                                <img src={gearIcon} alt={'0'} className={classes.addPhotoIcon} onClick={editModeHandler}/>
+                            </IconButton>
+                        </div>
                     }
                 </div>
                 <div className={classes.nameBlock}>
@@ -87,9 +99,9 @@ const ProfileInfo = (props: ProfileInfoType) => {
                         <span
                             className={classes.title}>what job I need </span> {props.profile.lookingForAJobDescription}
                     </div>
-
                 </div>
             </div>
+            {editModeStatus && <ProfileInfoForm/>}
             <div className={classes.contactContainer}>
                 <h2>Contacts</h2>
                 <span className={classes.contactsBlock}>

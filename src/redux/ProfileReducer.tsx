@@ -1,13 +1,15 @@
 import {postDataType} from "../components/Profile/MyPosts/MyPostsContainer";
-import {ActionsType} from "./redux-store";
+import {ActionsType, AppDispatch, RootState} from "./redux-store";
 import {profilePageType, profileUserType} from "../App";
 import {ProfileAPI, UsersAPI} from "../api/api";
+import { AxiosError } from "axios";
 
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 const DELETE_POST = 'DELETE-POST'
 const SET_NEW_PHOTO = 'SET_NEW_PHOTO'
+const SET_EIT_MODE = 'SET_EDIT_MODE'
 
 let initialState = {
     postsData: [
@@ -33,7 +35,8 @@ let initialState = {
             mainLink: ''
         }
     }*/
-    status: ""
+    status: "",
+    editMode:false
 }
 
 
@@ -54,6 +57,8 @@ export const ProfileReducer = (state: profilePageType = initialState, action: Ac
             return {...state, postsData: {...state}.postsData.filter(p => p.id !== action.postId)}
         case SET_NEW_PHOTO:                                                                         //@ts-ignore
             return {...state, profile: {...state.profile, photos: action.photos}}
+        case SET_EIT_MODE:
+            return {...state, editMode: action.editMode}
         default:
             return state;
     }
@@ -92,6 +97,13 @@ export const setNewPhoto = (photos: { large: string,small: string}) => (
     } as const
 )
 
+export const setEditMode = (editMode:boolean) => (
+    {
+        type: SET_EIT_MODE,
+        editMode
+    } as const
+)
+
 export const getUserProfile = (userId: number) =>
     async (dispatch: (a: ActionsType) => void) => {
         const response = await UsersAPI.GetProfile(userId)
@@ -122,6 +134,37 @@ export const setPhoto = (file: any) =>
         } catch (err:any) {
             alert('error')
         }
-
     }
+export const updateProfileData = (data: any) =>
+    async (dispatch:AppDispatch,getState:()=>RootState) => {
+        try {
+            const file={
+                lookingForAJob: data.lookingForAJob,
+                lookingForAJobDescription: data.lookingForAJobDescription,
+                fullName: data.fullName,
+                aboutMe: data.aboutMe,
+                contacts: {
+                    github: data.github,
+                    vk: data.vk,
+                    facebook: data.facebook,
+                    instagram: data.instagram,
+                    twitter: data.twitter,
+                    website: data.website,
+                    youtube: data.youtube,
+                    mainLink: data.mainLink
+                }
+            }
+            const response=await ProfileAPI.UpdateProfileData(file)
+           if (response.data.resultCode===0){
+               const id=getState().auth.id
+               if (id){
+                   dispatch(getUserProfile(id))
+                   dispatch(setEditMode(false))
+               }
+           }
 
+        } catch (err:any) {
+            const error: string = (err as AxiosError).response?.data ? err.response.data.error : ''
+            alert(error)
+        }
+    }

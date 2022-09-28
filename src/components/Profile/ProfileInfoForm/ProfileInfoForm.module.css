@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    border: 1px solid var(--secondColor);
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    background-color: var(--secondColor);
+}
+.title {
+    color: var(--textMainColor);
+    text-align: center;
+}
+.inputBlock{
+    width: 400px;
+}

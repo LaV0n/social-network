@@ -2,7 +2,7 @@ import {applyMiddleware, combineReducers,  legacy_createStore as createStore} fr
 import {
     ProfileReducer,
     addPostActionCreate, deletePostAC,
-    setUserProfile, setStatus, setNewPhoto
+    setUserProfile, setStatus, setNewPhoto, setEditMode
 } from "./ProfileReducer";
 import DialogsReducer, {addMessageActionCreate} from "./DialogsReducer";
 import UsersReducer, {
@@ -35,7 +35,8 @@ export type ActionsType =
     ReturnType<typeof setError> |
     ReturnType<typeof setInitializedAC> |
     ReturnType<typeof deletePostAC> |
-    ReturnType<typeof setNewPhoto>
+    ReturnType<typeof setNewPhoto> |
+    ReturnType<typeof setEditMode>
 
 
 let reducers = combineReducers({
