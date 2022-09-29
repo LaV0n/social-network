@@ -12,25 +12,25 @@ export const ProfileInfoForm = () => {
     const formik = useFormik({
         validate: (values) => {
             if (!values.fullName) {
-                return {
-                    fullname: 'fullname is required'
-                }
+                   return {
+                       fullName: 'Full name is required'
+                   }
             }
             if (!values.aboutMe) {
                 return {
-                    aboutMe: 'aboutMe is required'
+                    aboutMe: 'About Me is required'
                 }
             }
             if (!values.lookingForAJobDescription) {
                 return {
-                    lookingForAJobDescription: 'lookingForAJobDescription is required'
+                    lookingForAJobDescription: 'Description is required'
                 }
             }
         },
         initialValues: {
+            fullName: '',
             lookingForAJob: false,
             lookingForAJobDescription: '',
-            fullName: '',
             aboutMe:'',
             github: '',
             vk: '',
@@ -54,66 +54,78 @@ export const ProfileInfoForm = () => {
                     </FormLabel>
                     <FormGroup className={style.inputBlock}>
                         <TextField
-                            label={'Fullname'}
+                            label={'Full Name'}
+                            inputProps={{ style: { color: "var(--textMainColor)" } }}
                             {...formik.getFieldProps('fullName')}
                         />
-                        {formik.errors.fullName ? <div style={{color:'red'}}>{formik.errors.fullName}</div> : null}
+                        {formik.errors.fullName ? <div style={{color:'var(--textErrorColor)'}}>{formik.errors.fullName}</div> : null}
                         <TextField
-                            label={'aboutMe'}
+                            label={'About Me'}
+                            inputProps={{ style: { color: "var(--textMainColor)" } }}
                             margin={'normal'}
                             {...formik.getFieldProps('aboutMe')}
                         />
-                        {formik.errors.aboutMe ? <div style={{color:'red'}}>{formik.errors.aboutMe}</div> : null}
+                        {formik.errors.aboutMe ? <div style={{color:'var(--textErrorColor)'}}>{formik.errors.aboutMe}</div> : null}
                         <TextField
-                            label={'lookingForAJobDescription'}
+                            label={'Job Description'}
+                            inputProps={{ style: { color: "var(--textMainColor)" } }}
                             margin={'normal'}
                             {...formik.getFieldProps('lookingForAJobDescription')}
                         />
-                        {formik.errors.lookingForAJobDescription ? <div style={{color:'red'}}>{formik.errors.lookingForAJobDescription}</div> : null}
+                        {formik.errors.lookingForAJobDescription ? <div style={{color:'var(--textErrorColor)'}}>{formik.errors.lookingForAJobDescription}</div> : null}
                         <FormControlLabel
-                            label={'lookingForAJob'}
+                            label={'Are you looking for a job'}
                             control={<Checkbox
+                                inputProps={{ style: { color: "var(--textMainColor)" } }}
                                 {...formik.getFieldProps("lookingForAJob")}
                                 checked={formik.values.lookingForAJob}
                             />}
                         />
                         <TextField
                             label={'github'}
+                            inputProps={{ style: { color: "var(--textMainColor)" } }}
                             margin={'normal'}
                             {...formik.getFieldProps('github')}
                         />
                         <TextField
                             label={'vk'}
+                            inputProps={{ style: { color: "var(--textMainColor)" } }}
                             margin={'normal'}
                             {...formik.getFieldProps('vk')}
                         />
                         <TextField
                             label={'facebook'}
+                            inputProps={{ style: { color: "var(--textMainColor)" } }}
                             margin={'normal'}
                             {...formik.getFieldProps('facebook')}
                         />
                         <TextField
                             label={'instagram'}
+                            inputProps={{ style: { color: "var(--textMainColor)" } }}
                             margin={'normal'}
                             {...formik.getFieldProps('instagram')}
                         />
                         <TextField
                             label={'twitter'}
+                            inputProps={{ style: { color: "var(--textMainColor)" } }}
                             margin={'normal'}
                             {...formik.getFieldProps('twitter')}
                         />
                         <TextField
                             label={'website'}
+                            inputProps={{ style: { color: "var(--textMainColor)" } }}
                             margin={'normal'}
                             {...formik.getFieldProps('website')}
                         />
                         <TextField
                             label={'youtube'}
+                            inputProps={{ style: { color: "var(--textMainColor)" } }}
                             margin={'normal'}
                             {...formik.getFieldProps('youtube')}
                         />
                         <TextField
                             label={'mainLink'}
+                            inputProps={{ style: { color: "var(--textMainColor)" } }}
                             margin={'normal'}
                             {...formik.getFieldProps('mainLink')}
                         />

@@ -73,7 +73,7 @@ class App extends React.Component<AppType> {
         return (
                 <div className="app-wrapper">
                     <Navbar/>
-                    <Redirect to={'/profile/userId'}/>
+                    <Redirect to={'/profile/:userId'}/>
                     <div className={"app-wrapper-content"}>
                         <HeaderContainer/>
                         <div className="app-content">

@@ -7,7 +7,7 @@ import {login} from "../../redux/AuthReducer";
 import {Redirect} from "react-router-dom";
 import {storeType} from "../../redux/redux-store";
 import styles from "./Login.module.css"
-import { Button } from "@mui/material";
+import {Button} from "@mui/material";
 
 
 type FormDataType = {
@@ -20,12 +20,12 @@ type FormDataType = {
 const maxlength30 = maxlengthCreator(30)
 
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit,error}) => {
-    console.log(error)
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit}) => {
     return (
         <form onSubmit={handleSubmit} className={styles.loginForm}>
             <div>
                 <Field name="login"
+                       className={styles.inputForm}
                        placeholder={"Login"}
                        component={Input}
                        validate={[requiredField, maxlength30]}
@@ -34,6 +34,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit,erro
             <div>
                 <Field name="password"
                        type={"password"}
+                       className={styles.inputForm}
                        placeholder={"Password"}
                        component={Input}
                        validate={[requiredField, maxlength30]}
@@ -47,10 +48,10 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit,erro
                 <span className={styles.checkbox}>remember me</span>
             </div>
             <div>
-                <Button variant={'contained'}
+                <Button variant={'outlined'}
                         color="inherit"
                         size={'small'}
-                        className={styles.loginButton}
+                        style={{color: 'white'}}
                         onClick={handleSubmit}
                 >Login</Button>
             </div>
@@ -65,8 +66,8 @@ const LoginReduxForm = reduxForm<FormDataType>({
 type LoginPropsType = {
     login: (email: string, password: string, rememberMe: boolean) => void
     isAuth: boolean
-    error:null | string
-   }
+    error: null | string
+}
 
 const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
@@ -74,14 +75,14 @@ const Login = (props: LoginPropsType) => {
     }
 
     if (props.isAuth) {
-        return <Redirect to={'/profile/:userId'}/>
+        return <Redirect to={'/profile/userId'}/>
     }
 
     return (
         <div className={styles.block}>
-            <h1 style={{color:'rgba(214, 223, 237, 0.67)'}}>LOGIN</h1>
+            <h1 style={{color: 'rgba(214, 223, 237, 0.67)'}}>LOGIN</h1>
             <LoginReduxForm onSubmit={onSubmit}/>
-            {props.error && <div className={styles.errorMessage}>{props.error}</div> }
+            {props.error && <div className={styles.errorMessage}>{props.error}</div>}
         </div>
 
     )

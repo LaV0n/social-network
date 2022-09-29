@@ -6,50 +6,52 @@ import {Redirect} from "react-router-dom";
 import {FormDataMessageType, InputMessageReduxForm} from "./InputMessage/InputMessage";
 
 
-type DialogsType ={
-    addMessageHandler:(value:string)=>void
-    dialogs:dialogsDataType[]
-    messagesList:messageListType[]
-    newMessage:string
-    isAuth:boolean
-    profileAvatar:string
+type DialogsType = {
+    addMessageHandler: (value: string) => void
+    dialogs: dialogsDataType[]
+    messagesList: messageListType[]
+    newMessage: string
+    isAuth: boolean
+    profileAvatar: string
 }
 export type dialogsDataType = {
-    id:number
-    name:string
-    avatar:any
+    id: number
+    name: string
+    avatar: any
 }
-export type messageDatatype ={
-    messageList:messageListType[]
+export type messageDatatype = {
+    messageList: messageListType[]
 }
 
 export type messageListType = {
     id: number
     message: string
-    avatar:string
+    avatar: string
 }
 
-const Dialogs = (props:DialogsType) => {
+const Dialogs = (props: DialogsType) => {
 
-    let addMessage=(value:FormDataMessageType) => {
+    let addMessage = (value: FormDataMessageType) => {
         props.addMessageHandler(value.inputMessage)
     }
 
 
-if (!props.isAuth) return <Redirect to='/login'/>
+    if (!props.isAuth) return <Redirect to='/login'/>
 
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogs_items}>
-                {props.dialogs.map(dialog => <DialogItem name={dialog.name}
-                                                         id={dialog.id}
-                                                         avatar={dialog.avatar}/>)}
+                {props.dialogs.map(dialog => <DialogItem
+                    key={dialog.id}
+                    name={dialog.name}
+                    id={dialog.id}
+                    avatar={dialog.avatar}/>)}
             </div>
             <div className={classes.messages}>
-                {props.messagesList.map(message =>   <Message key={message.id}
-                                                              message={message.message}
-                                                              profileAvatar={props.profileAvatar}
-                                                              friendAvatar={message.avatar}
+                {props.messagesList.map(message => <Message key={message.id}
+                                                            message={message.message}
+                                                            profileAvatar={props.profileAvatar}
+                                                            friendAvatar={message.avatar}
                 />)}
                 <InputMessageReduxForm onSubmit={addMessage}/>
             </div>
