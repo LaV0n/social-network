@@ -13,7 +13,7 @@ import UsersReducer, {
     toggleFollowingProcess,
     unfollowSuccess
 } from "./UsersReducer";
-import AuthReducer, {setAuthUserData, setError} from "./AuthReducer";
+import AuthReducer, {getCaptchaURL, setAuthUserData, setError} from "./AuthReducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk"
 import {reducer as formReducer} from 'redux-form'
 import {AppReducer, setInitializedAC} from "./AppReducer";
@@ -36,7 +36,8 @@ export type ActionsType =
     ReturnType<typeof setInitializedAC> |
     ReturnType<typeof deletePostAC> |
     ReturnType<typeof setNewPhoto> |
-    ReturnType<typeof setEditMode>
+    ReturnType<typeof setEditMode> |
+    ReturnType<typeof getCaptchaURL>
 
 
 let reducers = combineReducers({

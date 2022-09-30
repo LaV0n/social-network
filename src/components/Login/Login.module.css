@@ -11,6 +11,7 @@
 .checkbox{
     color:var(--textSecondColor);
     white-space: nowrap;
+    margin-top: 5px;
 }
 .checkboxBlock{
 display: flex;
@@ -34,5 +35,11 @@ display: flex;
 }
 .inputForm::placeholder{
     color: var(--textSecondColor);
+}
+.captchaBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:10px;
 }
 
