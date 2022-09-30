@@ -48,7 +48,6 @@ let reducers = combineReducers({
     form: formReducer,
     app: AppReducer
 })
-//let store = createStore(reducers, applyMiddleware(thunkMiddleware));//@ts-ignore
 
 let store= createStore(reducers, composeWithDevTools(
     applyMiddleware(thunkMiddleware)));

@@ -7,9 +7,9 @@
 .user {
     display: flex;
     justify-content: space-between;
-    gap: 50px;
+    gap: 40px;
     width: 95%;
-    margin: 10px;
+    padding: 5px;
 }
 
 .face {

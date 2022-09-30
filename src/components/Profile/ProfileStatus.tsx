@@ -38,10 +38,13 @@ export class ProfileStatus extends React.Component<ProfileStatusType> {
     render() {
         return (
             <div onDoubleClick={this.activateEditMode}
-                 onBlur={this.deactivateEditMode}>
+                 onBlur={this.deactivateEditMode}
+                 style={{cursor:'help'}}
+            >
                 <span style={{
                     fontSize: "1rem",
-                    color: "rgba(214, 223, 237, 0.67)"
+                    color: "rgba(214, 223, 237, 0.67)",
+                    cursor:'pointer'
                 }}
                 > status </span>
                 {!this.state.editMode

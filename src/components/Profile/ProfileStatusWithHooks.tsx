@@ -27,7 +27,9 @@ export function ProfileStatusWithHooks(props: ProfileStatusWithHooksType) {
 
     return (
         <div onDoubleClick={activateEditMode}
-             onBlur={diactivateEditMode}>
+             onBlur={diactivateEditMode}
+        style={{cursor:"pointer"}}
+        >
                 <span style={{
                     fontSize: "1rem",
                     color: "rgba(214, 223, 237, 0.67)"

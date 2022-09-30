@@ -35,7 +35,7 @@ export const Users = (props: UserType) => {
         props.changeCurrentPage(value)
     };
     return (
-        <div>
+        <div >
             <div className={styles.pagesBlock}>
                 <Pagination
                     count={pageCount}
@@ -81,8 +81,8 @@ export const Users = (props: UserType) => {
                                 <div className={styles.line}><span>Status: </span>{u.status}</div>
                             </div>
                             <div>
-                                <div className={styles.line}><span>Country: </span>{"u.location.country"}</div>
-                                <div className={styles.line}><span>City: </span>{"u.location.city"}</div>
+                                <div className={styles.line}><span>Country: </span>{"World"}</div>
+                                <div className={styles.line}><span>City: </span>{ "Sun city"}</div>
                             </div>
                         </div>
                     </div>

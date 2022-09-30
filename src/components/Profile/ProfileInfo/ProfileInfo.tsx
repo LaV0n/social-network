@@ -75,11 +75,11 @@ const ProfileInfo = (props: ProfileInfoType) => {
                          className={classes.jobImg}/>
                     {props.isOwner &&
                         <div className={classes.addPhoto}>
-                            <IconButton color={'primary'} aria-label="upload picture" component="label">
+                            <IconButton color={'primary'} aria-label="upload picture" component="label" style={{padding:'0'}}>
                                 <input type={'file'} hidden onChange={setPhotoHandler}/>
                                 <img src={addPhotoIcon} alt={'0'} className={classes.addPhotoIcon}/>
                             </IconButton>
-                            <IconButton color={'primary'} aria-label="upload picture" component="label">
+                            <IconButton color={'primary'} aria-label="upload picture" component="label" style={{padding:'0'}}>
                                 <img src={gearIcon} alt={'0'} className={classes.addPhotoIcon} onClick={editModeHandler}/>
                             </IconButton>
                         </div>
