@@ -1,29 +1,26 @@
-import React, {ChangeEvent} from "react";
-import classes from './Profile.module.css';
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import { profileUserType} from "../../App";
+import React, { ChangeEvent } from 'react'
+import classes from './Profile.module.css'
+import ProfileInfo from './ProfileInfo/ProfileInfo'
+import MyPostsContainer from './MyPosts/MyPostsContainer'
+import { profileUserType } from '../../redux/ProfileReducer'
+import { useAppDispatch, useAppSelector } from '../../hoc/hook'
 
-type ProfileType ={
-    profile:profileUserType | null
-    status:string
-    updateStatus:(status: string)=>void
-    isOwner:boolean
-    setPhoto:(e:ChangeEvent<HTMLInputElement>)=>void
+type ProfileType = {
+   profile: profileUserType | null
+   status: string
+   updateStatus: (status: string) => void
+   isOwner: boolean
+   setPhoto: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const  Profile = (props:ProfileType) => {
+const Profile = (props: ProfileType) => {
+   const dispatch = useAppDispatch()
 
-    return (
-        <div className={classes.content}>
-           <ProfileInfo profile={props.profile}
-                        status={ props.status}
-                        updateStatus = {props.updateStatus}
-                        isOwner={props.isOwner}
-                        setPhoto={props.setPhoto}
-           />
-           <MyPostsContainer/>
-        </div>
-    )
+   return (
+      <div className={classes.content}>
+         <ProfileInfo profile={profile} />
+         <MyPostsContainer />
+      </div>
+   )
 }
-export default Profile;
+export default Profile
