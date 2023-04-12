@@ -17,32 +17,25 @@ import { ProfileStatusWithHooks } from '../ProfileStatusWithHooks'
 import { IconButton } from '@mui/material'
 import addPhotoIcon from '../../../assets/icons/add-photo.png'
 import { ProfileInfoForm } from '../ProfileInfoForm/ProfileInfoForm'
-import { useAppDispatch, useAppSelector } from '../../../hoc/hook'
-import { profileUserType, setEditMode, setPhoto } from '../../../redux/ProfileReducer'
+import { setEditMode, setPhoto } from '../../../redux/ProfileReducer'
 import gearIcon from '../../../assets/icons/gear_icon.png'
+import { useAppDispatch, useAppSelector } from '../../../redux/redux-store'
 
-type ProfileInfoType = {
-   profile: profileUserType | null
-   status: string
-   updateStatus: (status: string) => void
-   isOwner: boolean
-   setPhoto: (e: ChangeEvent<HTMLInputElement>) => void
-}
 type LinkIconType = {
    link: string
    icon: string
 }
 
-const ProfileInfo = (props: ProfileInfoType) => {
+const ProfileInfo = () => {
    const profile = useAppSelector(state => state.profilePage.profile)
    const editModeStatus = useAppSelector(state => state.profilePage.editMode)
-   const isOwner = true
+   const authId = useAppSelector(state => state.auth.id)
+   const isOwner = authId === profile?.userId
    const dispatch = useAppDispatch()
 
    if (!profile) {
       return <Preloader />
    }
-
    const LinkIcon = (props: LinkIconType) => {
       return (
          <div className={classes.iconBlock}>

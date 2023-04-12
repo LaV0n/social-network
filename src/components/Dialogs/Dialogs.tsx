@@ -4,8 +4,8 @@ import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
 import { Redirect } from 'react-router-dom'
 import { FormDataMessageType, InputMessageReduxForm } from './InputMessage/InputMessage'
-import { useAppDispatch, useAppSelector } from '../../hoc/hook'
 import { addMessageActionCreate } from '../../redux/DialogsReducer'
+import { useAppDispatch, useAppSelector } from '../../redux/redux-store'
 
 type DialogsType = {
    addMessageHandler: (value: string) => void
@@ -18,7 +18,7 @@ type DialogsType = {
 export type dialogsDataType = {
    id: number
    name: string
-   avatar: any
+   avatar: string
 }
 export type messageDatatype = {
    messageList: messageListType[]

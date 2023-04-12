@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, legacy_createStore as createStore } from 'redux'
+import { combineReducers } from 'redux'
 import {
    ProfileReducer,
    addPostActionCreate,
@@ -18,11 +18,13 @@ import UsersReducer, {
    toggleFollowingProcess,
    unfollowSuccess,
 } from './UsersReducer'
-import AuthReducer, { getCaptchaURL, setAuthUserData, setError } from './AuthReducer'
-import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk'
+import { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
-import { AppReducer, setInitializedAC } from './AppReducer'
-import { composeWithDevTools } from '@redux-devtools/extension'
+import { AppReducer } from './AppReducer'
+
+import { configureStore } from '@reduxjs/toolkit'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { AuthReducer } from './AuthReducer'
 
 export type ActionsType =
    | ReturnType<typeof addPostActionCreate>
@@ -34,15 +36,11 @@ export type ActionsType =
    | ReturnType<typeof setTotalUserCount>
    | ReturnType<typeof setToggleIsFetching>
    | ReturnType<typeof setUserProfile>
-   | ReturnType<typeof setAuthUserData>
    | ReturnType<typeof toggleFollowingProcess>
    | ReturnType<typeof setStatus>
-   | ReturnType<typeof setError>
-   | ReturnType<typeof setInitializedAC>
    | ReturnType<typeof deletePostAC>
    | ReturnType<typeof setNewPhoto>
    | ReturnType<typeof setEditMode>
-   | ReturnType<typeof getCaptchaURL>
 
 const reducers = combineReducers({
    messagesPage: DialogsReducer,
@@ -53,14 +51,15 @@ const reducers = combineReducers({
    app: AppReducer,
 })
 
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleware)))
+const store = configureStore({ reducer: reducers })
 
 type ReducersType = typeof reducers
 export type storeType = ReturnType<ReducersType>
-
+export const useAppDispatch = () => useDispatch<AppDispatch>()
 export type AppDispatch = ThunkDispatch<RootState, unknown, ActionsType>
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, ActionsType>
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof reducers>
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export default store
 // @ts-ignore

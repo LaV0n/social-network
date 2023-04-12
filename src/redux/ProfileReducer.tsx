@@ -73,7 +73,7 @@ export const ProfileReducer = (
       case SET_USER_PROFILE:
          return { ...state, profile: action.profile }
       case SET_STATUS:
-         return { ...state, status: action.status }
+         return { ...state, status: action.status ? action.status : 'no status' }
       case DELETE_POST:
          return { ...state, postsData: { ...state }.postsData.filter(p => p.id !== action.postId) }
       case SET_NEW_PHOTO: //@ts-ignore
@@ -100,7 +100,7 @@ export const setUserProfile = (profile: profileUserType) =>
       type: SET_USER_PROFILE,
       profile,
    } as const)
-export const setStatus = (status: string) =>
+export const setStatus = (status: string | null) =>
    ({
       type: SET_STATUS,
       status,

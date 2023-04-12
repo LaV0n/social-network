@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../hoc/hook'
 import { updateStatus } from '../../redux/ProfileReducer'
+import { useAppDispatch, useAppSelector } from '../../redux/redux-store'
 
 export function ProfileStatusWithHooks() {
    const initialStatus = useAppSelector(state => state.profilePage.status)
@@ -38,11 +38,7 @@ export function ProfileStatusWithHooks() {
             {' '}
             status{' '}
          </span>
-         {!editMode ? (
-            status || 'no status'
-         ) : (
-            <input value={status} autoFocus={true} onChange={onStatusChange} />
-         )}
+         {!editMode ? status : <input value={status} autoFocus={true} onChange={onStatusChange} />}
       </div>
    )
 }

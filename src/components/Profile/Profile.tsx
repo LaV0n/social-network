@@ -1,24 +1,38 @@
-import React, { ChangeEvent } from 'react'
+import React, { useEffect } from 'react'
 import classes from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 import MyPostsContainer from './MyPosts/MyPostsContainer'
-import { profileUserType } from '../../redux/ProfileReducer'
-import { useAppDispatch, useAppSelector } from '../../hoc/hook'
+import { Redirect, useParams } from 'react-router-dom'
+import { getStatus, getUserProfile } from '../../redux/ProfileReducer'
+import { useAppDispatch, useAppSelector } from '../../redux/redux-store'
 
-type ProfileType = {
-   profile: profileUserType | null
-   status: string
-   updateStatus: (status: string) => void
-   isOwner: boolean
-   setPhoto: (e: ChangeEvent<HTMLInputElement>) => void
-}
-
-const Profile = (props: ProfileType) => {
+const Profile = () => {
+   const authorizedUserId = useAppSelector(state => state.auth.id)
    const dispatch = useAppDispatch()
+   const params: { userId: string } = useParams()
 
+   const setUserId = () => {
+      let userId = params.userId
+      if (userId === 'userId') {
+         userId = String(authorizedUserId)
+         if (userId === ':userId') {
+            return <Redirect to={'/login'} />
+         }
+      }
+      dispatch(getStatus(+userId))
+      dispatch(getUserProfile(+userId))
+   }
+
+   useEffect(() => {
+      setUserId()
+   }, [dispatch])
+   /*
+   if (!authorizedUserId) {
+      return <Redirect to={'/login'} />
+   }*/
    return (
       <div className={classes.content}>
-         <ProfileInfo profile={profile} />
+         <ProfileInfo />
          <MyPostsContainer />
       </div>
    )
