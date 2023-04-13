@@ -15,9 +15,6 @@ const Profile = () => {
       let userId = params.userId
       if (userId === 'userId') {
          userId = String(authorizedUserId)
-         if (userId === ':userId') {
-            return <Redirect to={'/login'} />
-         }
       }
       dispatch(getStatus(+userId))
       dispatch(getUserProfile(+userId))
@@ -25,11 +22,10 @@ const Profile = () => {
 
    useEffect(() => {
       setUserId()
-   }, [dispatch])
-   /*
-   if (!authorizedUserId) {
-      return <Redirect to={'/login'} />
-   }*/
+   }, [])
+
+   if (!authorizedUserId) return <Redirect to="/login" />
+
    return (
       <div className={classes.content}>
          <ProfileInfo />

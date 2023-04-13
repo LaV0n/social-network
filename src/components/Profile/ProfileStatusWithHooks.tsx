@@ -9,8 +9,8 @@ export function ProfileStatusWithHooks() {
    const dispatch = useAppDispatch()
 
    useEffect(() => {
-      setStatus(status)
-   }, [status])
+      setStatus(initialStatus)
+   }, [initialStatus])
 
    const activateEditMode = () => {
       setEditMode(true)

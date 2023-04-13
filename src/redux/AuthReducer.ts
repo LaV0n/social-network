@@ -32,7 +32,7 @@ const slice = createSlice({
       setAuthUserData(state, action: PayloadAction<AuthType>) {
          state.email = action.payload.email
          state.id = action.payload.id
-         state.isAuth = true
+         state.isAuth = action.payload.isAuth
          state.login = action.payload.login
          state.error = action.payload.error
          state.captchaURL = action.payload.captchaURL
@@ -74,7 +74,7 @@ export const getAuthUserData = createAsyncThunk<unknown, undefined>(
                email: null,
                captchaURL: null,
                error: null,
-               isAuth: true,
+               isAuth: false,
                login: null,
             })
          )
@@ -101,6 +101,19 @@ export const getCaptcha = createAsyncThunk<string, undefined>('auth/getCaptcha',
    return response.data.url
 })
 export const logout = createAsyncThunk('auth/logout', async (_, { dispatch }) => {
-   const response = await SecurityAPI.getCaptcha()
-   dispatch(getCaptcha())
+   const response = await AuthAPI.logout()
+   try {
+      dispatch(
+         setAuthUserData({
+            id: null,
+            email: null,
+            captchaURL: null,
+            error: null,
+            isAuth: false,
+            login: null,
+         })
+      )
+   } catch (err) {
+      console.warn(err)
+   }
 })

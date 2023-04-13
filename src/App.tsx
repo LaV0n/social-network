@@ -41,7 +41,7 @@ export const App = () => {
 
    useEffect(() => {
       dispatch(initializedAppTC())
-   }, [initialized])
+   }, [])
 
    if (!initialized) {
       return <Preloader />
