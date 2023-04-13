@@ -6,34 +6,18 @@ import { Redirect, Route } from 'react-router-dom'
 import { News } from './components/News/News'
 import { Music } from './components/Music/Music'
 import { Settings } from './components/Settings/Settings'
-import { postDataType } from './components/Profile/MyPosts/MyPostsContainer'
-import { UsersPageType } from './redux/UsersReducer'
 import HeaderContainer from './components/Header/HeaderContainer'
-import { AuthType } from './redux/AuthReducer'
 import { Login } from './components/Login/Login'
 import { initializedAppTC } from './redux/AppReducer'
 import { Preloader } from './components/common/preloader/Preloader'
-import { profileUserType } from './redux/ProfileReducer'
 import Profile from './components/Profile/Profile'
 import { useAppDispatch, useAppSelector } from './redux/redux-store'
 
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'))
 
-export type stateType = {
-   messagesPage: messagesPageType
-   profilePage: profilePageType
-   usersPage: UsersPageType
-   auth: AuthType
-}
 export type messagesPageType = {
    dialogsData: Array<dialogsDataType>
    messagesData: messageDatatype
-}
-export type profilePageType = {
-   postsData: postDataType[]
-   profile: profileUserType | null
-   status: string
-   editMode: boolean
 }
 export const App = () => {
    const dispatch = useAppDispatch()

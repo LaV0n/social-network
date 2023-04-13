@@ -1,32 +1,32 @@
-import React from "react";
-import {addPostActionCreate} from "../../../redux/ProfileReducer";
-import MyPosts from "./MyPosts";
-import {connect} from "react-redux";
-import {stateType} from "../../../App";
-import {Dispatch} from "redux";
-
+import MyPosts from './MyPosts'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
+import { addPost } from '../../../redux/ProfileReducer'
+import { RootState } from '../../../redux/redux-store'
 
 export type profileStateType = {
-    postsData: postDataType[]
+   postsData: postDataType[]
 }
 export type postDataType = {
-    id: number
-    message: string
-    likeCount: number
+   id: number
+   message: string
+   likeCount: number
 }
 
-let mapStateToProps = (state: stateType) => {
-    return {
-        posts: state.profilePage.postsData,
-        smallAvatar:state.profilePage.profile?.photos.small
-    }
+const mapStateToProps = (state: RootState) => {
+   return {
+      posts: state.profilePage.postsData,
+      smallAvatar: state.profilePage.profile?.photos?.small,
+   }
 }
-let mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        addPost: (value:string) => {dispatch(addPostActionCreate(value))}
-    }
+const mapDispatchToProps = (dispatch: Dispatch) => {
+   return {
+      addPost: (value: string) => {
+         dispatch(addPost(value))
+      },
+   }
 }
 
 const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 
-export default MyPostsContainer;
+export default MyPostsContainer

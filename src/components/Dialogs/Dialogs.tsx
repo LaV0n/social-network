@@ -7,14 +7,6 @@ import { FormDataMessageType, InputMessageReduxForm } from './InputMessage/Input
 import { addMessageActionCreate } from '../../redux/DialogsReducer'
 import { useAppDispatch, useAppSelector } from '../../redux/redux-store'
 
-type DialogsType = {
-   addMessageHandler: (value: string) => void
-   dialogs: dialogsDataType[]
-   messagesList: messageListType[]
-   newMessage: string
-   isAuth: boolean
-   profileAvatar: string
-}
 export type dialogsDataType = {
    id: number
    name: string
@@ -34,7 +26,7 @@ const Dialogs = () => {
    const dialogs = useAppSelector(state => state.messagesPage.dialogsData)
    const messagesList = useAppSelector(state => state.messagesPage.messagesData.messageList)
    const isAuth = useAppSelector(state => state.auth.isAuth)
-   const profileAvatar = useAppSelector(state => state.profilePage.profile?.photos.small)
+   const profileAvatar = useAppSelector(state => state.profilePage.profile?.photos?.small)
    const dispatch = useAppDispatch()
 
    const addMessage = (value: FormDataMessageType) => {

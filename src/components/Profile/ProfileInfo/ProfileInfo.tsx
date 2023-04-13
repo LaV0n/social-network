@@ -17,9 +17,9 @@ import { ProfileStatusWithHooks } from '../ProfileStatusWithHooks'
 import { IconButton } from '@mui/material'
 import addPhotoIcon from '../../../assets/icons/add-photo.png'
 import { ProfileInfoForm } from '../ProfileInfoForm/ProfileInfoForm'
-import { setEditMode, setPhoto } from '../../../redux/ProfileReducer'
 import gearIcon from '../../../assets/icons/gear_icon.png'
 import { useAppDispatch, useAppSelector } from '../../../redux/redux-store'
+import { setEditMode, setPhoto } from '../../../redux/ProfileReducer'
 
 type LinkIconType = {
    link: string
@@ -67,7 +67,7 @@ const ProfileInfo = () => {
          <div className={classes.description_block}>
             <div className={classes.avatarBlock}>
                <img
-                  src={profile.photos.large ? profile.photos.large : defaultUser}
+                  src={profile.photos?.large ? profile.photos.large : defaultUser}
                   alt="0"
                   className={classes.avatar}
                />

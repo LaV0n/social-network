@@ -22,7 +22,7 @@ const Profile = () => {
 
    useEffect(() => {
       setUserId()
-   }, [])
+   }, [params])
 
    if (!authorizedUserId) return <Redirect to="/login" />
 
