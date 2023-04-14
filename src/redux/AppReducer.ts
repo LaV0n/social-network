@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getAuthUserData } from './AuthReducer'
+import { getAuthUserData, setError } from './AuthReducer'
+import { ErrorAsString } from '../utils/ErrorAsString/ErrorAsString'
 
 export type AppStateType = {
    initialized: boolean
@@ -27,7 +28,7 @@ export const initializedAppTC = createAsyncThunk<unknown, undefined>(
          await dispatch(getAuthUserData())
          return true
       } catch (err) {
-         console.warn(err)
+         dispatch(setError(ErrorAsString(err)))
       }
    }
 )

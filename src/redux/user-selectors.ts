@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { RootState } from './redux-store'
+import { RootState } from './store'
 
 const getUsersSelector = (state: RootState) => {
    return state.usersPage.users

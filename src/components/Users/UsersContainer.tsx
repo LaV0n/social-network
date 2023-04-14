@@ -19,7 +19,7 @@ import {
    getUser,
    getUserPageSize,
 } from '../../redux/user-selectors'
-import { RootState } from '../../redux/redux-store'
+import { RootState } from '../../redux/store'
 
 export type UserAPIComponentType = {
    users: UsersType[]

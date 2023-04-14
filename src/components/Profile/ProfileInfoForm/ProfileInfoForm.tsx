@@ -11,7 +11,7 @@ import {
 import { updateProfileData } from '../../../redux/ProfileReducer'
 import React from 'react'
 import style from './ProfileInfoForm.module.css'
-import { useAppDispatch } from '../../../redux/redux-store'
+import { useAppDispatch } from '../../../redux/store'
 
 export const ProfileInfoForm = () => {
    const dispatch = useAppDispatch()

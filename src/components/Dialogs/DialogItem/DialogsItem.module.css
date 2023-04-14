@@ -1,0 +1,27 @@
+.item  {
+    color: var(--textSecondColor);
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap:10px;
+    margin: 10px 0;
+}
+
+.item:active {
+    color: var(--textMainColor);
+    font-size: 1.2rem;
+}
+.item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+.item img {
+    width: 50px;
+    border-radius: 25px;
+}
+@media screen and (max-width: 1250px) {
+    .friendImg{
+        display: none;
+    }
+    }

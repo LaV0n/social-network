@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom'
 import styles from './Login.module.css'
 import { Button, Checkbox, TextField } from '@mui/material'
 import { useFormik } from 'formik'
-import { useAppDispatch, useAppSelector } from '../../redux/redux-store'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
 
 const LoginReduxForm = () => {
    const dispatch = useAppDispatch()

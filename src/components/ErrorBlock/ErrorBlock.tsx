@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Alert, Snackbar } from '@mui/material'
-import { useAppSelector } from '../../redux/redux-store'
+import { useAppSelector } from '../../redux/store'
 
 export const ErrorBlock = () => {
    const errorMessage = useAppSelector(state => state.auth.error)

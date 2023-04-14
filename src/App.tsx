@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect } from 'react'
 import './App.css'
 import Navbar from './components/Navbar/Navbar'
-import Dialogs, { dialogsDataType, messageDatatype } from './components/Dialogs/Dialogs'
+import Dialogs from './components/Dialogs/Dialogs'
 import { Redirect, Route } from 'react-router-dom'
 import { News } from './components/News/News'
 import { Music } from './components/Music/Music'
@@ -11,15 +11,11 @@ import { Login } from './components/Login/Login'
 import { initializedAppTC } from './redux/AppReducer'
 import { Preloader } from './components/common/preloader/Preloader'
 import Profile from './components/Profile/Profile'
-import { useAppDispatch, useAppSelector } from './redux/redux-store'
+import { useAppDispatch, useAppSelector } from './redux/store'
 import { ErrorBlock } from './components/ErrorBlock/ErrorBlock'
 
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'))
 
-export type messagesPageType = {
-   dialogsData: Array<dialogsDataType>
-   messagesData: messageDatatype
-}
 export const App = () => {
    const dispatch = useAppDispatch()
    const initialized = useAppSelector(state => state.app.initialized)

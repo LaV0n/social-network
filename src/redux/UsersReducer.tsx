@@ -1,4 +1,4 @@
-import { ActionsType, AppDispatch } from './redux-store'
+import { ActionsType, AppDispatch } from './store'
 import { UsersAPI } from '../api/api'
 
 const FOLLOW = 'FOLLOW'

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { updateStatus } from '../../../../redux/ProfileReducer'
-import { useAppDispatch, useAppSelector } from '../../../../redux/redux-store'
+import { useAppDispatch, useAppSelector } from '../../../../redux/store'
 
 export function ProfileStatus({ isOwner }: { isOwner: boolean }) {
    const initialStatus = useAppSelector(state => state.profilePage.status)

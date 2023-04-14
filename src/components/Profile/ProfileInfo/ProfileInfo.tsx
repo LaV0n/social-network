@@ -18,7 +18,7 @@ import { IconButton } from '@mui/material'
 import addPhotoIcon from '../../../assets/icons/add-photo.png'
 import { ProfileInfoForm } from '../ProfileInfoForm/ProfileInfoForm'
 import gearIcon from '../../../assets/icons/gear_icon.png'
-import { useAppDispatch, useAppSelector } from '../../../redux/redux-store'
+import { useAppDispatch, useAppSelector } from '../../../redux/store'
 import { setEditMode, setPhoto } from '../../../redux/ProfileReducer'
 
 type LinkIconType = {

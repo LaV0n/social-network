@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ProfileAPI, UsersAPI } from '../api/api'
-import { AxiosError } from 'axios'
-import { RootState } from './redux-store'
+import { RootState } from './store'
 import { setError } from './AuthReducer'
 import { ErrorAsString } from '../utils/ErrorAsString/ErrorAsString'
+import { useId } from 'react-use-id-hook'
 
 export type ProfileUserType = {
    photos: ProfilePhoto | null
@@ -60,7 +60,7 @@ const slice = createSlice({
          state.editMode = action.payload
       },
       addPost(state, action: PayloadAction<string>) {
-         state.postsData.push({ id: 4, message: action.payload, likeCount: 0 })
+         state.postsData.unshift({ id: +useId(), message: action.payload, likeCount: 0 })
       },
       deletePost(state, action: PayloadAction<number>) {
          state.postsData = state.postsData.filter(p => p.id !== action.payload)
@@ -80,12 +80,12 @@ export const ProfileReducer = slice.reducer
 export const { setStatus, setEditMode, addPost, deletePost } = slice.actions
 export const getUserProfile = createAsyncThunk<ProfileUserType, number>(
    'profile/getUserProfile',
-   async userId => {
+   async (userId, { dispatch }) => {
       try {
          const response = await UsersAPI.GetProfile(userId)
          return response.data
       } catch (err) {
-         console.warn(err)
+         dispatch(setError(ErrorAsString(err)))
       }
    }
 )
@@ -96,7 +96,7 @@ export const getStatus = createAsyncThunk<unknown, number>(
          const response = await ProfileAPI.GetStatus(userId)
          dispatch(setStatus(response.data))
       } catch (err) {
-         console.warn(err)
+         dispatch(setError(ErrorAsString(err)))
       }
    }
 )
@@ -109,20 +109,23 @@ export const updateStatus = createAsyncThunk<unknown, string>(
             dispatch(setStatus(status))
          }
       } catch (err) {
-         console.warn(err)
+         dispatch(setError(ErrorAsString(err)))
       }
    }
 )
-export const setPhoto = createAsyncThunk<ProfilePhoto, any>('profile/setPhoto', async file => {
-   try {
-      const response = await ProfileAPI.SetPhoto(file)
-      if (response.data.resultCode === 0) {
-         return response.data.data.photos
+export const setPhoto = createAsyncThunk<ProfilePhoto, any>(
+   'profile/setPhoto',
+   async (file, { dispatch }) => {
+      try {
+         const response = await ProfileAPI.SetPhoto(file)
+         if (response.data.resultCode === 0) {
+            return response.data.data.photos
+         }
+      } catch (err) {
+         dispatch(setError(ErrorAsString(err)))
       }
-   } catch (err) {
-      console.warn(err)
    }
-})
+)
 export const updateProfileData = createAsyncThunk<unknown, any, { state: RootState }>(
    'profile/updateProfile',
    async (data, { dispatch, getState }) => {

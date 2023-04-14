@@ -2,7 +2,7 @@ import React from 'react'
 import Header from './Header'
 import { connect } from 'react-redux'
 import { logout } from '../../redux/AuthReducer'
-import { RootState } from '../../redux/redux-store'
+import { RootState } from '../../redux/store'
 
 type HeaderContainertype = {
    login: string | null

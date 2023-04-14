@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import classes from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
-import MyPostsContainer from './MyPosts/MyPostsContainer'
 import { Redirect, useParams } from 'react-router-dom'
 import { getStatus, getUserProfile } from '../../redux/ProfileReducer'
-import { useAppDispatch, useAppSelector } from '../../redux/redux-store'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
+import { MyPosts } from './MyPosts/MyPosts'
 
 const Profile = () => {
    const authorizedUserId = useAppSelector(state => state.auth.id)
@@ -29,7 +29,7 @@ const Profile = () => {
    return (
       <div className={classes.content}>
          <ProfileInfo />
-         <MyPostsContainer />
+         <MyPosts />
       </div>
    )
 }

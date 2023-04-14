@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import DialogsReducer, { addMessageActionCreate } from './DialogsReducer'
 import UsersReducer, {
    followSuccess,
    setCurrentPage,
@@ -16,9 +15,9 @@ import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AuthReducer } from './AuthReducer'
 import { ProfileReducer } from './ProfileReducer'
+import { DialogsReducer } from './DialogsReducer'
 
 export type ActionsType =
-   | ReturnType<typeof addMessageActionCreate>
    | ReturnType<typeof followSuccess>
    | ReturnType<typeof unfollowSuccess>
    | ReturnType<typeof setUsers>
