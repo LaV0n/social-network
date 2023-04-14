@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ProfileAPI, UsersAPI } from '../api/api'
 import { AxiosError } from 'axios'
 import { RootState } from './redux-store'
+import { setError } from './AuthReducer'
+import { ErrorAsString } from '../utils/ErrorAsString/ErrorAsString'
 
 export type ProfileUserType = {
    photos: ProfilePhoto | null
@@ -149,9 +151,10 @@ export const updateProfileData = createAsyncThunk<unknown, any, { state: RootSta
                dispatch(setEditMode(false))
             }
          }
-      } catch (err: any) {
-         const error: string = (err as AxiosError).response?.data ? err.response.data.error : ''
-         alert(error)
+         const errorValid = response.data.messages[0]
+         dispatch(setError(errorValid))
+      } catch (err) {
+         dispatch(setError(ErrorAsString(err)))
       }
    }
 )

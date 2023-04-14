@@ -12,6 +12,7 @@ import { initializedAppTC } from './redux/AppReducer'
 import { Preloader } from './components/common/preloader/Preloader'
 import Profile from './components/Profile/Profile'
 import { useAppDispatch, useAppSelector } from './redux/redux-store'
+import { ErrorBlock } from './components/ErrorBlock/ErrorBlock'
 
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'))
 
@@ -33,6 +34,7 @@ export const App = () => {
 
    return (
       <div className="app-wrapper">
+         <ErrorBlock />
          <Navbar />
          <Redirect to={'/profile/userId?'} />
          <div className={'app-wrapper-content'}>
