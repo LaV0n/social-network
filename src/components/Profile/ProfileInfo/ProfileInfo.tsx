@@ -13,7 +13,7 @@ import vkIcon from '../../../assets/icons/poop.png'
 import gitIcon from '../../../assets/icons/github.png'
 import mailIcon from '../../../assets/icons/email.png'
 import defaultUser from '../../../assets/img/userPhoto.png'
-import { ProfileStatusWithHooks } from '../ProfileStatusWithHooks'
+import { ProfileStatus } from './ProfileStatus/ProfileStatus'
 import { IconButton } from '@mui/material'
 import addPhotoIcon from '../../../assets/icons/add-photo.png'
 import { ProfileInfoForm } from '../ProfileInfoForm/ProfileInfoForm'
@@ -51,8 +51,8 @@ const ProfileInfo = () => {
       )
    }
    const setPhotoHandler = (e: ChangeEvent<HTMLInputElement>) => {
-      if (e.currentTarget.value) {
-         dispatch(setPhoto(e.currentTarget.value))
+      if (e.target.files) {
+         dispatch(setPhoto(e.target.files[0]))
       }
    }
    const editModeHandler = () => {
@@ -107,7 +107,7 @@ const ProfileInfo = () => {
                <div>
                   <span className={classes.title}>name </span> {profile.fullName}
                </div>
-               <ProfileStatusWithHooks />
+               <ProfileStatus isOwner={isOwner} />
             </div>
             <div className={classes.aboutJobBlock}>
                <div>

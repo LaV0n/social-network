@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import { updateStatus } from '../../redux/ProfileReducer'
-import { useAppDispatch, useAppSelector } from '../../redux/redux-store'
+import { updateStatus } from '../../../../redux/ProfileReducer'
+import { useAppDispatch, useAppSelector } from '../../../../redux/redux-store'
 
-export function ProfileStatusWithHooks() {
+export function ProfileStatus({ isOwner }: { isOwner: boolean }) {
    const initialStatus = useAppSelector(state => state.profilePage.status)
    const [editMode, setEditMode] = useState(false)
    const [status, setStatus] = useState(initialStatus)
@@ -27,18 +27,22 @@ export function ProfileStatusWithHooks() {
       <div
          onDoubleClick={activateEditMode}
          onBlur={diactivateEditMode}
-         style={{ cursor: 'pointer' }}
+         style={isOwner ? { cursor: 'pointer' } : { cursor: 'default' }}
       >
          <span
             style={{
                fontSize: '1rem',
                color: 'rgba(214, 223, 237, 0.67)',
+               marginRight: '2px',
             }}
          >
-            {' '}
-            status{' '}
+            status
          </span>
-         {!editMode ? status : <input value={status} autoFocus={true} onChange={onStatusChange} />}
+         {editMode && isOwner ? (
+            <input value={status} autoFocus={true} onChange={onStatusChange} />
+         ) : (
+            status
+         )}
       </div>
    )
 }
