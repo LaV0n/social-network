@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { useId } from 'react-use-id-hook'
+import { v1 as uuidv1 } from 'uuid'
 
 type DialogsDataType = {
    id: number
@@ -9,7 +9,7 @@ type DialogsDataType = {
 }
 
 type MessageListType = {
-   id: number
+   id: string
    message: string
    owner: boolean
 }
@@ -24,9 +24,9 @@ const initialState: InitialStateType = {
          name: 'Triss',
          avatar: require('../assets/img/triss.jpg'),
          messageList: [
-            { id: 1, message: 'Hi', owner: false },
-            { id: 2, message: 'sleeper', owner: false },
-            { id: 3, message: 'How r u?', owner: false },
+            { id: '1', message: 'Hi', owner: false },
+            { id: '2', message: 'sleeper', owner: false },
+            { id: '3', message: 'How r u?', owner: false },
          ],
       },
       {
@@ -34,16 +34,16 @@ const initialState: InitialStateType = {
          name: 'Gaunter',
          avatar: require('../assets/img/gaunter.jpeg'),
          messageList: [
-            { id: 1, message: 'Hi', owner: false },
-            { id: 2, message: 'hi', owner: true },
-            { id: 3, message: 'are?', owner: false },
+            { id: '1', message: 'Hi', owner: false },
+            { id: '2', message: 'hi', owner: true },
+            { id: '3', message: 'are?', owner: false },
          ],
       },
       {
          id: 3,
          name: 'Letho',
          avatar: require('../assets/img/letho.jpg'),
-         messageList: [{ id: 1, message: 'Hi', owner: false }],
+         messageList: [{ id: '1', message: 'Hi', owner: false }],
       },
       { id: 4, name: 'Yennefer', avatar: require('../assets/img/yennefer.jpg'), messageList: [] },
       { id: 5, name: 'Thaler', avatar: require('../assets/img/thaler.jpg'), messageList: [] },
@@ -57,7 +57,7 @@ const slice = createSlice({
    reducers: {
       addMessage(state, action: PayloadAction<{ message: string; userId: number }>) {
          const newMessage: MessageListType = {
-            id: +useId(),
+            id: uuidv1(),
             message: action.payload.message,
             owner: true,
          }

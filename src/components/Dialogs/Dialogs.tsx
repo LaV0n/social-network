@@ -3,7 +3,7 @@ import classes from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
 import { Redirect } from 'react-router-dom'
-import { FormDataMessageType, InputMessageReduxForm } from './InputMessage/InputMessage'
+import { InputMessageForm } from './InputMessage/InputMessage'
 import { useAppDispatch, useAppSelector } from '../../redux/store'
 import { addMessage } from '../../redux/DialogsReducer'
 
@@ -15,8 +15,8 @@ const Dialogs = () => {
    const profileAvatar = useAppSelector(state => state.profilePage.profile?.photos?.small)
    const dispatch = useAppDispatch()
 
-   const addMessageHandler = (value: FormDataMessageType) => {
-      dispatch(addMessage({ message: value.inputMessage, userId: currentUser }))
+   const addMessageHandler = (message: string) => {
+      dispatch(addMessage({ message: message, userId: currentUser }))
    }
    const setCurrentUserHandler = (id: number) => {
       setCurrentUser(id)
@@ -47,7 +47,7 @@ const Dialogs = () => {
                   friendAvatar={messagesList[0].avatar}
                />
             ))}
-            <InputMessageReduxForm onSubmit={addMessageHandler} />
+            <InputMessageForm addMessage={addMessageHandler} />
          </div>
       </div>
    )

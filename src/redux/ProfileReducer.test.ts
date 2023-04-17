@@ -9,9 +9,9 @@ import {
 
 const state: ProfilePageType = {
    postsData: [
-      { id: 1, message: 'Hi', likeCount: 5 },
-      { id: 2, message: 'I am alive', likeCount: 5 },
-      { id: 3, message: 'Who is here?', likeCount: 5 },
+      { id: '1', message: 'Hi', likeCount: 5 },
+      { id: '2', message: 'I am alive', likeCount: 5 },
+      { id: '3', message: 'Who is here?', likeCount: 5 },
    ],
    profile: null,
    status: '',
@@ -25,7 +25,7 @@ test('add post test ->length expect 4', () => {
 })
 
 test('delete post test -> length expect 2', () => {
-   const action = deletePost(3)
+   const action = deletePost('3')
    const newState = ProfileReducer(state, action)
    expect(newState.postsData.length).toBe(2)
 })

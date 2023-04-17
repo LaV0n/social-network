@@ -1,42 +1,40 @@
 import React from 'react'
-import { Field, InjectedFormProps, reduxForm } from 'redux-form'
-import { Textarea } from '../../../common/FormsControls/FormsControls'
-import { maxlengthCreator, requiredField } from '../../../../utils/validators/validators'
-import { Button } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 import classes from './PostInput.module.css'
+import { useFormik } from 'formik'
+import { useAppDispatch } from '../../../../redux/store'
+import { addPost } from '../../../../redux/ProfileReducer'
+import { requiredMaxLengthField } from '../../../../utils/validators/validators'
 
-export type FormDataType = {
-   postInput: string
-}
+export const PostInput = () => {
+   const dispatch = useAppDispatch()
 
-const maxLength10 = maxlengthCreator(10)
+   const formik = useFormik({
+      initialValues: {
+         post: '',
+      },
+      validate: values => requiredMaxLengthField({ values, maxLength: 10 }),
+      onSubmit: (values, { resetForm }) => {
+         dispatch(addPost(values.post))
+         resetForm({ values: { post: '' } })
+      },
+   })
 
-const PostInputForm: React.FC<InjectedFormProps<FormDataType>> = props => {
    return (
-      <form onSubmit={props.handleSubmit} className={classes.inputBlock}>
+      <form onSubmit={formik.handleSubmit} className={classes.inputBlock}>
          <div>
-            <Field
-               name="postInput"
+            <TextField
                placeholder={'Enter your message'}
-               component={Textarea}
-               validate={[requiredField, maxLength10]}
+               {...formik.getFieldProps('post')}
+               error={!!formik.errors.post}
             />
+            {formik.errors.post && <div className={classes.errorMessage}>{formik.errors.post}</div>}
          </div>
          <div>
-            <Button
-               variant="outlined"
-               onClick={props.handleSubmit}
-               color="inherit"
-               style={{ color: 'white' }}
-            >
+            <Button variant="outlined" color="inherit" style={{ color: 'white' }} type={'submit'}>
                post
             </Button>
          </div>
       </form>
    )
 }
-
-export const PostInputReduxForm = reduxForm<FormDataType>({
-   // a unique name for the form
-   form: 'postInput',
-})(PostInputForm)

@@ -3,7 +3,7 @@ import { ProfileAPI, UsersAPI } from '../api/api'
 import { RootState } from './store'
 import { setError } from './AuthReducer'
 import { ErrorAsString } from '../utils/ErrorAsString/ErrorAsString'
-import { useId } from 'react-use-id-hook'
+import { v1 as uuidv1 } from 'uuid'
 
 export type ProfileUserType = {
    photos: ProfilePhoto | null
@@ -24,7 +24,7 @@ export type ProfileUserType = {
    }
 }
 export type postDataType = {
-   id: number
+   id: string
    message: string
    likeCount: number
 }
@@ -41,9 +41,9 @@ type ProfilePhoto = {
 
 const initialState: ProfilePageType = {
    postsData: [
-      { id: 1, message: 'Hi', likeCount: 5 },
-      { id: 2, message: 'I am alive', likeCount: 5 },
-      { id: 3, message: 'Who is here?', likeCount: 5 },
+      { id: '1', message: 'Hi', likeCount: 5 },
+      { id: '2', message: 'I am alive', likeCount: 5 },
+      { id: '3', message: 'Who is here?', likeCount: 5 },
    ],
    profile: null,
    status: '',
@@ -60,9 +60,9 @@ const slice = createSlice({
          state.editMode = action.payload
       },
       addPost(state, action: PayloadAction<string>) {
-         state.postsData.unshift({ id: +useId(), message: action.payload, likeCount: 0 })
+         state.postsData.unshift({ id: uuidv1(), message: action.payload, likeCount: 0 })
       },
-      deletePost(state, action: PayloadAction<number>) {
+      deletePost(state, action: PayloadAction<string>) {
          state.postsData = state.postsData.filter(p => p.id !== action.payload)
       },
    },
