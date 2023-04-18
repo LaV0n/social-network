@@ -1,14 +1,4 @@
 import { combineReducers } from 'redux'
-import UsersReducer, {
-   followSuccess,
-   setCurrentPage,
-   setToggleIsFetching,
-   setTotalUserCount,
-   setUsers,
-   toggleFollowingProcess,
-   unfollowSuccess,
-} from './UsersReducer'
-import { ThunkDispatch } from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 import { AppReducer } from './AppReducer'
 import { configureStore } from '@reduxjs/toolkit'
@@ -16,15 +6,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AuthReducer } from './AuthReducer'
 import { ProfileReducer } from './ProfileReducer'
 import { DialogsReducer } from './DialogsReducer'
-
-export type ActionsType =
-   | ReturnType<typeof followSuccess>
-   | ReturnType<typeof unfollowSuccess>
-   | ReturnType<typeof setUsers>
-   | ReturnType<typeof setCurrentPage>
-   | ReturnType<typeof setTotalUserCount>
-   | ReturnType<typeof setToggleIsFetching>
-   | ReturnType<typeof toggleFollowingProcess>
+import { UsersReducer } from './UsersReducer'
 
 const reducers = combineReducers({
    messagesPage: DialogsReducer,
@@ -38,7 +20,6 @@ const reducers = combineReducers({
 const store = configureStore({ reducer: reducers })
 
 export const useAppDispatch = () => useDispatch<typeof store.dispatch>()
-export type AppDispatch = ThunkDispatch<RootState, unknown, ActionsType>
 export type RootState = ReturnType<typeof reducers>
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 

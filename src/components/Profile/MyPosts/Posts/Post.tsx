@@ -5,7 +5,7 @@ import post_ph from '../../../../assets/img/userPhoto.png'
 type PostType = {
    message: string
    likeCount: number
-   smallAvatar: string | undefined
+   smallAvatar: string | undefined | null
 }
 
 const Post = (props: PostType) => {

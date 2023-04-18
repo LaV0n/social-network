@@ -27,6 +27,7 @@ export const PostInput = () => {
                placeholder={'Enter your message'}
                {...formik.getFieldProps('post')}
                error={!!formik.errors.post}
+               sx={{ input: { color: 'white' } }}
             />
             {formik.errors.post && <div className={classes.errorMessage}>{formik.errors.post}</div>}
          </div>

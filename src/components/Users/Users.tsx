@@ -1,113 +1,60 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import styles from './Users.module.css'
-import userPhoto from '../../assets/img/userPhoto.png'
-import { UsersType } from '../../redux/UsersReducer'
-import { NavLink } from 'react-router-dom'
+import { getUsers, setCurrentPage } from '../../redux/UsersReducer'
 import { Pagination, Typography } from '@mui/material'
+import { User } from './User/User'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
+import { Preloader } from '../common/preloader/Preloader'
 
-export type UserType = {
-   users: UsersType[]
-   follow: (userId: number) => void
-   unfollow: (userId: number) => void
-   pageSize: number
-   totalUserCount: number
-   currentPage: number
-   changeCurrentPage: (page: number) => void
-   followingInProgress: Array<number>
-}
+export const Users = () => {
+   const users = useAppSelector(state => state.usersPage.users)
+   const pageSize = useAppSelector(state => state.usersPage.pageSize)
+   const totalUserCount = useAppSelector(state => state.usersPage.totalUserCount)
+   const currentPage = useAppSelector(state => state.usersPage.currentPage)
+   const isFetching = useAppSelector(state => state.usersPage.isFetching)
+   const dispatch = useAppDispatch()
 
-export const Users = (props: UserType) => {
-   const pageCount = Math.ceil(props.totalUserCount / props.pageSize)
-
+   const pageCount = Math.ceil(totalUserCount / pageSize)
    const [editMode, setEditMode] = useState(false)
-   const [page, setPage] = useState(props.currentPage)
+   const [page, setPage] = useState(currentPage)
 
+   const changeCurrentPage = (page: number) => {
+      dispatch(getUsers({ currentPage: page, pageSize }))
+      dispatch(setCurrentPage(page))
+   }
    const editPage = () => {
       setEditMode(false)
-      props.changeCurrentPage(page)
+      changeCurrentPage(page)
    }
    const setPageHandler = (e: ChangeEvent<HTMLInputElement>) => {
       setPage(Number(e.currentTarget.value))
    }
    const handleChange = (event: any, value: number) => {
-      props.changeCurrentPage(value)
+      changeCurrentPage(value)
    }
+
+   useEffect(() => {
+      dispatch(getUsers({ currentPage, pageSize }))
+   }, [])
+
    return (
       <div>
+         {isFetching && <Preloader />}
          <div className={styles.pagesBlock}>
             <Pagination
                count={pageCount}
                onChange={handleChange}
-               page={props.currentPage}
+               page={currentPage}
                variant={'text'}
             />
             {editMode ? (
                <input value={page} type={'number'} onBlur={editPage} onChange={setPageHandler} />
             ) : (
-               <Typography onDoubleClick={() => setEditMode(true)}>
-                  Page: {props.currentPage}
-               </Typography>
+               <Typography onDoubleClick={() => setEditMode(true)}>Page: {currentPage}</Typography>
             )}
          </div>
-         {props.users.map(u => (
-            <div key={u.id} className={styles.user}>
-               <div className={styles.face}>
-                  <div>
-                     <NavLink to={'/profile/' + u.id}>
-                        <img
-                           className={styles.avatar}
-                           src={u.photos.small !== null ? u.photos.small : userPhoto}
-                           alt="0"
-                        />
-                     </NavLink>
-                  </div>
-                  <div>
-                     {u.followed ? (
-                        <button
-                           disabled={props.followingInProgress.some(id => id === u.id)}
-                           className={styles.button}
-                           onClick={() => {
-                              props.follow(u.id)
-                           }}
-                        >
-                           unfollow
-                        </button>
-                     ) : (
-                        <button
-                           disabled={props.followingInProgress.some(id => id === u.id)}
-                           className={styles.button}
-                           onClick={() => {
-                              props.unfollow(u.id)
-                           }}
-                        >
-                           follow
-                        </button>
-                     )}
-                  </div>
-               </div>
-               <div className={styles.description}>
-                  <div>
-                     <div className={styles.line}>
-                        <span>Name: </span>
-                        {u.name}
-                     </div>
-                     <div className={styles.line}>
-                        <span>Status: </span>
-                        {u.status}
-                     </div>
-                  </div>
-                  <div>
-                     <div className={styles.line}>
-                        <span>Country: </span>
-                        {'World'}
-                     </div>
-                     <div className={styles.line}>
-                        <span>City: </span>
-                        {'Sun city'}
-                     </div>
-                  </div>
-               </div>
-            </div>
+         {users.map(u => (
+            <User {...u} key={u.id} />
          ))}
       </div>
    )

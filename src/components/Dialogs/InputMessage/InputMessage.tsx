@@ -21,7 +21,7 @@ export const InputMessageForm = ({ addMessage }: FormDataMessageType) => {
    return (
       <form onSubmit={formik.handleSubmit} className={styles.form}>
          <TextField
-            sx={{ width: '100%' }}
+            sx={{ width: '100%', input: { color: 'white' } }}
             placeholder={'Enter your message'}
             {...formik.getFieldProps('message')}
             error={!!formik.errors.message}

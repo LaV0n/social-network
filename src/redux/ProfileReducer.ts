@@ -6,7 +6,7 @@ import { ErrorAsString } from '../utils/ErrorAsString/ErrorAsString'
 import { v1 as uuidv1 } from 'uuid'
 
 export type ProfileUserType = {
-   photos: ProfilePhoto | null
+   photos: ProfilePhotoType | null
    lookingForAJob?: boolean
    lookingForAJobDescription?: string
    fullName?: string
@@ -34,9 +34,9 @@ export type ProfilePageType = {
    status: string
    editMode: boolean
 }
-type ProfilePhoto = {
-   large: string
-   small: string
+export type ProfilePhotoType = {
+   large: string | null
+   small: string | null
 }
 
 const initialState: ProfilePageType = {
@@ -113,7 +113,7 @@ export const updateStatus = createAsyncThunk<unknown, string>(
       }
    }
 )
-export const setPhoto = createAsyncThunk<ProfilePhoto, any>(
+export const setPhoto = createAsyncThunk<ProfilePhotoType, any>(
    'profile/setPhoto',
    async (file, { dispatch }) => {
       try {

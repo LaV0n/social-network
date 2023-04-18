@@ -13,8 +13,7 @@ import { Preloader } from './components/common/preloader/Preloader'
 import Profile from './components/Profile/Profile'
 import { useAppDispatch, useAppSelector } from './redux/store'
 import { ErrorBlock } from './components/ErrorBlock/ErrorBlock'
-
-const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'))
+import { Users } from './components/Users/Users'
 
 export const App = () => {
    const dispatch = useAppDispatch()
@@ -42,7 +41,7 @@ export const App = () => {
                   path="/users"
                   render={() => (
                      <Suspense fallback={<Preloader />}>
-                        <UsersContainer />
+                        <Users />
                      </Suspense>
                   )}
                />
