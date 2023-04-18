@@ -1,4 +1,4 @@
-# Soial network with API
+# Social network with API
 
 Stack: *React/Redux/MUI/Axios/Formik*
 
