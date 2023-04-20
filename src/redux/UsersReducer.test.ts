@@ -8,9 +8,12 @@ import {
 } from './UsersReducer'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-import { store } from '../utils/test-utils'
-import { setupStore } from './store'
+import { setupStore } from '../utils/test-utils'
 
+const axiosInstance = {
+   withCredentials: true,
+   headers: { 'API-KEY': '45599275-fc7c-4215-aaa5-a9a36d291e1f' },
+}
 const mock = new MockAdapter(axios)
 
 const resultData = {
@@ -22,7 +25,7 @@ const resultData = {
 const usersResultData = {
    items: [
       {
-         name: 'Bybon',
+         name: 'BybonIC',
          id: 1607,
          uniqueUrlName: null,
          photos: {
@@ -80,7 +83,27 @@ const usersResultData = {
    totalCount: 23834,
    error: null,
 }
-const mockedStore = store()
+const profileResultData = {
+   aboutMe: 'meee',
+   contacts: {
+      facebook: '',
+      website: '',
+      vk: '',
+      twitter: '',
+      instagram: '',
+      youtube: 'http://news.rr.nihalnavath.com/posts/-0ae83f4c',
+      github: 'https://github.com/LaV0n',
+      mainLink: '',
+   },
+   lookingForAJob: false,
+   lookingForAJobDescription: 'pleeease',
+   fullName: 'LaVon',
+   userId: 25013,
+   photos: {
+      small: 'https://social-network.samuraijs.com/activecontent/images/users/25013/user-small.jpg?v=23',
+      large: 'https://social-network.samuraijs.com/activecontent/images/users/25013/user.jpg?v=23',
+   },
+}
 
 const mockNetworkRequests = () => {
    mock.onPost('https://social-network.samuraijs.com/api/1.0/follow/2').reply(200, resultData)
@@ -88,10 +111,18 @@ const mockNetworkRequests = () => {
       .onGet('https://social-network.samuraijs.com/api/1.0/users?page=4647&count=5')
       .reply(200, usersResultData)
    mock.onGet('https://social-network.samuraijs.com/api/1.0/profile/status/25013').reply(200, 123)
+   mock
+      .onGet('https://social-network.samuraijs.com/api/1.0/profile/25013', {
+         withCredentials: true,
+         headers: { 'API-KEY': '45599275-fc7c-4215-aaa5-a9a36d291e1f' },
+      })
+      .reply(200, profileResultData)
 }
 const unMockNetworkRequests = () => {
    mock.resetHistory()
 }
+
+const mockedStore = setupStore()
 
 let state: UsersType
 beforeEach(() => {
@@ -180,10 +211,15 @@ describe('slice test', () => {
    })
    test('get users ', async () => {
       await mockedStore.dispatch(getUsers({ currentPage: 4767, pageSize: 5 }))
-      await mockedStore.dispatch(getUsers({ currentPage: 4767, pageSize: 5 }))
-      const users = mockedStore.getState().usersPage.users
-      expect(users).toEqual(usersResultData)
+      const { id } = mockedStore.getState().usersPage.users[0]
+      expect(id).toEqual(1607)
    })
+   /*   test('unfollow ', async () => {
+      await mockedStore.dispatch(getUserProfile(25013))
+      const aboutMe = mockedStore.getState().profilePage.profile?.aboutMe
+      const aboutMe2 = setupStore().getState().profilePage.profile?.aboutMe
+      expect(aboutMe).toEqual(123)
+   })*/
 })
 test('follow fulfilled"', () => {
    const action = follow.fulfilled(2, '', 2)

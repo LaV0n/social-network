@@ -1,4 +1,4 @@
-import { combineReducers, PreloadedState } from 'redux'
+import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import { AppReducer } from './AppReducer'
 import { configureStore } from '@reduxjs/toolkit'
@@ -18,14 +18,9 @@ export const reducers = combineReducers({
 })
 
 const store = configureStore({ reducer: reducers })
-export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
-   return configureStore({ reducer: reducers, preloadedState })
-}
 
-export type AppStore = ReturnType<typeof setupStore>
-export type AppDispatch = AppStore['dispatch']
-//export const useAppDispatch = () => useDispatch<typeof store.dispatch>()
-export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppDispatch = () => useDispatch<typeof store.dispatch>()
+//export const useAppDispatch: () => AppDispatch = useDispatch
 export type RootState = ReturnType<typeof reducers>
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
