@@ -1,29 +1,36 @@
-import React, {ChangeEvent} from "react";
-import classes from './Profile.module.css';
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import { profileUserType} from "../../App";
+import React, { useEffect } from 'react'
+import classes from './Profile.module.css'
+import ProfileInfo from './ProfileInfo/ProfileInfo'
+import { Redirect, useParams } from 'react-router-dom'
+import { getStatus, getUserProfile } from '../../redux/ProfileReducer'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
+import { MyPosts } from './MyPosts/MyPosts'
 
-type ProfileType ={
-    profile:profileUserType | null
-    status:string
-    updateStatus:(status: string)=>void
-    isOwner:boolean
-    setPhoto:(e:ChangeEvent<HTMLInputElement>)=>void
+const Profile = () => {
+   const authorizedUserId = useAppSelector(state => state.auth.id)
+   const dispatch = useAppDispatch()
+   const params: { userId: string } = useParams()
+
+   const setUserId = () => {
+      let userId = params.userId
+      if (userId === 'userId') {
+         userId = String(authorizedUserId)
+      }
+      dispatch(getStatus(+userId))
+      dispatch(getUserProfile(+userId))
+   }
+
+   useEffect(() => {
+      setUserId()
+   }, [params])
+
+   if (!authorizedUserId) return <Redirect to="/login" />
+
+   return (
+      <div className={classes.content}>
+         <ProfileInfo />
+         <MyPosts />
+      </div>
+   )
 }
-
-const  Profile = (props:ProfileType) => {
-
-    return (
-        <div className={classes.content}>
-           <ProfileInfo profile={props.profile}
-                        status={ props.status}
-                        updateStatus = {props.updateStatus}
-                        isOwner={props.isOwner}
-                        setPhoto={props.setPhoto}
-           />
-           <MyPostsContainer/>
-        </div>
-    )
-}
-export default Profile;
+export default Profile

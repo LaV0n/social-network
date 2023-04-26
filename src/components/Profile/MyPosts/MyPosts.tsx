@@ -1,34 +1,33 @@
-import React from "react";
-import classes from './MyPosts.module.css';
-import {postDataType} from "./MyPostsContainer";
-import Post from "./Posts/Post";
-import {FormDataType, PostInputReduxForm} from "./PostInput/PostInput";
+import React from 'react'
+import classes from './MyPosts.module.css'
+import Post from './Posts/Post'
+import { PostInput } from './PostInput/PostInput'
+import { useAppSelector } from '../../../redux/store'
 
-type MyPostsType = {
-    addPost:(value:string)=>void
-    posts:postDataType[]
-    smallAvatar:string | undefined
-}
+export const MyPosts = () => {
+   const posts = useAppSelector(state => state.profilePage.postsData)
+   const userId = useAppSelector(state => state.profilePage.profile?.userId)
+   const loginId = useAppSelector(state => state.auth.id)
+   const smallAvatar = useAppSelector(state => state.profilePage.profile?.photos?.small)
 
-const MyPosts = React.memo((props: MyPostsType) => {
-    let postsElements =
-        props.posts.map(message => <Post key={message.id} message={message.message} likeCount={message.likeCount} smallAvatar={props.smallAvatar}/>);
+   const postsElements = posts.map(message => (
+      <Post
+         key={message.id}
+         message={message.message}
+         likeCount={message.likeCount}
+         smallAvatar={smallAvatar}
+      />
+   ))
 
-
-    let addPost = (value:FormDataType) => {
-        props.addPost(value.postInput);
-    }
-
-    return (
-        <div className={classes.post_block}>
+   return (
+      <div className={classes.post_block}>
+         {userId === loginId && (
             <div>
-                <h3> My New Post</h3>
-                <PostInputReduxForm onSubmit={addPost}/>
+               <h3> My New Post</h3>
+               <PostInput />
             </div>
-            <div className={classes.posts}>
-                {postsElements}
-            </div>
-        </div>
-    )
-})
-export default MyPosts;
+         )}
+         <div className={classes.posts}>{postsElements}</div>
+      </div>
+   )
+}

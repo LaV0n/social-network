@@ -1,20 +1,23 @@
-import React from "react";
-import classes from "./../Dialogs.module.css";
-import {NavLink} from "react-router-dom";
+import React from 'react'
+import styles from './DialogsItem.module.css'
 
 type DialogItemType = {
-    name: string
-    id: number
-    avatar:any
+   name: string
+   id: number
+   avatar: string
+   setCurrentUser: (id: number) => void
 }
+
 const DialogItem = (props: DialogItemType) => {
-    let path = '/dialogs/' + props.id;
-    return (
-        <div className={classes.item + ' ' + classes.active}>
-            <img src={props.avatar} alt={'0'} className={classes.friendImg}/>
-            <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    )
+   return (
+      <div
+         className={styles.item + ' ' + styles.active}
+         onClick={() => props.setCurrentUser(props.id)}
+      >
+         <img src={props.avatar} alt={'0'} className={styles.friendImg} />
+         <div>{props.name}</div>
+      </div>
+   )
 }
 
 export default DialogItem
