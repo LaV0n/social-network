@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/social-network/static/css/main.79e31089.css",
+    "main.js": "/social-network/static/js/main.aefe16f2.js",
+    "static/media/background.jpg": "/social-network/static/media/background.e7a61652a136fcef6499.jpg",
+    "static/media/triss.jpg": "/social-network/static/media/triss.fba8eb0b3b926a44e65e.jpg",
+    "static/media/yennefer.jpg": "/social-network/static/media/yennefer.34ae829fe49b7c651eec.jpg",
+    "static/media/logo.jpg": "/social-network/static/media/logo.b907359d6267e1fc2ba2.jpg",
+    "static/media/jaskier.jpg": "/social-network/static/media/jaskier.123226cd8480fab0aa56.jpg",
+    "static/media/userPhoto.png": "/social-network/static/media/userPhoto.1d9efac1c6770db8bf87.png",
+    "static/media/kaen.jpg": "/social-network/static/media/kaen.ad2b5a3b4998f796e9a9.jpg",
+    "static/media/thaler.jpg": "/social-network/static/media/thaler.c6cf3577b7849ddc7773.jpg",
+    "static/media/github.png": "/social-network/static/media/github.9e094d235b4caa7c31fc.png",
+    "static/media/lookingJob.png": "/social-network/static/media/lookingJob.ae6d60fbc9d5443e1800.png",
+    "static/media/letho.jpg": "/social-network/static/media/letho.b2de28e51420d26431c3.jpg",
+    "static/media/twitter.png": "/social-network/static/media/twitter.c08f939e6ae8a4957431.png",
+    "static/media/email.png": "/social-network/static/media/email.3e67e7c29543614f9e47.png",
+    "static/media/instagram.png": "/social-network/static/media/instagram.79ea850107caae079257.png",
+    "static/media/gaunter.jpeg": "/social-network/static/media/gaunter.8004faf18837c12bde56.jpeg",
+    "static/media/poop.png": "/social-network/static/media/poop.d337e4d51a197cdd1510.png",
+    "static/media/youtube.png": "/social-network/static/media/youtube.4ad78c4004874a182b12.png",
+    "static/media/jobChilling.webp": "/social-network/static/media/jobChilling.c93c1c61d8f54faf00a0.webp",
+    "static/media/add-photo.png": "/social-network/static/media/add-photo.6ccd744ff98906e28283.png",
+    "static/media/www.png": "/social-network/static/media/www.119be0da4788fa7ce91f.png",
+    "static/media/preloader.svg": "/social-network/static/media/preloader.160717ec6b49a46b0cc31d566f26059e.svg",
+    "index.html": "/social-network/index.html",
+    "main.79e31089.css.map": "/social-network/static/css/main.79e31089.css.map",
+    "main.aefe16f2.js.map": "/social-network/static/js/main.aefe16f2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.79e31089.css",
+    "static/js/main.aefe16f2.js"
+  ]
+}
