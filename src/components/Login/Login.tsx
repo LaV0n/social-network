@@ -28,6 +28,17 @@ const LoginReduxForm = () => {
       },
    })
 
+   const testUserLogin = () => {
+      const values = {
+         email: 'free@samuraijs.com',
+         password: 'free',
+         rememberMe: false,
+         captcha: '',
+      }
+
+      dispatch(login(values))
+   }
+
    return (
       <form onSubmit={formik.handleSubmit} className={styles.loginForm}>
          <div>
@@ -63,17 +74,24 @@ const LoginReduxForm = () => {
                <TextField className={styles.inputForm} {...formik.getFieldProps('captcha')} />
             </div>
          )}
-         <div>
-            <Button
-               variant={'outlined'}
-               color="inherit"
-               size={'small'}
-               style={{ color: 'white' }}
-               type={'submit'}
-            >
-               Login
-            </Button>
-         </div>
+         <Button
+            variant={'outlined'}
+            color="inherit"
+            size={'small'}
+            style={{ color: 'white' }}
+            type={'submit'}
+         >
+            Login
+         </Button>
+         <Button
+            variant={'outlined'}
+            color="info"
+            size={'small'}
+            onClick={testUserLogin}
+            style={{ color: 'rgba(214, 223, 237, 0.67)' }}
+         >
+            test user
+         </Button>
       </form>
    )
 }

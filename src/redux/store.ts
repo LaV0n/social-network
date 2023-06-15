@@ -25,5 +25,3 @@ export type RootState = ReturnType<typeof reducers>
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export default store
-// @ts-ignore
-window.store = store
