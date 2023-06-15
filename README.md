@@ -2,11 +2,8 @@
 
 Stack: *React/Redux/MUI/Axios/Formik*
 
-test account credentials:
+You can try app with a test account using 'test user' button
 
-Email: free@samuraijs.com
-
-Password: free
 
 [link](https://lav0n.github.io/social-network/)
 
